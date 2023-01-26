@@ -9,6 +9,8 @@ package-lock.json
 **/*.classpath
 */.settings/
 .idea/
+.project
+.settings
 
 # BlueJ files
 *.ctxt
