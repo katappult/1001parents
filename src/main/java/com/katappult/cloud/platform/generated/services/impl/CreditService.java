@@ -31,6 +31,7 @@ import com.katappult.cloud.platform.generated.model.event.PostCreateCredit;
 import com.katappult.cloud.platform.generated.model.event.PostDeleteCredit;
 import com.katappult.cloud.platform.generated.model.event.PostUpdateCredit;
 import java.util.List;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 @Component
@@ -126,5 +127,37 @@ public class CreditService implements  ICreditService {
         return dao.searchByNamelike(searchTerm, pageRequest, container);
     }
 
-    // SERVICES
+    
+    @Override
+    public UserAccount getUserAccount(final Credit entity, final Container container) {
+        Credit refreshed = persistableService.refresh(entity);
+        return refreshed.getUserAccount();
+    }
+
+
+    @Override
+    @Transactional(propagation =  Propagation.REQUIRED)
+    public void setUserAccount(final Credit entity, final UserAccount roleb, final Container container) {
+        Credit refreshed = persistableService.refresh(entity);
+        UserAccount refreshedToOne = persistableService.refresh(roleb);
+        refreshed.setUserAccount(refreshedToOne);
+
+        persistableService.mergeWithoutEvent(refreshed);
+    }
+
+    @Override
+    @Transactional(propagation =  Propagation.REQUIRED)
+    public void removeUserAccount(final Credit entity, final UserAccount roleb, final Container container) {
+        Credit refreshed = persistableService.refresh(entity);
+        refreshed.setUserAccount(null);
+        persistableService.mergeWithoutEvent(refreshed);
+    }
+
+    @Override
+    public Credit getInverseOneToOneUserAccount(final UserAccount entity, final Container container) {
+        QCredit qCredit = new QCredit("entity");
+        return persistableDao.from(qCredit).where(qCredit.userAccount().eq(entity)).singleResult(qCredit);
+    }
+
+// SERVICES
 }

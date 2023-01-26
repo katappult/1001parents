@@ -1,2 +1,0 @@
-SELECT * FROM GEN_DEMANDEAGENTFACILITATEUR order by create_date desc
-

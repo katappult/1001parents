@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PreCreateDemandeAgent
+PRE_DELETE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PreDeleteDemandeAgent
+PRE_UPDATE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PreUpdateDemandeAgent
+POST_CREATE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PostCreateDemandeAgent
+POST_DELETE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeAgent
+POST_UPDATE_DEMANDEAGENT;com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeAgent

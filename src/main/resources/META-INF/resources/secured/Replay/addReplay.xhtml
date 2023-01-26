@@ -29,21 +29,21 @@
 
                     <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
 
-                        <h:outputLabel for="titre" value="titre"/>
-<p:inputText id="titre" value="#{replayController.newElement.titre}" required="true"/>
-<p:message for="titre" display="icon"/><h:outputLabel for="mediaType" value="mediaType"/>
+                        <h:outputLabel for="title" value="Titre"/>
+<p:inputText id="title" value="#{replayController.newElement.title}" required="true"/>
+<p:message for="title" display="icon"/><h:outputLabel for="description" value="Description"/>
+<p:inputTextarea id="description" rows="5" cols="30" value="#{replayController.newElement.description}" counterTemplate="{0} characters remaining." required="true"/>
+<p:message for="description" display="icon"/><h:outputLabel for="mediaType" value="MediaType"/>
 <p:inputText id="mediaType" value="#{replayController.newElement.mediaType}" required="true"/>
-<p:message for="mediaType" display="icon"/><h:outputLabel for="category" value="category"/>
-<p:inputText id="category" value="#{replayController.newElement.category}" required="true"/>
-<p:message for="category" display="icon"/><h:outputLabel for="description" value="description"/>
-<p:inputText id="description" value="#{replayController.newElement.description}" required="true"/>
-<p:message for="description" display="icon"/><h:outputLabel for="externalLink" value="externalLink"/>
+<p:message for="mediaType" display="icon"/><h:outputLabel for="externalLink" value="ExternalLink"/>
 <p:inputText id="externalLink" value="#{replayController.newElement.externalLink}" required="true"/>
-<p:message for="externalLink" display="icon"/><!--COLUMNS-->
+<p:message for="externalLink" display="icon"/><h:outputLabel for="webinarSource" value="WebinarSource"/>
+<p:inputText id="webinarSource" value="#{replayController.newElement.webinarSource}" required="true"/>
+<p:message for="webinarSource" display="icon"/><!--COLUMNS-->
 
                     </h:panelGrid>
 
-                    <p:commandButton value="Créer" style="width: 5rem"
+                    <p:commandButton value="Cr&#233;er" style="width: 5rem"
                                      styleClass="mt-4"
                                      immediate="false" ajax="false"
                                      process="create_form @this"

@@ -6,6 +6,7 @@
 
     
 		<include file="changelogs/_generated/credit/credit-schema.xml"/>
+		<include file="changelogs/_generated/credit/credit-type.xml"/>
 		<include file="changelogs/_generated/credit/credit-rules.xml"/>
 		<include file="changelogs/_generated/credit/credit-export.xml"/>
 </databaseChangeLog>

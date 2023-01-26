@@ -4,21 +4,19 @@
     <command name="EXPORT_FOR_UPDATE" targetEntity="com.katappult.cloud.platform.generated.model.Webinar">
         <column id="command" constant="UPDATE_WEBINAR" />
         <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
-        <column id="titre" mandatory="false"/>
+        <column id="title" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="mediatype" mandatory="false"/>
         <column id="category" mandatory="false"/>
-        <column id="dateplanified" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
+        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
 <!-- EXPORT_ATTRIBUTES_1 -->
 
     </command>
 
     <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.Webinar">
-        <column id="titre" mandatory="false"/>
+        <column id="title" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="mediatype" mandatory="false"/>
         <column id="category" mandatory="false"/>
-        <column id="dateplanified" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
+        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
 <!-- EXPORT_ATTRIBUTES_2 -->
     </command>
 </mappingFile>

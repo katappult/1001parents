@@ -1,4 +1,4 @@
-package com.katappult.cloud.platform.generated.rest.rest;
+package com.katappult.cloud.platform.generated.rest;
 
 import com.katappult.core.bridge.operation.IOperationResult;
 import com.katappult.core.bridge.result.MultipleResult;
@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.HashMap;
 import com.katappult.cloud.platform.generated.services.api.IDemandeAmbassadeurService;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.AmbassadeurCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 @RestController
@@ -156,5 +158,149 @@ public class DemandeAmbassadeurServiceFacade {
     return result;
   }
 
-  // SERVICES
+  
+
+  @PostMapping(value = "/oneToOneAmbassadeurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable setOneToOneAmbassadeurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+    AmbassadeurCategory roleb = (AmbassadeurCategory) rolebId.getPersistable();
+
+    service.setAmbassadeurCategory(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @DeleteMapping(value = "/oneToOneAmbassadeurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable removeOneToOneAmbassadeurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                            @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                            @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+    AmbassadeurCategory roleb = (AmbassadeurCategory) rolebId.getPersistable();
+
+    service.removeAmbassadeurCategory(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @GetMapping(value = "/oneToOneAmbassadeurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseBody
+  public Serializable getOneToOneAmbassadeurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+
+    AmbassadeurCategory roleb = service.getAmbassadeurCategory(entity, container);
+    if(roleb != null){
+      OperationData operationData = TransferUtils.toOperationData(roleb);
+      result.setData(operationData);
+    }
+
+    return result;
+  }
+
+
+  @GetMapping(value = "/oneToOneAmbassadeurCategory/inverse", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @ResponseBody
+  public Serializable inverseOneToOneAmbassadeurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                                  @RequestParam("containerId") Container container)  {
+
+        IOperationResult result = new SingleResult();
+        AmbassadeurCategory entity = (AmbassadeurCategory) entityId.getPersistable();
+
+        DemandeAmbassadeur roleA = service.getInverseOneToOneAmbassadeurCategory(entity, container);
+
+        OperationData operationData = TransferUtils.toOperationData(roleA);
+        result.setData(operationData);
+        return result;
+  }
+
+
+
+  @PostMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable setOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+    UserAccount roleb = (UserAccount) rolebId.getPersistable();
+
+    service.setUserAccount(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @DeleteMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable removeOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                            @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                            @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+    UserAccount roleb = (UserAccount) rolebId.getPersistable();
+
+    service.removeUserAccount(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @GetMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseBody
+  public Serializable getOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAmbassadeur entity = (DemandeAmbassadeur) entityId.getPersistable();
+
+    UserAccount roleb = service.getUserAccount(entity, container);
+    if(roleb != null){
+      OperationData operationData = TransferUtils.toOperationData(roleb);
+      result.setData(operationData);
+    }
+
+    return result;
+  }
+
+
+  @GetMapping(value = "/oneToOneUserAccount/inverse", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @ResponseBody
+  public Serializable inverseOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                                  @RequestParam("containerId") Container container)  {
+
+        IOperationResult result = new SingleResult();
+        UserAccount entity = (UserAccount) entityId.getPersistable();
+
+        DemandeAmbassadeur roleA = service.getInverseOneToOneUserAccount(entity, container);
+
+        OperationData operationData = TransferUtils.toOperationData(roleA);
+        result.setData(operationData);
+        return result;
+  }
+
+// SERVICES
 }

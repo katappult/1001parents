@@ -9,6 +9,7 @@ import com.katappult.core.utils.UIAttributes;
 import java.util.List;
 import java.util.Map;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 public interface ICreditService {
@@ -27,5 +28,14 @@ public interface ICreditService {
 
     void batchUpdateFromImport(Credit transientEntity);
 
-    // SERVICES
+    
+    void setUserAccount(Credit entity, UserAccount roleB, Container container);
+
+    UserAccount getUserAccount(Credit entity, Container container);
+
+    void removeUserAccount(Credit entity, UserAccount roleB, Container container);
+
+    Credit getInverseOneToOneUserAccount(UserAccount entity, Container container);
+
+// SERVICES
 }

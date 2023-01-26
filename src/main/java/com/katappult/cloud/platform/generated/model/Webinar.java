@@ -14,43 +14,46 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.lang.String;
+import com.katappult.core.model.typed.ITypeManaged;
+import com.katappult.core.model.typed.TypeInfo;
+import com.katappult.core.model.typed.TypeManaged;
+
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
 // IMPORT
 
 
-@javax.persistence.Entity
+@Entity
 @Table(name = "gen_webinar")
 @Access(AccessType.PROPERTY)
+@TypeManaged(rootType = "com.katappult.online.types.WebinarType")
 // ANNOTATIONS
-public class Webinar extends BusinessObject implements Serializable {// KNOER
+public class Webinar extends BusinessObject implements Serializable , ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
-    private String titre;
+    private String title;
     private String description;
-    private String mediaType;
     private String category;
-    private Date datePlanified;
-    // ATTRIBUTES
+    private Date dateDePlanification;
+    	private TypeInfo typeInfo;
+private LifecycleInfo lifecycleInfo;
+// ATTRIBUTES
 
 
     @Override
     public void updateFrom(Persistable entity) {
         super.updateFrom(entity);
-        setTitre(((Webinar)entity).getTitre());
-        setTitre(((Webinar)entity).getTitre());
+        setTitle(((Webinar)entity).getTitle());
+        setTitle(((Webinar)entity).getTitle());
         setDescription(((Webinar)entity).getDescription());
-        setTitre(((Webinar)entity).getTitre());
+        setTitle(((Webinar)entity).getTitle());
         setDescription(((Webinar)entity).getDescription());
-        setMediaType(((Webinar)entity).getMediaType());
-        setTitre(((Webinar)entity).getTitre());
-        setDescription(((Webinar)entity).getDescription());
-        setMediaType(((Webinar)entity).getMediaType());
         setCategory(((Webinar)entity).getCategory());
-        setTitre(((Webinar)entity).getTitre());
+        setTitle(((Webinar)entity).getTitle());
         setDescription(((Webinar)entity).getDescription());
-        setMediaType(((Webinar)entity).getMediaType());
         setCategory(((Webinar)entity).getCategory());
-        setDatePlanified(((Webinar)entity).getDatePlanified());
+        setDateDePlanification(((Webinar)entity).getDateDePlanification());
         // UPDATE_ATTRIBUTES
     }
 
@@ -70,15 +73,37 @@ public class Webinar extends BusinessObject implements Serializable {// KNOER
         return super._getOid();
     }
 
-    // GETTERS AND SETTERS
-    @UIAttribute(fieldName = "titre", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "titre")
-    public String getTitre() {
-        return titre;
+    
+	@Embedded
+    @Override
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    @Override
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
+    }
+
+	@Embedded
+    @Override
+    public LifecycleInfo getLifecycleInfo() {
+        return lifecycleInfo;
+    }
+
+    @Override
+    public void setLifecycleInfo(LifecycleInfo lifecycleInfo) {
+        this.lifecycleInfo = lifecycleInfo;
+    }
+// GETTERS AND SETTERS
+    @UIAttribute(fieldName = "title", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @UIAttribute(fieldName = "description", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
@@ -91,16 +116,6 @@ public class Webinar extends BusinessObject implements Serializable {// KNOER
         this.description = description;
     }
 
-    @UIAttribute(fieldName = "mediaType", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "mediatype")
-    public String getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
-
     @UIAttribute(fieldName = "category", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "category")
     public String getCategory() {
@@ -111,14 +126,14 @@ public class Webinar extends BusinessObject implements Serializable {// KNOER
         this.category = category;
     }
 
-    @UIAttribute(fieldName = "datePlanified", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "dateplanified")
-    public Date getDatePlanified() {
-        return datePlanified;
+    @UIAttribute(fieldName = "dateDePlanification", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "datedeplanification")
+    public Date getDateDePlanification() {
+        return dateDePlanification;
     }
 
-    public void setDatePlanified(Date datePlanified) {
-        this.datePlanified = datePlanified;
+    public void setDateDePlanification(Date dateDePlanification) {
+        this.dateDePlanification = dateDePlanification;
     }
 
 

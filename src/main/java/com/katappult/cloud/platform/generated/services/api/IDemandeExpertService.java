@@ -9,6 +9,8 @@ import com.katappult.core.utils.UIAttributes;
 import java.util.List;
 import java.util.Map;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.ExpertCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 public interface IDemandeExpertService {
@@ -27,5 +29,23 @@ public interface IDemandeExpertService {
 
     void batchUpdateFromImport(DemandeExpert transientEntity);
 
-    // SERVICES
+    
+    void setExpertCategory(DemandeExpert entity, ExpertCategory roleB, Container container);
+
+    ExpertCategory getExpertCategory(DemandeExpert entity, Container container);
+
+    void removeExpertCategory(DemandeExpert entity, ExpertCategory roleB, Container container);
+
+    DemandeExpert getInverseOneToOneExpertCategory(ExpertCategory entity, Container container);
+
+
+    void setUserAccount(DemandeExpert entity, UserAccount roleB, Container container);
+
+    UserAccount getUserAccount(DemandeExpert entity, Container container);
+
+    void removeUserAccount(DemandeExpert entity, UserAccount roleB, Container container);
+
+    DemandeExpert getInverseOneToOneUserAccount(UserAccount entity, Container container);
+
+// SERVICES
 }

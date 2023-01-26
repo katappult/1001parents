@@ -27,7 +27,15 @@ public class WebinarDao implements  IWebinarDao{
         QWebinar qWebinar = new QWebinar("entity");
         BooleanExpression whereClause =  qWebinar.containerInfo().container().eq(container);
 
-        // WHERE CLAUSE
+        if(Objects.nonNull(params) && params.size() > 0){
+            String status = params.get("status");
+            if(StringUtils.isNotBlank(status)){
+                whereClause = whereClause.and(
+                        qWebinar.lifecycleInfo().currentState.eq(status)
+                );
+            }
+        }
+// WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qWebinar).where(whereClause);
         return dao.readPage(jpqlQuery, qWebinar, pageRequest);
@@ -43,9 +51,8 @@ public class WebinarDao implements  IWebinarDao{
     public PageResult searchByNamelike(String searchTerm, PageRequest pageRequest, Container container) {
         QWebinar qWebinar = new QWebinar("entity");
 
-        BooleanExpression whereClause = qWebinar.titre.likeIgnoreCase("%" + searchTerm + "%");
+        BooleanExpression whereClause = qWebinar.title.likeIgnoreCase("%" + searchTerm + "%");
 whereClause = whereClause.or(qWebinar.description.likeIgnoreCase("%" + searchTerm + "%"));
-whereClause = whereClause.or(qWebinar.mediaType.likeIgnoreCase("%" + searchTerm + "%"));
 whereClause = whereClause.or(qWebinar.category.likeIgnoreCase("%" + searchTerm + "%"));
 // SEARCH ENTITY WHERE CLAUSE
 

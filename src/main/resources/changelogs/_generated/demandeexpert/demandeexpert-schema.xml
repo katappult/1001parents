@@ -40,13 +40,126 @@
                 <constraints nullable="false" />
             </column>
 
-                      <column name="datedeplanification" type="TIMESTAMP"/>
-        <column name="description" type="VARCHAR(255)"/>
-        <column name="theme" type="VARCHAR(255)"/>
+                    <column name="description" type="VARCHAR(255)"/>
         <column name="titre" type="VARCHAR(255)"/>
 <!--COLUMNS-->
         </createTable>
     </changeSet>
 
+
+
+    <changeSet id="8" author="DemandeExpert-schema-content-holder">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_demandeexpert">
+            <column name="primary_content_oid" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="5" author="DemandeExpert-schema-type-managed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_demandeexpert">
+            <column name="type_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2" author="DemandeExpert-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <insert tableName="T_LIFECYCLEMASTER">
+            <column name="name" value="DemandeExpert lifecycle"/>
+            <column name="number" value="DEMANDEEXPERT_0001"/>
+            <column name="description" value="DemandeExpert lifecycle description"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_LIFECYCLE">
+            <column name="is_latest_iteration" value="1"/>
+            <column name="iteration_number" value="1"/>
+            <column name="is_working_copy" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="master_oid" valueComputed="(select oid from T_LIFECYCLEMASTER where name='DemandeExpert lifecycle')"/>
+            <column name="initial_state" value="NEW"/>
+            <column name="terminal_state" value="CLOSED"/>
+        </insert>
+
+        <insert tableName="T_CONTENTITEM">
+            <column name="content_size" value="10"/>
+            <column name="md5" value="1"/>
+            <column name="rating" valueNumeric="1"/>
+            <column name="download_count" valueNumeric="1"/>
+            <column name="name" value="DEMANDEEXPERT_LIFECYCLE"/>
+            <column name="dtype" value="PRIM"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_CONTENTLOCATION">
+            <column name="content_type" value="BLOB"/>
+            <column name="name" value="DEMANDEEXPERT_LIFECYCLE"/>
+            <column name="item_oid" valueComputed="(select oid from T_CONTENTITEM where name='DEMANDEEXPERT_LIFECYCLE')"/>
+        </insert>
+        <update tableName="T_CONTENTLOCATION">
+            <column name="content_blob" valueBlobFile="/changelogs/_generated/demandeexpert/datas/demandeexpert-lifecycle.xml"/>
+            <where>name='DEMANDEEXPERT_LIFECYCLE'</where>
+        </update>
+        <update tableName="T_LIFECYCLE">
+            <column name="primary_content_oid" valueComputed="(select oid from T_CONTENTITEM where name='DEMANDEEXPERT_LIFECYCLE')"/>
+            <where>master_oid=(select oid from t_lifecyclemaster where name='DemandeExpert lifecycle')</where>
+        </update>
+
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="REFUSED"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="NEW"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="CLOSED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='DemandeExpert lifecycle')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="DemandeExpert-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_demandeexpert">
+            <column name="lifecycle_oid" type="BIGINT"/>
+            <column name="lifecycle_state" type="VARCHAR(40)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="7" author="DemandeExpert-schema-onetoone-expertcategory">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_demandeexpert">
+            <column name="one_toone_expertcategory_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="7" author="DemandeExpert-schema-onetoone-useraccount">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_demandeexpert">
+            <column name="one_toone_useraccount_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
 

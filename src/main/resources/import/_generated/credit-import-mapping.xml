@@ -8,8 +8,7 @@
         <column id="containerInfo" mandatory="true" propertyEditor="ContainerInfoByLogicalPathEditor"/>
         
         <column id="total" mandatory="true" maxLength="255"/>
-        <column id="consommed" mandatory="true" maxLength="255"/>
-        <column id="category" mandatory="true" maxLength="255"/>
+        <column id="consumed" mandatory="true" maxLength="255"/>
         <!-- IMPORT_ATTRIBUTES_FOR_CREATE -->
     </command>
 
@@ -20,8 +19,7 @@
         <column id="fullId" mandatory="true" externalAttribute="true"/>
 
         <column id="total" mandatory="true" maxLength="255"/>
-        <column id="consommed" mandatory="true" maxLength="255"/>
-        <column id="category" mandatory="true" maxLength="255"/>
+        <column id="consumed" mandatory="true" maxLength="255"/>
         <!-- IMPORT_ATTRIBUTES_FOR_UPDATE -->
     </command>
 </mappingFile>

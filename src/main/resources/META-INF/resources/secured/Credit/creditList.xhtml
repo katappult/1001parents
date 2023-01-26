@@ -16,24 +16,27 @@
                 <h:form>
                     <p:breadCrumb>
                         <p:menuitem value="Accueil"/>
-                        <p:menuitem value="Crédits"/>
+                        <p:menuitem value="Credit"/>
                     </p:breadCrumb>
                 </h:form>
             </div>
 
             <div class="card">
-
                 <p:toolbar>
                     <p:toolbarGroup>
                         <div class="ui-inputgroup">
                             <p:commandButton value="Filtrer"/>
-                            <p:inputText placeholder="Chercher un élément..." value="#{creditController.searchTerm}">
+                            <p:inputText placeholder="Chercher un &#233;l&#233;ment..." value="#{creditController.searchTerm}">
                                 <p:ajax event="keyup" listener="#{creditController.onSearchInputFilterChange}" update="listDataModel" />
                             </p:inputText>
                         </div>
                     </p:toolbarGroup>
                     <p:toolbarGroup>
                         <h:form>
+                            <a href="#{creditController.entityAddView}?faces-redirect=true" class="p-2 mr-2 ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-info">
+                                <i class="pi pi-plus mr-3"></i>
+                                Ajouter
+                            </a>
                             <p:menuButton value="Options"  styleClass="ui-button ui-button-success">
                                 <p:menuitem icon="pi pi-plus" value="Ajouter" outcome="#{creditController.entityAddView}?faces-redirect=true"/>
                                 <p:menuitem icon="pi pi-refresh" value="Recharger" action="#{creditController._doRefreshListAction}"
@@ -47,7 +50,7 @@
                 <p:dataTable var="element" value="#{creditController.listDataModel}" stripedRows="true"
                              paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} élément(s)">
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} &#233;l&#233;ment(s)">
 
                     <p:column headerText="ID" width="5%">
                         <a href="#{creditController.entityDetailsView}?id=#{element.oid}" >#<h:outputText value="#{element.oid}" /></a>
@@ -55,10 +58,8 @@
 
                     <p:column headerText="Total">
     <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.total}" /></a>
-</p:column><p:column headerText="Consommé">
-    <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.consommed}" /></a>
-</p:column><p:column headerText="Catégorie">
-    <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.category}" /></a>
+</p:column><p:column headerText="Consumed">
+    <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.consumed}" /></a>
 </p:column><!--COLUMNS-->
 
                     <p:column styleClass="float-right text-right mr-3">

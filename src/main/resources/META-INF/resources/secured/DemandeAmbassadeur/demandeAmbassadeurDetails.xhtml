@@ -41,14 +41,10 @@
                                     <h:outputLabel for="oid" value="ID"/>
                                     <p:inputText id="oid" value="#{demandeAmbassadeurController.selectedElementForDetails.oid}" disabled="true"/>
 
-                                     <h:outputLabel for="titre" value="titre"/>
+                                     <h:outputLabel for="titre" value="Titre"/>
  <p:inputText id="titre" placeholder="" value="#{demandeAmbassadeurController.selectedElementForDetails.titre}" required="true"/>
- <h:outputLabel for="theme" value="theme"/>
- <p:inputText id="theme" placeholder="" value="#{demandeAmbassadeurController.selectedElementForDetails.theme}" required="true"/>
- <h:outputLabel for="description" value="description"/>
+ <h:outputLabel for="description" value="Description"/>
  <p:inputTextarea rows="5" cols="30" value="#{demandeAmbassadeurController.selectedElementForDetails.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
-<h:outputLabel for="dateDePlanification" value="dateDePlanification"/>
-<p:datePicker id="dateDePlanification" value="#{demandeAmbassadeurController.selectedElementForDetails.dateDePlanification}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 

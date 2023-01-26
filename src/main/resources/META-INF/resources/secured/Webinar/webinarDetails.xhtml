@@ -41,16 +41,14 @@
                                     <h:outputLabel for="oid" value="ID"/>
                                     <p:inputText id="oid" value="#{webinarController.selectedElementForDetails.oid}" disabled="true"/>
 
-                                     <h:outputLabel for="titre" value="titre"/>
- <p:inputText id="titre" placeholder="" value="#{webinarController.selectedElementForDetails.titre}" required="true"/>
- <h:outputLabel for="description" value="description"/>
+                                     <h:outputLabel for="title" value="Titre"/>
+ <p:inputText id="title" placeholder="" value="#{webinarController.selectedElementForDetails.title}" required="true"/>
+ <h:outputLabel for="description" value="Description"/>
  <p:inputText id="description" placeholder="" value="#{webinarController.selectedElementForDetails.description}" required="true"/>
- <h:outputLabel for="mediaType" value="mediaType"/>
- <p:inputText id="mediaType" placeholder="" value="#{webinarController.selectedElementForDetails.mediaType}" required="true"/>
- <h:outputLabel for="category" value="category"/>
+ <h:outputLabel for="category" value="Category"/>
  <p:inputText id="category" placeholder="" value="#{webinarController.selectedElementForDetails.category}" required="true"/>
-<h:outputLabel for="datePlanified" value="datePlanified"/>
-<p:datePicker id="datePlanified" value="#{webinarController.selectedElementForDetails.datePlanified}" required="true"/>
+<h:outputLabel for="dateDePlanification" value="Date De Planification"/>
+<p:datePicker id="dateDePlanification" value="#{webinarController.selectedElementForDetails.dateDePlanification}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 

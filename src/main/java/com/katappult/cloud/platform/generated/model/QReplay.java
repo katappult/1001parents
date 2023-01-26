@@ -39,11 +39,11 @@ public class QReplay extends EntityPathBase<Replay> {
     //inherited
     public final NumberPath<Long> version;
 
-     public final com.mysema.query.types.path.StringPath titre = createString("titre");
- public final com.mysema.query.types.path.StringPath mediaType = createString("mediaType");
- public final com.mysema.query.types.path.StringPath category = createString("category");
- public final com.mysema.query.types.path.StringPath description = createString("description");
- public final com.mysema.query.types.path.StringPath externalLink = createString("externalLink");
+     public final StringPath title = createString("title");
+ public final StringPath description = createString("description");
+ public final StringPath mediaType = createString("mediaType");
+ public final StringPath externalLink = createString("externalLink");
+ public final StringPath webinarSource = createString("webinarSource");
 // ATTRIBUTES
 
     public QReplay(String variable) {

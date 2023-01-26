@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../WEB-INF/template.xhtml">
+
+    <ui:define name="title">#{userSessionMap.applicationFriendlyName} - Ajout #{ressourcesController.entityName}</ui:define>
+
+    <ui:define name="content">
+
+        <div class="col-12">
+
+            <div class="mb-2">
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil"/>
+                        <p:menuitem value="#{ressourcesController.entityName}" outcome="#{ressourcesController.entityListView}"/>
+                        <p:menuitem value="Nouveau"/>
+                    </p:breadCrumb>
+                </h:form>
+            </div>
+
+            <div class="card">
+                <h:form id="create_form">
+                    <p:messages id="messages" showDetail="false" closable="true" escape="false">
+                        <p:autoUpdate/>
+                    </p:messages>
+
+                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
+
+                        <h:outputLabel for="titre" value="Titre"/>
+<p:inputText id="titre" value="#{ressourcesController.newElement.titre}" required="true"/>
+<p:message for="titre" display="icon"/><h:outputLabel for="description" value="Description"/>
+<p:inputTextarea id="description" rows="5" cols="30" value="#{ressourcesController.newElement.description}" counterTemplate="{0} characters remaining." required="true"/>
+<p:message for="description" display="icon"/><h:outputLabel for="url" value="URL"/>
+<p:inputText id="url" value="#{ressourcesController.newElement.url}" required="true"/>
+<p:message for="url" display="icon"/><h:outputLabel for="mediaType" value="Type de média"/>
+<p:inputText id="mediaType" value="#{ressourcesController.newElement.mediaType}" required="true"/>
+<p:message for="mediaType" display="icon"/><!--COLUMNS-->
+
+                    </h:panelGrid>
+
+                    <p:commandButton value="Cr&#233;er" style="width: 5rem"
+                                     styleClass="mt-4"
+                                     immediate="false" ajax="false"
+                                     process="create_form @this"
+                                     update="create_form messages createPanel growl @this"
+                                     action="#{ressourcesController._doCreateNewElementAction}"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -9,11 +9,11 @@
     <jobMappingPath job="standardBatchExport" type="manageDemandeExpert" mappingFilePath="classpath:/export/_generated/demandeexpert-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageDemandeExpert" mappingFilePath="classpath:/import/_generated/demandeexpert-import-mapping.xml"/>
 
-    <jobMappingPath job="standardBatchExport" type="manageDemandeAgentFacilitateur" mappingFilePath="classpath:/export/_generated/demandeagentfacilitateur-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageDemandeAgentFacilitateur" mappingFilePath="classpath:/import/_generated/demandeagentfacilitateur-import-mapping.xml"/>
-
     <jobMappingPath job="standardBatchExport" type="manageDemandeAmbassadeur" mappingFilePath="classpath:/export/_generated/demandeambassadeur-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageDemandeAmbassadeur" mappingFilePath="classpath:/import/_generated/demandeambassadeur-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageDemandeAgent" mappingFilePath="classpath:/export/_generated/demandeagent-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageDemandeAgent" mappingFilePath="classpath:/import/_generated/demandeagent-import-mapping.xml"/>
 
     <jobMappingPath job="standardBatchExport" type="manageReplay" mappingFilePath="classpath:/export/_generated/replay-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageReplay" mappingFilePath="classpath:/import/_generated/replay-import-mapping.xml"/>
@@ -21,12 +21,15 @@
     <jobMappingPath job="standardBatchExport" type="manageWebinar" mappingFilePath="classpath:/export/_generated/webinar-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageWebinar" mappingFilePath="classpath:/import/_generated/webinar-import-mapping.xml"/>
 
-    <jobMappingPath job="standardBatchExport" type="manageCategoryExpert" mappingFilePath="classpath:/export/_generated/categoryexpert-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageCategoryExpert" mappingFilePath="classpath:/import/_generated/categoryexpert-import-mapping.xml"/>
+    <jobMappingPath job="standardBatchExport" type="manageExpertCategory" mappingFilePath="classpath:/export/_generated/expertcategory-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageExpertCategory" mappingFilePath="classpath:/import/_generated/expertcategory-import-mapping.xml"/>
 
-    <jobMappingPath job="standardBatchExport" type="manageCategoryAmbassadeur" mappingFilePath="classpath:/export/_generated/categoryambassadeur-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageCategoryAmbassadeur" mappingFilePath="classpath:/import/_generated/categoryambassadeur-import-mapping.xml"/>
+    <jobMappingPath job="standardBatchExport" type="manageAgentFacilitateurCategory" mappingFilePath="classpath:/export/_generated/agentfacilitateurcategory-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageAgentFacilitateurCategory" mappingFilePath="classpath:/import/_generated/agentfacilitateurcategory-import-mapping.xml"/>
 
-    <jobMappingPath job="standardBatchExport" type="manageCategoryAgentsFacilitateur" mappingFilePath="classpath:/export/_generated/categoryagentsfacilitateur-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageCategoryAgentsFacilitateur" mappingFilePath="classpath:/import/_generated/categoryagentsfacilitateur-import-mapping.xml"/>
+    <jobMappingPath job="standardBatchExport" type="manageAmbassadeurCategory" mappingFilePath="classpath:/export/_generated/ambassadeurcategory-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageAmbassadeurCategory" mappingFilePath="classpath:/import/_generated/ambassadeurcategory-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageRessources" mappingFilePath="classpath:/export/_generated/ressources-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageRessources" mappingFilePath="classpath:/import/_generated/ressources-import-mapping.xml"/>
 </jobMappingPathResolver>

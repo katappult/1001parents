@@ -39,17 +39,20 @@ public class QWebinar extends EntityPathBase<Webinar> {
     //inherited
     public final NumberPath<Long> version;
 
-     public final com.mysema.query.types.path.StringPath titre = createString("titre");
- public final com.mysema.query.types.path.StringPath description = createString("description");
- public final com.mysema.query.types.path.StringPath mediaType = createString("mediaType");
- public final com.mysema.query.types.path.StringPath category = createString("category");
- public final com.mysema.query.types.path.DatePath<java.util.Date> datePlanified = createDate("datePlanified", java.util.Date.class);
+     public final StringPath title = createString("title");
+ public final StringPath description = createString("description");
+ public final StringPath category = createString("category");
+ public final com.mysema.query.types.path.DatePath<java.util.Date> dateDePlanification = createDate("dateDePlanification", java.util.Date.class);
+protected com.katappult.core.model.typed.QTypeInfo typeInfo;
+	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
 // ATTRIBUTES
 
     public QWebinar(String variable) {
         this(Webinar.class, forVariable(variable), INITS);
 
-        // CONSTRUCTOR
+        this.typeInfo = INITS.isInitialized("typeInfo") ? new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"), INITS.get("typeInfo")) : null;
+	this.lifecycleInfo = INITS.isInitialized("lifecycleInfo") ? new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"), INITS.get("lifecycleInfo")) : null;
+// CONSTRUCTOR
     }
 
     public QWebinar(Path<? extends Webinar> path) {
@@ -84,6 +87,21 @@ public class QWebinar extends EntityPathBase<Webinar> {
         return persistenceInfo;
     }
 
-    // METHODS
+    
+public com.katappult.core.model.typed.QTypeInfo typeInfo() {
+        if (typeInfo == null) {
+            typeInfo = new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"));
+        }
+        return typeInfo;
+    }
+
+	public com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo() {
+        if (lifecycleInfo == null) {
+            lifecycleInfo = new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"));
+        }
+        return lifecycleInfo;
+    }
+
+// METHODS
 }
 

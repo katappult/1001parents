@@ -14,22 +14,37 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.lang.String;
+
+import com.katappult.core.model.contentHolder.IContentHolder;
+import com.katappult.core.model.contentHolder.ContentInfo;
+import com.katappult.core.model.typed.ITypeManaged;
+import com.katappult.core.model.typed.TypeInfo;
+import com.katappult.core.model.typed.TypeManaged;
+
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
+import com.katappult.cloud.platform.generated.model.ExpertCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 
-@javax.persistence.Entity
+@Entity
 @Table(name = "gen_demandeexpert")
 @Access(AccessType.PROPERTY)
+@TypeManaged(rootType = "com.katappult.online.types.DemandeExpertType")
 // ANNOTATIONS
-public class DemandeExpert extends BusinessObject implements Serializable {// KNOER
+public class DemandeExpert extends BusinessObject implements Serializable , IContentHolder, ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
     private String titre;
-    private String theme;
     private String description;
-    private Date dateDePlanification;
-    // ATTRIBUTES
+    private ContentInfo contentInfo;
+	private TypeInfo typeInfo;
+private LifecycleInfo lifecycleInfo;
+	private ExpertCategory onetooneExpertCategory;
+	private UserAccount userAccount;
+// ATTRIBUTES
 
 
     @Override
@@ -37,14 +52,7 @@ public class DemandeExpert extends BusinessObject implements Serializable {// KN
         super.updateFrom(entity);
         setTitre(((DemandeExpert)entity).getTitre());
         setTitre(((DemandeExpert)entity).getTitre());
-        setTheme(((DemandeExpert)entity).getTheme());
-        setTitre(((DemandeExpert)entity).getTitre());
-        setTheme(((DemandeExpert)entity).getTheme());
         setDescription(((DemandeExpert)entity).getDescription());
-        setTitre(((DemandeExpert)entity).getTitre());
-        setTheme(((DemandeExpert)entity).getTheme());
-        setDescription(((DemandeExpert)entity).getDescription());
-        setDateDePlanification(((DemandeExpert)entity).getDateDePlanification());
         // UPDATE_ATTRIBUTES
     }
 
@@ -64,7 +72,62 @@ public class DemandeExpert extends BusinessObject implements Serializable {// KN
         return super._getOid();
     }
 
-    // GETTERS AND SETTERS
+    
+	@Embedded
+    @Override
+    public ContentInfo getContentInfo() {
+        return contentInfo;
+    }
+
+    @Override
+    public void setContentInfo(ContentInfo contentInfo) {
+        this.contentInfo = contentInfo;
+    }
+
+	@Embedded
+    @Override
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
+    }
+
+    @Override
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
+    }
+
+	@Embedded
+    @Override
+    public LifecycleInfo getLifecycleInfo() {
+        return lifecycleInfo;
+    }
+
+    @Override
+    public void setLifecycleInfo(LifecycleInfo lifecycleInfo) {
+        this.lifecycleInfo = lifecycleInfo;
+    }
+
+		@TransferIgnore
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "one_toone_expertcategory_fk_oid", nullable = true)
+    public ExpertCategory getExpertCategory() {
+        return onetooneExpertCategory;
+    }
+
+    public void setExpertCategory(final ExpertCategory onetooneExpertCategory) {
+        this.onetooneExpertCategory = onetooneExpertCategory;
+    }
+
+		@TransferIgnore
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "one_toone_useraccount_fk_oid", nullable = true)
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(final UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+// GETTERS AND SETTERS
     @UIAttribute(fieldName = "titre", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "titre")
     public String getTitre() {
@@ -75,16 +138,6 @@ public class DemandeExpert extends BusinessObject implements Serializable {// KN
         this.titre = titre;
     }
 
-    @UIAttribute(fieldName = "theme", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "theme")
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
     @UIAttribute(fieldName = "description", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "description")
     public String getDescription() {
@@ -93,16 +146,6 @@ public class DemandeExpert extends BusinessObject implements Serializable {// KN
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @UIAttribute(fieldName = "dateDePlanification", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "datedeplanification")
-    public Date getDateDePlanification() {
-        return dateDePlanification;
-    }
-
-    public void setDateDePlanification(Date dateDePlanification) {
-        this.dateDePlanification = dateDePlanification;
     }
 
 

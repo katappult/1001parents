@@ -27,7 +27,15 @@ public class DemandeExpertDao implements  IDemandeExpertDao{
         QDemandeExpert qDemandeExpert = new QDemandeExpert("entity");
         BooleanExpression whereClause =  qDemandeExpert.containerInfo().container().eq(container);
 
-        // WHERE CLAUSE
+        if(Objects.nonNull(params) && params.size() > 0){
+            String status = params.get("status");
+            if(StringUtils.isNotBlank(status)){
+                whereClause = whereClause.and(
+                        qDemandeExpert.lifecycleInfo().currentState.eq(status)
+                );
+            }
+        }
+// WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qDemandeExpert).where(whereClause);
         return dao.readPage(jpqlQuery, qDemandeExpert, pageRequest);
@@ -44,7 +52,6 @@ public class DemandeExpertDao implements  IDemandeExpertDao{
         QDemandeExpert qDemandeExpert = new QDemandeExpert("entity");
 
         BooleanExpression whereClause = qDemandeExpert.titre.likeIgnoreCase("%" + searchTerm + "%");
-whereClause = whereClause.or(qDemandeExpert.theme.likeIgnoreCase("%" + searchTerm + "%"));
 whereClause = whereClause.or(qDemandeExpert.description.likeIgnoreCase("%" + searchTerm + "%"));
 // SEARCH ENTITY WHERE CLAUSE
 

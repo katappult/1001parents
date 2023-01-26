@@ -1,0 +1,4 @@
+businessrule_identifier;br_order;isactive;isvetoable;description;event_name;business_class;br_rule;transac_phase;container_oid;business_type
+
+RessourcesSetLifecycle;2;1;1;Description of rule;PRE_CREATE_RESSOURCES;com.katappult.cloud.platform.generated.model.Ressources;LifecycleManagedSystemRules;NULL;1;
+RessourcesSetType;1;1;1;Description of rule;PRE_CREATE_RESSOURCES;com.katappult.cloud.platform.generated.model.Ressources;TypeManagedSetBusinessTypeRule;NULL;1;

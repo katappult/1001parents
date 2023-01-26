@@ -27,7 +27,15 @@ public class DemandeAmbassadeurDao implements  IDemandeAmbassadeurDao{
         QDemandeAmbassadeur qDemandeAmbassadeur = new QDemandeAmbassadeur("entity");
         BooleanExpression whereClause =  qDemandeAmbassadeur.containerInfo().container().eq(container);
 
-        // WHERE CLAUSE
+        if(Objects.nonNull(params) && params.size() > 0){
+            String status = params.get("status");
+            if(StringUtils.isNotBlank(status)){
+                whereClause = whereClause.and(
+                        qDemandeAmbassadeur.lifecycleInfo().currentState.eq(status)
+                );
+            }
+        }
+// WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qDemandeAmbassadeur).where(whereClause);
         return dao.readPage(jpqlQuery, qDemandeAmbassadeur, pageRequest);
@@ -44,7 +52,6 @@ public class DemandeAmbassadeurDao implements  IDemandeAmbassadeurDao{
         QDemandeAmbassadeur qDemandeAmbassadeur = new QDemandeAmbassadeur("entity");
 
         BooleanExpression whereClause = qDemandeAmbassadeur.titre.likeIgnoreCase("%" + searchTerm + "%");
-whereClause = whereClause.or(qDemandeAmbassadeur.theme.likeIgnoreCase("%" + searchTerm + "%"));
 whereClause = whereClause.or(qDemandeAmbassadeur.description.likeIgnoreCase("%" + searchTerm + "%"));
 // SEARCH ENTITY WHERE CLAUSE
 
