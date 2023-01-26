@@ -7,6 +7,7 @@ import com.mysema.query.types.path.NumberPath;
 import com.mysema.query.types.path.PathInits;
 import com.mysema.query.types.path.StringPath;
 
+import com.katappult.core.model.account.QUserAccount;
 // IMPORT
 import javax.annotation.Generated;
 
@@ -39,16 +40,20 @@ public class QCredit extends EntityPathBase<Credit> {
     //inherited
     public final NumberPath<Long> version;
 
-     public final com.mysema.query.types.path.NumberPath<java.lang.Integer> total = createNumber("total", java.lang.Integer.class);
- public final com.mysema.query.types.path.NumberPath<java.lang.Integer> consommed = createNumber("consommed", java.lang.Integer.class);
- public final com.mysema.query.types.path.StringPath category = createString("category");
-public final StringPath number = createString("number");
+     public final NumberPath<Integer> total = createNumber("total", Integer.class);
+ public final NumberPath<Integer> consumed = createNumber("consumed", Integer.class);
+protected com.katappult.core.model.typed.QTypeInfo typeInfo;
+	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
+
+protected QUserAccount userAccount;
 // ATTRIBUTES
 
     public QCredit(String variable) {
         this(Credit.class, forVariable(variable), INITS);
 
-        // CONSTRUCTOR
+        this.typeInfo = INITS.isInitialized("typeInfo") ? new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"), INITS.get("typeInfo")) : null;
+	this.lifecycleInfo = INITS.isInitialized("lifecycleInfo") ? new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"), INITS.get("lifecycleInfo")) : null;
+// CONSTRUCTOR
     }
 
     public QCredit(Path<? extends Credit> path) {
@@ -83,6 +88,28 @@ public final StringPath number = createString("number");
         return persistenceInfo;
     }
 
-    // METHODS
+    
+public com.katappult.core.model.typed.QTypeInfo typeInfo() {
+        if (typeInfo == null) {
+            typeInfo = new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"));
+        }
+        return typeInfo;
+    }
+
+	public com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo() {
+        if (lifecycleInfo == null) {
+            lifecycleInfo = new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"));
+        }
+        return lifecycleInfo;
+    }
+
+
+public QUserAccount userAccount() {
+        if (userAccount == null) {
+            userAccount = new QUserAccount(forProperty("userAccount"));
+        }
+        return userAccount;
+    }
+// METHODS
 }
 

@@ -1,2 +1,4 @@
 businessrule_identifier;br_order;isactive;isvetoable;description;event_name;business_class;br_rule;transac_phase;container_oid;business_type
 
+DemandeExpertSetLifecycle;2;1;1;Description of rule;PRE_CREATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.DemandeExpert;LifecycleManagedSystemRules;NULL;1;
+DemandeExpertSetType;1;1;1;Description of rule;PRE_CREATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.DemandeExpert;TypeManagedSetBusinessTypeRule;NULL;1;

@@ -1,4 +1,4 @@
-package com.katappult.cloud.platform.generated.rest.rest;
+package com.katappult.cloud.platform.generated.rest;
 
 import com.katappult.core.bridge.operation.IOperationResult;
 import com.katappult.core.bridge.result.MultipleResult;
@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.HashMap;
 import com.katappult.cloud.platform.generated.services.api.IDemandeExpertService;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.ExpertCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 @RestController
@@ -156,5 +158,149 @@ public class DemandeExpertServiceFacade {
     return result;
   }
 
-  // SERVICES
+  
+
+  @PostMapping(value = "/oneToOneExpertCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable setOneToOneExpertCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+    ExpertCategory roleb = (ExpertCategory) rolebId.getPersistable();
+
+    service.setExpertCategory(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @DeleteMapping(value = "/oneToOneExpertCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable removeOneToOneExpertCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                            @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                            @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+    ExpertCategory roleb = (ExpertCategory) rolebId.getPersistable();
+
+    service.removeExpertCategory(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @GetMapping(value = "/oneToOneExpertCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseBody
+  public Serializable getOneToOneExpertCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+
+    ExpertCategory roleb = service.getExpertCategory(entity, container);
+    if(roleb != null){
+      OperationData operationData = TransferUtils.toOperationData(roleb);
+      result.setData(operationData);
+    }
+
+    return result;
+  }
+
+
+  @GetMapping(value = "/oneToOneExpertCategory/inverse", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @ResponseBody
+  public Serializable inverseOneToOneExpertCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                                  @RequestParam("containerId") Container container)  {
+
+        IOperationResult result = new SingleResult();
+        ExpertCategory entity = (ExpertCategory) entityId.getPersistable();
+
+        DemandeExpert roleA = service.getInverseOneToOneExpertCategory(entity, container);
+
+        OperationData operationData = TransferUtils.toOperationData(roleA);
+        result.setData(operationData);
+        return result;
+  }
+
+
+
+  @PostMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable setOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+    UserAccount roleb = (UserAccount) rolebId.getPersistable();
+
+    service.setUserAccount(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @DeleteMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable removeOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                            @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                            @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+    UserAccount roleb = (UserAccount) rolebId.getPersistable();
+
+    service.removeUserAccount(entity, roleb, container);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @GetMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseBody
+  public Serializable getOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeExpert entity = (DemandeExpert) entityId.getPersistable();
+
+    UserAccount roleb = service.getUserAccount(entity, container);
+    if(roleb != null){
+      OperationData operationData = TransferUtils.toOperationData(roleb);
+      result.setData(operationData);
+    }
+
+    return result;
+  }
+
+
+  @GetMapping(value = "/oneToOneUserAccount/inverse", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @ResponseBody
+  public Serializable inverseOneToOneUserAccount(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                                  @RequestParam("containerId") Container container)  {
+
+        IOperationResult result = new SingleResult();
+        UserAccount entity = (UserAccount) entityId.getPersistable();
+
+        DemandeExpert roleA = service.getInverseOneToOneUserAccount(entity, container);
+
+        OperationData operationData = TransferUtils.toOperationData(roleA);
+        result.setData(operationData);
+        return result;
+  }
+
+// SERVICES
 }

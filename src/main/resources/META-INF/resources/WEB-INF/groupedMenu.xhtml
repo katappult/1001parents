@@ -7,53 +7,42 @@
 
     <div style="display: flex">
 
-        <div class="layout-topbar-left">
-            <a class="logolink">
-                <img src="/images/logo.png" width="80px"/>
-            </a>
-        </div>
-
         <p:outputPanel rendered="#{!userSessionMap.currentUserSessionDatas.isLoggedIn}">
             <sb:menu widgetVar="SiberiaMenuWidget2">
                 <p:menuitem id="_dash" value="Dashboard" outcome="/home" icon="pi pi-fw pi-chart-pie"/>
             </sb:menu>
         </p:outputPanel>
 
-        <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.isLoggedIn eq true}" style="display:flex">
-            <sb:menu widgetVar="m_webinar1">
-                <p:menuitem id="m_webinar11" value="Ateliers thématiques" outcome="/secured/Webinar/webinarList"/>
-            </sb:menu>
+        <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.isLoggedIn eq true}">
+            <sb:menu widgetVar="root_menu">
+                <p:submenu id="root_submenu" label="Business" >
+                    <p:menuitem id="m_credit" value="Credit" outcome="/secured/Credit/creditList"/>
+<p:menuitem id="m_demandeExpert" value="DemandeExpert" outcome="/secured/DemandeExpert/demandeExpertList"/>
+<p:menuitem id="m_demandeAmbassadeur" value="DemandeAmbassadeur" outcome="/secured/DemandeAmbassadeur/demandeAmbassadeurList"/>
+<p:menuitem id="m_demandeAgent" value="DemandeAgent" outcome="/secured/DemandeAgent/demandeAgentList"/>
+<p:menuitem id="m_replay" value="Replay" outcome="/secured/Replay/replayList"/>
+<p:menuitem id="m_webinar" value="Webinar" outcome="/secured/Webinar/webinarList"/>
+<p:menuitem id="m_expertCategory" value="ExpertCategory" outcome="/secured/ExpertCategory/expertCategoryList"/>
+<p:menuitem id="m_agentFacilitateurCategory" value="AgentFacilitateurCategory" outcome="/secured/AgentFacilitateurCategory/agentFacilitateurCategoryList"/>
+<p:menuitem id="m_ambassadeurCategory" value="AmbassadeurCategory" outcome="/secured/AmbassadeurCategory/ambassadeurCategoryList"/>
+<p:menuitem id="m_ressources" value="Ressources" outcome="/secured/Ressources/ressourcesList"/>
 
-            <sb:menu widgetVar="m_demandeAgentFacilitateur1">
-                <p:menuitem id="m_demandeAgentFacilitateur1" value="Agents facilitateurs" outcome="/secured/DemandeAgentFacilitateur/demandeAgentFacilitateurList"/>
-            </sb:menu>
-
-            <sb:menu widgetVar="m_demandeAmbassadeur1">
-                <p:menuitem id="m_demandeAmbassadeur1" value="Parents ambassadeuts" outcome="/secured/DemandeAmbassadeur/demandeAmbassadeurList"/>
-            </sb:menu>
-
-            <sb:menu widgetVar="m_demandeExpert1">
-                <p:menuitem id="m_demandeExpert1" value="Experts" outcome="/secured/DemandeExpert/demandeExpertList"/>
-            </sb:menu>
-
-            <sb:menu widgetVar="m_replay1">
-                <p:menuitem id="m_replay1" value="Ressources" outcome="/secured/Replay/replayList"/>
+                </p:submenu>
             </sb:menu>
         </p:outputPanel>
 
         <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.hasRoleInWorkingContainer('ROLE_ADMIN')}">
             <sb:menu widgetVar="SiberiaMenuWidget1">
                 <p:submenu id="m_homepage" label="Administration" >
-                    <p:menuitem id="m_1" value="Préférences système" outcome="/secured/preferences/systeme"/>
+                    <p:menuitem id="m_1" value="Pr&#233;f&#233;rences syst&#232;me" outcome="/secured/preferences/systeme"/>
                     <p:menuitem id="m_2" value="Utilisateurs" outcome="/secured/users/usersList"/>
-                    <p:menuitem id="m_3" value="Crédit" outcome="/secured/Credit/creditList"/>
-                    <p:menuitem id="m_4" value="Catégories d'experts" outcome="/secured/CategoryExpert/categoryExpertList"/>
-                    <p:menuitem id="m_5" value="Catégories d'ambassadeurs" outcome="/secured/CategoryAgentsFacilitateur/categoryAgentsFacilitateurList"/>
-                    <p:menuitem id="m_6" value="Catégories d'agents" outcome="/secured/CategoryAmbassadeur/categoryAmbassadeurList"/>
                 </p:submenu>
             </sb:menu>
         </p:outputPanel>
 
+        <div class="header-version-name">
+            <p:outputLabel value="Version #{userSessionMap.applicationVersion}"/>
+        </div>
     </div>
 
     <style type="text/css">

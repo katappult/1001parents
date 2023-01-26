@@ -5,18 +5,14 @@
         <column id="command" constant="UPDATE_DEMANDEAMBASSADEUR" />
         <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
         <column id="titre" mandatory="false"/>
-        <column id="theme" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
-<!-- EXPORT_ATTRIBUTES_1 -->
+        <!-- EXPORT_ATTRIBUTES_1 -->
 
     </command>
 
     <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.DemandeAmbassadeur">
         <column id="titre" mandatory="false"/>
-        <column id="theme" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
-<!-- EXPORT_ATTRIBUTES_2 -->
+        <!-- EXPORT_ATTRIBUTES_2 -->
     </command>
 </mappingFile>

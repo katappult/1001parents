@@ -7,6 +7,8 @@ import com.mysema.query.types.path.NumberPath;
 import com.mysema.query.types.path.PathInits;
 import com.mysema.query.types.path.StringPath;
 
+import com.katappult.cloud.platform.generated.model.QExpertCategory;
+import com.katappult.core.model.account.QUserAccount;
 // IMPORT
 import javax.annotation.Generated;
 
@@ -39,16 +41,22 @@ public class QDemandeExpert extends EntityPathBase<DemandeExpert> {
     //inherited
     public final NumberPath<Long> version;
 
-     public final com.mysema.query.types.path.StringPath titre = createString("titre");
- public final com.mysema.query.types.path.StringPath theme = createString("theme");
- public final com.mysema.query.types.path.StringPath description = createString("description");
- public final com.mysema.query.types.path.DatePath<java.util.Date> dateDePlanification = createDate("dateDePlanification", java.util.Date.class);
+     public final StringPath titre = createString("titre");
+ public final StringPath description = createString("description");
+protected com.katappult.core.model.typed.QTypeInfo typeInfo;
+	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
+
+protected QExpertCategory expertCategory;
+
+protected QUserAccount userAccount;
 // ATTRIBUTES
 
     public QDemandeExpert(String variable) {
         this(DemandeExpert.class, forVariable(variable), INITS);
 
-        // CONSTRUCTOR
+        this.typeInfo = INITS.isInitialized("typeInfo") ? new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"), INITS.get("typeInfo")) : null;
+	this.lifecycleInfo = INITS.isInitialized("lifecycleInfo") ? new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"), INITS.get("lifecycleInfo")) : null;
+// CONSTRUCTOR
     }
 
     public QDemandeExpert(Path<? extends DemandeExpert> path) {
@@ -83,6 +91,35 @@ public class QDemandeExpert extends EntityPathBase<DemandeExpert> {
         return persistenceInfo;
     }
 
-    // METHODS
+    
+public com.katappult.core.model.typed.QTypeInfo typeInfo() {
+        if (typeInfo == null) {
+            typeInfo = new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"));
+        }
+        return typeInfo;
+    }
+
+	public com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo() {
+        if (lifecycleInfo == null) {
+            lifecycleInfo = new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"));
+        }
+        return lifecycleInfo;
+    }
+
+
+public QExpertCategory expertCategory() {
+        if (expertCategory == null) {
+            expertCategory = new QExpertCategory(forProperty("expertCategory"));
+        }
+        return expertCategory;
+    }
+
+public QUserAccount userAccount() {
+        if (userAccount == null) {
+            userAccount = new QUserAccount(forProperty("userAccount"));
+        }
+        return userAccount;
+    }
+// METHODS
 }
 

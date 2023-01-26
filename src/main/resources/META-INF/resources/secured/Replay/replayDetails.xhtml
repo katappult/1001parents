@@ -41,16 +41,16 @@
                                     <h:outputLabel for="oid" value="ID"/>
                                     <p:inputText id="oid" value="#{replayController.selectedElementForDetails.oid}" disabled="true"/>
 
-                                     <h:outputLabel for="titre" value="titre"/>
- <p:inputText id="titre" placeholder="" value="#{replayController.selectedElementForDetails.titre}" required="true"/>
- <h:outputLabel for="mediaType" value="mediaType"/>
+                                     <h:outputLabel for="title" value="Titre"/>
+ <p:inputText id="title" placeholder="" value="#{replayController.selectedElementForDetails.title}" required="true"/>
+ <h:outputLabel for="description" value="Description"/>
+ <p:inputTextarea rows="5" cols="30" value="#{replayController.selectedElementForDetails.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
+ <h:outputLabel for="mediaType" value="MediaType"/>
  <p:inputText id="mediaType" placeholder="" value="#{replayController.selectedElementForDetails.mediaType}" required="true"/>
- <h:outputLabel for="category" value="category"/>
- <p:inputText id="category" placeholder="" value="#{replayController.selectedElementForDetails.category}" required="true"/>
- <h:outputLabel for="description" value="description"/>
- <p:inputText id="description" placeholder="" value="#{replayController.selectedElementForDetails.description}" required="true"/>
- <h:outputLabel for="externalLink" value="externalLink"/>
+ <h:outputLabel for="externalLink" value="ExternalLink"/>
  <p:inputText id="externalLink" placeholder="" value="#{replayController.selectedElementForDetails.externalLink}" required="true"/>
+ <h:outputLabel for="webinarSource" value="WebinarSource"/>
+ <p:inputText id="webinarSource" placeholder="" value="#{replayController.selectedElementForDetails.webinarSource}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 

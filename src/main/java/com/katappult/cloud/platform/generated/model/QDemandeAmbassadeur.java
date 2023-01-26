@@ -7,6 +7,8 @@ import com.mysema.query.types.path.NumberPath;
 import com.mysema.query.types.path.PathInits;
 import com.mysema.query.types.path.StringPath;
 
+import com.katappult.cloud.platform.generated.model.QAmbassadeurCategory;
+import com.katappult.core.model.account.QUserAccount;
 // IMPORT
 import javax.annotation.Generated;
 
@@ -39,16 +41,22 @@ public class QDemandeAmbassadeur extends EntityPathBase<DemandeAmbassadeur> {
     //inherited
     public final NumberPath<Long> version;
 
-     public final com.mysema.query.types.path.StringPath titre = createString("titre");
- public final com.mysema.query.types.path.StringPath theme = createString("theme");
- public final com.mysema.query.types.path.StringPath description = createString("description");
- public final com.mysema.query.types.path.DatePath<java.util.Date> dateDePlanification = createDate("dateDePlanification", java.util.Date.class);
+     public final StringPath titre = createString("titre");
+ public final StringPath description = createString("description");
+protected com.katappult.core.model.typed.QTypeInfo typeInfo;
+	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
+
+protected QAmbassadeurCategory ambassadeurCategory;
+
+protected QUserAccount userAccount;
 // ATTRIBUTES
 
     public QDemandeAmbassadeur(String variable) {
         this(DemandeAmbassadeur.class, forVariable(variable), INITS);
 
-        // CONSTRUCTOR
+        this.typeInfo = INITS.isInitialized("typeInfo") ? new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"), INITS.get("typeInfo")) : null;
+	this.lifecycleInfo = INITS.isInitialized("lifecycleInfo") ? new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"), INITS.get("lifecycleInfo")) : null;
+// CONSTRUCTOR
     }
 
     public QDemandeAmbassadeur(Path<? extends DemandeAmbassadeur> path) {
@@ -83,6 +91,35 @@ public class QDemandeAmbassadeur extends EntityPathBase<DemandeAmbassadeur> {
         return persistenceInfo;
     }
 
-    // METHODS
+    
+public com.katappult.core.model.typed.QTypeInfo typeInfo() {
+        if (typeInfo == null) {
+            typeInfo = new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"));
+        }
+        return typeInfo;
+    }
+
+	public com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo() {
+        if (lifecycleInfo == null) {
+            lifecycleInfo = new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"));
+        }
+        return lifecycleInfo;
+    }
+
+
+public QAmbassadeurCategory ambassadeurCategory() {
+        if (ambassadeurCategory == null) {
+            ambassadeurCategory = new QAmbassadeurCategory(forProperty("ambassadeurCategory"));
+        }
+        return ambassadeurCategory;
+    }
+
+public QUserAccount userAccount() {
+        if (userAccount == null) {
+            userAccount = new QUserAccount(forProperty("userAccount"));
+        }
+        return userAccount;
+    }
+// METHODS
 }
 

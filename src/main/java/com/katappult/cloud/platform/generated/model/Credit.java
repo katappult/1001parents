@@ -13,23 +13,30 @@ import java.util.Date;
 import javax.persistence.*;
 import java.io.Serializable;
 
-import java.lang.String;
-import com.katappult.core.model.numberable.INumberable;
+import com.katappult.core.model.typed.ITypeManaged;
+import com.katappult.core.model.typed.TypeInfo;
+import com.katappult.core.model.typed.TypeManaged;
+
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 
-@javax.persistence.Entity
+@Entity
 @Table(name = "gen_credit")
 @Access(AccessType.PROPERTY)
+@TypeManaged(rootType = "com.katappult.online.types.CreditType")
 // ANNOTATIONS
-public class Credit extends BusinessObject implements Serializable , INumberable{// KNOER
+public class Credit extends BusinessObject implements Serializable , ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
     private Integer total;
-    private Integer consommed;
-    private String category;
-    	private String number = "";
+    private Integer consumed;
+    	private TypeInfo typeInfo;
+private LifecycleInfo lifecycleInfo;
+	private UserAccount userAccount;
 // ATTRIBUTES
 
 
@@ -38,10 +45,7 @@ public class Credit extends BusinessObject implements Serializable , INumberable
         super.updateFrom(entity);
         setTotal(((Credit)entity).getTotal());
         setTotal(((Credit)entity).getTotal());
-        setConsommed(((Credit)entity).getConsommed());
-        setTotal(((Credit)entity).getTotal());
-        setConsommed(((Credit)entity).getConsommed());
-        setCategory(((Credit)entity).getCategory());
+        setConsumed(((Credit)entity).getConsumed());
         // UPDATE_ATTRIBUTES
     }
 
@@ -61,17 +65,38 @@ public class Credit extends BusinessObject implements Serializable , INumberable
         return super._getOid();
     }
 
-    	
-@Override
-    @Column(name = "number", nullable = true, length = 40, unique = true)
-    public String getNumber() {
-        return number;
+    
+	@Embedded
+    @Override
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
     }
 
+    @Override
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
+    }
+
+	@Embedded
+    @Override
+    public LifecycleInfo getLifecycleInfo() {
+        return lifecycleInfo;
+    }
 
     @Override
-    public void setNumber(final String number) {
-        this.number = number;
+    public void setLifecycleInfo(LifecycleInfo lifecycleInfo) {
+        this.lifecycleInfo = lifecycleInfo;
+    }
+
+		@TransferIgnore
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "one_toone_useraccount_fk_oid", nullable = true)
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(final UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 // GETTERS AND SETTERS
     @UIAttribute(fieldName = "total", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
@@ -84,24 +109,14 @@ public class Credit extends BusinessObject implements Serializable , INumberable
         this.total = total;
     }
 
-    @UIAttribute(fieldName = "consommed", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "consommed")
-    public Integer getConsommed() {
-        return consommed;
+    @UIAttribute(fieldName = "consumed", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "consumed")
+    public Integer getConsumed() {
+        return consumed;
     }
 
-    public void setConsommed(Integer consommed) {
-        this.consommed = consommed;
-    }
-
-    @UIAttribute(fieldName = "category", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "category")
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setConsumed(Integer consumed) {
+        this.consumed = consumed;
     }
 
 

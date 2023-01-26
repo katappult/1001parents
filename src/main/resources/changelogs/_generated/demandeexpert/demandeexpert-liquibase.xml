@@ -6,6 +6,7 @@
 
     
 		<include file="changelogs/_generated/demandeexpert/demandeexpert-schema.xml"/>
+		<include file="changelogs/_generated/demandeexpert/demandeexpert-type.xml"/>
 		<include file="changelogs/_generated/demandeexpert/demandeexpert-rules.xml"/>
 		<include file="changelogs/_generated/demandeexpert/demandeexpert-export.xml"/>
 </databaseChangeLog>

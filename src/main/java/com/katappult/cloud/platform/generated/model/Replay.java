@@ -17,7 +17,7 @@ import java.lang.String;
 // IMPORT
 
 
-@javax.persistence.Entity
+@Entity
 @Table(name = "gen_replay")
 @Access(AccessType.PROPERTY)
 // ANNOTATIONS
@@ -25,32 +25,32 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
 
     private static final long serialVersionUID = 1L;
 
-    private String titre;
-    private String mediaType;
-    private String category;
+    private String title;
     private String description;
+    private String mediaType;
     private String externalLink;
+    private String webinarSource;
     // ATTRIBUTES
 
 
     @Override
     public void updateFrom(Persistable entity) {
         super.updateFrom(entity);
-        setTitre(((Replay)entity).getTitre());
-        setTitre(((Replay)entity).getTitre());
-        setMediaType(((Replay)entity).getMediaType());
-        setTitre(((Replay)entity).getTitre());
-        setMediaType(((Replay)entity).getMediaType());
-        setCategory(((Replay)entity).getCategory());
-        setTitre(((Replay)entity).getTitre());
-        setMediaType(((Replay)entity).getMediaType());
-        setCategory(((Replay)entity).getCategory());
+        setTitle(((Replay)entity).getTitle());
+        setTitle(((Replay)entity).getTitle());
         setDescription(((Replay)entity).getDescription());
-        setTitre(((Replay)entity).getTitre());
-        setMediaType(((Replay)entity).getMediaType());
-        setCategory(((Replay)entity).getCategory());
+        setTitle(((Replay)entity).getTitle());
         setDescription(((Replay)entity).getDescription());
+        setMediaType(((Replay)entity).getMediaType());
+        setTitle(((Replay)entity).getTitle());
+        setDescription(((Replay)entity).getDescription());
+        setMediaType(((Replay)entity).getMediaType());
         setExternalLink(((Replay)entity).getExternalLink());
+        setTitle(((Replay)entity).getTitle());
+        setDescription(((Replay)entity).getDescription());
+        setMediaType(((Replay)entity).getMediaType());
+        setExternalLink(((Replay)entity).getExternalLink());
+        setWebinarSource(((Replay)entity).getWebinarSource());
         // UPDATE_ATTRIBUTES
     }
 
@@ -71,34 +71,14 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
     }
 
     // GETTERS AND SETTERS
-    @UIAttribute(fieldName = "titre", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "titre")
-    public String getTitre() {
-        return titre;
+    @UIAttribute(fieldName = "title", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    @UIAttribute(fieldName = "mediaType", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "mediatype")
-    public String getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
-
-    @UIAttribute(fieldName = "category", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "category")
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @UIAttribute(fieldName = "description", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
@@ -111,6 +91,16 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
         this.description = description;
     }
 
+    @UIAttribute(fieldName = "mediaType", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "mediatype")
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
     @UIAttribute(fieldName = "externalLink", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "externallink")
     public String getExternalLink() {
@@ -119,6 +109,16 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
 
     public void setExternalLink(String externalLink) {
         this.externalLink = externalLink;
+    }
+
+    @UIAttribute(fieldName = "webinarSource", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "webinarsource")
+    public String getWebinarSource() {
+        return webinarSource;
+    }
+
+    public void setWebinarSource(String webinarSource) {
+        this.webinarSource = webinarSource;
     }
 
 

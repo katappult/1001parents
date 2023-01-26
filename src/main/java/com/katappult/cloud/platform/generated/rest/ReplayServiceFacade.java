@@ -1,4 +1,4 @@
-package com.katappult.cloud.platform.generated.rest.rest;
+package com.katappult.cloud.platform.generated.rest;
 
 import com.katappult.core.bridge.operation.IOperationResult;
 import com.katappult.core.bridge.result.MultipleResult;

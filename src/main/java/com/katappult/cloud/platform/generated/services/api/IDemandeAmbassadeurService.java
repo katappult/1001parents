@@ -9,6 +9,8 @@ import com.katappult.core.utils.UIAttributes;
 import java.util.List;
 import java.util.Map;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.AmbassadeurCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 public interface IDemandeAmbassadeurService {
@@ -27,5 +29,23 @@ public interface IDemandeAmbassadeurService {
 
     void batchUpdateFromImport(DemandeAmbassadeur transientEntity);
 
-    // SERVICES
+    
+    void setAmbassadeurCategory(DemandeAmbassadeur entity, AmbassadeurCategory roleB, Container container);
+
+    AmbassadeurCategory getAmbassadeurCategory(DemandeAmbassadeur entity, Container container);
+
+    void removeAmbassadeurCategory(DemandeAmbassadeur entity, AmbassadeurCategory roleB, Container container);
+
+    DemandeAmbassadeur getInverseOneToOneAmbassadeurCategory(AmbassadeurCategory entity, Container container);
+
+
+    void setUserAccount(DemandeAmbassadeur entity, UserAccount roleB, Container container);
+
+    UserAccount getUserAccount(DemandeAmbassadeur entity, Container container);
+
+    void removeUserAccount(DemandeAmbassadeur entity, UserAccount roleB, Container container);
+
+    DemandeAmbassadeur getInverseOneToOneUserAccount(UserAccount entity, Container container);
+
+// SERVICES
 }

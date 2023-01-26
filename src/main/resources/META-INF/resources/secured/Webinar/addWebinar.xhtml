@@ -29,21 +29,19 @@
 
                     <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
 
-                        <h:outputLabel for="titre" value="titre"/>
-<p:inputText id="titre" value="#{webinarController.newElement.titre}" required="true"/>
-<p:message for="titre" display="icon"/><h:outputLabel for="description" value="description"/>
+                        <h:outputLabel for="title" value="Titre"/>
+<p:inputText id="title" value="#{webinarController.newElement.title}" required="true"/>
+<p:message for="title" display="icon"/><h:outputLabel for="description" value="Description"/>
 <p:inputText id="description" value="#{webinarController.newElement.description}" required="true"/>
-<p:message for="description" display="icon"/><h:outputLabel for="mediaType" value="mediaType"/>
-<p:inputText id="mediaType" value="#{webinarController.newElement.mediaType}" required="true"/>
-<p:message for="mediaType" display="icon"/><h:outputLabel for="category" value="category"/>
+<p:message for="description" display="icon"/><h:outputLabel for="category" value="Category"/>
 <p:inputText id="category" value="#{webinarController.newElement.category}" required="true"/>
-<p:message for="category" display="icon"/><h:outputLabel for="datePlanified" value="datePlanified"/>
-<p:datePicker id="datePlanified" value="#{webinarController.newElement.datePlanified}" required="true"/>
-<p:message for="datePlanified" display="icon"/><!--COLUMNS-->
+<p:message for="category" display="icon"/><h:outputLabel for="dateDePlanification" value="Date De Planification"/>
+<p:datePicker id="dateDePlanification" value="#{webinarController.newElement.dateDePlanification}" required="true"/>
+<p:message for="dateDePlanification" display="icon"/><!--COLUMNS-->
 
                     </h:panelGrid>
 
-                    <p:commandButton value="Créer" style="width: 5rem"
+                    <p:commandButton value="Cr&#233;er" style="width: 5rem"
                                      styleClass="mt-4"
                                      immediate="false" ajax="false"
                                      process="create_form @this"

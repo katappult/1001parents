@@ -29,19 +29,15 @@
 
                     <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
 
-                        <h:outputLabel for="titre" value="titre"/>
+                        <h:outputLabel for="titre" value="Titre"/>
 <p:inputText id="titre" value="#{demandeExpertController.newElement.titre}" required="true"/>
-<p:message for="titre" display="icon"/><h:outputLabel for="theme" value="theme"/>
-<p:inputText id="theme" value="#{demandeExpertController.newElement.theme}" required="true"/>
-<p:message for="theme" display="icon"/><h:outputLabel for="description" value="description"/>
+<p:message for="titre" display="icon"/><h:outputLabel for="description" value="Description"/>
 <p:inputTextarea id="description" rows="5" cols="30" value="#{demandeExpertController.newElement.description}" counterTemplate="{0} characters remaining." required="true"/>
-<p:message for="description" display="icon"/><h:outputLabel for="dateDePlanification" value="dateDePlanification"/>
-<p:datePicker id="dateDePlanification" value="#{demandeExpertController.newElement.dateDePlanification}" required="true"/>
-<p:message for="dateDePlanification" display="icon"/><!--COLUMNS-->
+<p:message for="description" display="icon"/><!--COLUMNS-->
 
                     </h:panelGrid>
 
-                    <p:commandButton value="Créer" style="width: 5rem"
+                    <p:commandButton value="Cr&#233;er" style="width: 5rem"
                                      styleClass="mt-4"
                                      immediate="false" ajax="false"
                                      process="create_form @this"

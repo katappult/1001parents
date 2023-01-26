@@ -14,22 +14,33 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.lang.String;
+import com.katappult.core.model.typed.ITypeManaged;
+import com.katappult.core.model.typed.TypeInfo;
+import com.katappult.core.model.typed.TypeManaged;
+
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
+import com.katappult.cloud.platform.generated.model.AmbassadeurCategory;
+import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
 
-@javax.persistence.Entity
+@Entity
 @Table(name = "gen_demandeambassadeur")
 @Access(AccessType.PROPERTY)
+@TypeManaged(rootType = "com.katappult.online.types.DemandeAmbassadeurType")
 // ANNOTATIONS
-public class DemandeAmbassadeur extends BusinessObject implements Serializable {// KNOER
+public class DemandeAmbassadeur extends BusinessObject implements Serializable , ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
     private String titre;
-    private String theme;
     private String description;
-    private Date dateDePlanification;
-    // ATTRIBUTES
+    	private TypeInfo typeInfo;
+private LifecycleInfo lifecycleInfo;
+	private AmbassadeurCategory onetooneAmbassadeurCategory;
+	private UserAccount userAccount;
+// ATTRIBUTES
 
 
     @Override
@@ -37,14 +48,7 @@ public class DemandeAmbassadeur extends BusinessObject implements Serializable {
         super.updateFrom(entity);
         setTitre(((DemandeAmbassadeur)entity).getTitre());
         setTitre(((DemandeAmbassadeur)entity).getTitre());
-        setTheme(((DemandeAmbassadeur)entity).getTheme());
-        setTitre(((DemandeAmbassadeur)entity).getTitre());
-        setTheme(((DemandeAmbassadeur)entity).getTheme());
         setDescription(((DemandeAmbassadeur)entity).getDescription());
-        setTitre(((DemandeAmbassadeur)entity).getTitre());
-        setTheme(((DemandeAmbassadeur)entity).getTheme());
-        setDescription(((DemandeAmbassadeur)entity).getDescription());
-        setDateDePlanification(((DemandeAmbassadeur)entity).getDateDePlanification());
         // UPDATE_ATTRIBUTES
     }
 
@@ -64,7 +68,51 @@ public class DemandeAmbassadeur extends BusinessObject implements Serializable {
         return super._getOid();
     }
 
-    // GETTERS AND SETTERS
+    
+	@Embedded
+    @Override
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
+    }
+
+    @Override
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
+    }
+
+	@Embedded
+    @Override
+    public LifecycleInfo getLifecycleInfo() {
+        return lifecycleInfo;
+    }
+
+    @Override
+    public void setLifecycleInfo(LifecycleInfo lifecycleInfo) {
+        this.lifecycleInfo = lifecycleInfo;
+    }
+
+		@TransferIgnore
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "one_toone_ambassadeurcategory_fk_oid", nullable = true)
+    public AmbassadeurCategory getAmbassadeurCategory() {
+        return onetooneAmbassadeurCategory;
+    }
+
+    public void setAmbassadeurCategory(final AmbassadeurCategory onetooneAmbassadeurCategory) {
+        this.onetooneAmbassadeurCategory = onetooneAmbassadeurCategory;
+    }
+
+		@TransferIgnore
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "one_toone_useraccount_fk_oid", nullable = true)
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(final UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+// GETTERS AND SETTERS
     @UIAttribute(fieldName = "titre", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "titre")
     public String getTitre() {
@@ -75,16 +123,6 @@ public class DemandeAmbassadeur extends BusinessObject implements Serializable {
         this.titre = titre;
     }
 
-    @UIAttribute(fieldName = "theme", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "theme")
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
     @UIAttribute(fieldName = "description", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "description")
     public String getDescription() {
@@ -93,16 +131,6 @@ public class DemandeAmbassadeur extends BusinessObject implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @UIAttribute(fieldName = "dateDePlanification", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "datedeplanification")
-    public Date getDateDePlanification() {
-        return dateDePlanification;
-    }
-
-    public void setDateDePlanification(Date dateDePlanification) {
-        this.dateDePlanification = dateDePlanification;
     }
 
 

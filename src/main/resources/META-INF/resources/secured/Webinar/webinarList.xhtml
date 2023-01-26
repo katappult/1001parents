@@ -16,24 +16,27 @@
                 <h:form>
                     <p:breadCrumb>
                         <p:menuitem value="Accueil"/>
-                        <p:menuitem value="Ateliers thématiques"/>
+                        <p:menuitem value="Webinar"/>
                     </p:breadCrumb>
                 </h:form>
             </div>
 
             <div class="card">
-
                 <p:toolbar>
                     <p:toolbarGroup>
                         <div class="ui-inputgroup">
                             <p:commandButton value="Filtrer"/>
-                            <p:inputText placeholder="Chercher un élément..." value="#{webinarController.searchTerm}">
+                            <p:inputText placeholder="Chercher un &#233;l&#233;ment..." value="#{webinarController.searchTerm}">
                                 <p:ajax event="keyup" listener="#{webinarController.onSearchInputFilterChange}" update="listDataModel" />
                             </p:inputText>
                         </div>
                     </p:toolbarGroup>
                     <p:toolbarGroup>
                         <h:form>
+                            <a href="#{webinarController.entityAddView}?faces-redirect=true" class="p-2 mr-2 ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-info">
+                                <i class="pi pi-plus mr-3"></i>
+                                Ajouter
+                            </a>
                             <p:menuButton value="Options"  styleClass="ui-button ui-button-success">
                                 <p:menuitem icon="pi pi-plus" value="Ajouter" outcome="#{webinarController.entityAddView}?faces-redirect=true"/>
                                 <p:menuitem icon="pi pi-refresh" value="Recharger" action="#{webinarController._doRefreshListAction}"
@@ -47,22 +50,20 @@
                 <p:dataTable var="element" value="#{webinarController.listDataModel}" stripedRows="true"
                              paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} élément(s)">
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} &#233;l&#233;ment(s)">
 
                     <p:column headerText="ID" width="5%">
                         <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" >#<h:outputText value="#{element.oid}" /></a>
                     </p:column>
 
                     <p:column headerText="Titre">
-    <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.titre}" /></a>
+    <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.title}" /></a>
 </p:column><p:column headerText="Description">
     <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.description}" /></a>
-</p:column><p:column headerText="Type de média">
-    <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.mediaType}" /></a>
-</p:column><p:column headerText="Categorie">
+</p:column><p:column headerText="Category">
     <a href="#{webinarController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.category}" /></a>
-</p:column><p:column headerText="Date">
-                        <p:datePicker id="basic" value="#{element.datePlanified}" disabled="true"/>
+</p:column><p:column headerText="Date De Planification">
+                        <p:datePicker id="basic" value="#{element.dateDePlanification}" disabled="true"/>
                     </p:column><!--COLUMNS-->
 
                     <p:column styleClass="float-right text-right mr-3">

@@ -43,11 +43,11 @@ public class ReplayDao implements  IReplayDao{
     public PageResult searchByNamelike(String searchTerm, PageRequest pageRequest, Container container) {
         QReplay qReplay = new QReplay("entity");
 
-        BooleanExpression whereClause = qReplay.titre.likeIgnoreCase("%" + searchTerm + "%");
-whereClause = whereClause.or(qReplay.mediaType.likeIgnoreCase("%" + searchTerm + "%"));
-whereClause = whereClause.or(qReplay.category.likeIgnoreCase("%" + searchTerm + "%"));
+        BooleanExpression whereClause = qReplay.title.likeIgnoreCase("%" + searchTerm + "%");
 whereClause = whereClause.or(qReplay.description.likeIgnoreCase("%" + searchTerm + "%"));
+whereClause = whereClause.or(qReplay.mediaType.likeIgnoreCase("%" + searchTerm + "%"));
 whereClause = whereClause.or(qReplay.externalLink.likeIgnoreCase("%" + searchTerm + "%"));
+whereClause = whereClause.or(qReplay.webinarSource.likeIgnoreCase("%" + searchTerm + "%"));
 // SEARCH ENTITY WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qReplay)

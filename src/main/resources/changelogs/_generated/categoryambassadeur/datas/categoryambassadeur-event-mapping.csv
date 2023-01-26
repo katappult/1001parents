@@ -1,8 +1,0 @@
-event_key;event_class
-
-PRE_CREATE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreCreateCategoryAmbassadeur
-PRE_DELETE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreDeleteCategoryAmbassadeur
-PRE_UPDATE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreUpdateCategoryAmbassadeur
-POST_CREATE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostCreateCategoryAmbassadeur
-POST_DELETE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostDeleteCategoryAmbassadeur
-POST_UPDATE_CATEGORYAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostUpdateCategoryAmbassadeur

@@ -27,7 +27,15 @@ public class CreditDao implements  ICreditDao{
         QCredit qCredit = new QCredit("entity");
         BooleanExpression whereClause =  qCredit.containerInfo().container().eq(container);
 
-        // WHERE CLAUSE
+        if(Objects.nonNull(params) && params.size() > 0){
+            String status = params.get("status");
+            if(StringUtils.isNotBlank(status)){
+                whereClause = whereClause.and(
+                        qCredit.lifecycleInfo().currentState.eq(status)
+                );
+            }
+        }
+// WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qCredit).where(whereClause);
         return dao.readPage(jpqlQuery, qCredit, pageRequest);
@@ -43,7 +51,7 @@ public class CreditDao implements  ICreditDao{
     public PageResult searchByNamelike(String searchTerm, PageRequest pageRequest, Container container) {
         QCredit qCredit = new QCredit("entity");
 
-        BooleanExpression whereClause = qCredit.category.likeIgnoreCase("%" + searchTerm + "%");
+        BooleanExpression whereClause =  qCredit.containerInfo().container().eq(container);
 // SEARCH ENTITY WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qCredit)
