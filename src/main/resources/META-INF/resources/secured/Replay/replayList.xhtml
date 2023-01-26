@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../WEB-INF/template.xhtml">
+
+    <ui:define name="title">#{userSessionMap.applicationFriendlyName} - Liste #{replayController.entityName}</ui:define>
+
+    <ui:define name="content">
+
+        <div class="col-12">
+            <p:growl id="growl_list" showDetail="true" />
+
+            <div class="mb-2">
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil"/>
+                        <p:menuitem value="Replay"/>
+                    </p:breadCrumb>
+                </h:form>
+            </div>
+
+            <div class="card">
+
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <div class="ui-inputgroup">
+                            <p:commandButton value="Filtrer"/>
+                            <p:inputText placeholder="Chercher un élément..." value="#{replayController.searchTerm}">
+                                <p:ajax event="keyup" listener="#{replayController.onSearchInputFilterChange}" update="listDataModel" />
+                            </p:inputText>
+                        </div>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup>
+                        <h:form>
+                            <p:menuButton value="Options"  styleClass="ui-button ui-button-success">
+                                <p:menuitem icon="pi pi-plus" value="Ajouter" outcome="#{replayController.entityAddView}?faces-redirect=true"/>
+                                <p:menuitem icon="pi pi-refresh" value="Recharger" action="#{replayController._doRefreshListAction}"
+                                            ajax="true" immediate="true"/>
+                                <p:menuitem icon="pi pi-cloud-upload" value="Importer" outcome="#{replayController.entityImportView}"/>
+                            </p:menuButton>
+                        </h:form>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:dataTable var="element" value="#{replayController.listDataModel}" stripedRows="true"
+                             paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} élément(s)">
+
+                    <p:column headerText="ID" width="5%">
+                        <a href="#{replayController.entityDetailsView}?id=#{element.oid}" >#<h:outputText value="#{element.oid}" /></a>
+                    </p:column>
+
+                    <p:column headerText="Titre">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.titre}" /></a>
+</p:column><p:column headerText="Type de média">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.mediaType}" /></a>
+</p:column><p:column headerText="Catégorie">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.category}" /></a>
+</p:column><p:column headerText="Description">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.description}" /></a>
+</p:column><p:column headerText="Lien externe">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.externalLink}" /></a>
+</p:column><!--COLUMNS-->
+
+                    <p:column styleClass="float-right text-right mr-3">
+                        <h:form>
+                            <p:linkButton icon="pi pi-info" styleClass="ui-button-outlined mr-3" outcome="#{replayController.entityDetailsView}?id=#{element.oid}"/>
+                            <p:commandButton icon="pi pi-trash" styleClass="ui-button-outlined"
+                                             update="listDataModel growl_list @this"
+                                             ajax="true" immediate="true"
+                                             action="#{replayController._doDeleteElement(element.oid)}">
+                            </p:commandButton>
+                        </h:form>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

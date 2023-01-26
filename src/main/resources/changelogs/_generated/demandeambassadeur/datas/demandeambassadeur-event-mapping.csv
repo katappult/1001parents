@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreCreateDemandeAmbassadeur
+PRE_DELETE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreDeleteDemandeAmbassadeur
+PRE_UPDATE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PreUpdateDemandeAmbassadeur
+POST_CREATE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostCreateDemandeAmbassadeur
+POST_DELETE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeAmbassadeur
+POST_UPDATE_DEMANDEAMBASSADEUR;com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeAmbassadeur

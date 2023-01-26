@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappingFile>
+    <command name="EXPORT_FOR_UPDATE" targetEntity="com.katappult.cloud.platform.generated.model.DemandeExpert">
+        <column id="command" constant="UPDATE_DEMANDEEXPERT" />
+        <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
+        <column id="titre" mandatory="false"/>
+        <column id="theme" mandatory="false"/>
+        <column id="description" mandatory="false"/>
+        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
+<!-- EXPORT_ATTRIBUTES_1 -->
+
+    </command>
+
+    <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.DemandeExpert">
+        <column id="titre" mandatory="false"/>
+        <column id="theme" mandatory="false"/>
+        <column id="description" mandatory="false"/>
+        <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
+<!-- EXPORT_ATTRIBUTES_2 -->
+    </command>
+</mappingFile>

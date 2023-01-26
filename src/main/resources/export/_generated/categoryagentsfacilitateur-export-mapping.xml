@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappingFile>
+    <command name="EXPORT_FOR_UPDATE" targetEntity="com.katappult.cloud.platform.generated.model.CategoryAgentsFacilitateur">
+        <column id="command" constant="UPDATE_CATEGORYAGENTSFACILITATEUR" />
+        <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
+        <column id="nom" mandatory="false"/>
+        <column id="description" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_1 -->
+
+    </command>
+
+    <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.CategoryAgentsFacilitateur">
+        <column id="nom" mandatory="false"/>
+        <column id="description" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_2 -->
+    </command>
+</mappingFile>

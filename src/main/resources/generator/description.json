@@ -1,0 +1,1 @@
+{"package":"com.katappult.cloud.platform.generated","restUri":"/katappult/cloud/app/v1/secured/api/description","uiMenuEntry":"true","eventSuffix":"_DESCRIPTION","attributes":[],"entity":{"name":"Description","table":"GEN_DESCRIPTION","importable":"true","exportable":"true","menuEntryDisplay":"description"}}

@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PreCreateDemandeExpert
+PRE_DELETE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PreDeleteDemandeExpert
+PRE_UPDATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PreUpdateDemandeExpert
+POST_CREATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PostCreateDemandeExpert
+POST_DELETE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeExpert
+POST_UPDATE_DEMANDEEXPERT;com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeExpert

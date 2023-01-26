@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../WEB-INF/template.xhtml">
+
+    <ui:define name="title">#{userSessionMap.applicationFriendlyName} - Ajout #{creditController.entityName}</ui:define>
+
+    <ui:define name="content">
+
+        <div class="col-12">
+
+            <div class="mb-2">
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil"/>
+                        <p:menuitem value="#{creditController.entityName}"
+                                    outcome="#{creditController.entityListView}"/>
+                        <p:menuitem value="Nouveau"/>
+                    </p:breadCrumb>
+                </h:form>
+            </div>
+
+            <div class="card">
+                <h:form id="create_form">
+                    <p:messages id="messages" showDetail="false" closable="true" escape="false">
+                        <p:autoUpdate/>
+                    </p:messages>
+
+                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
+
+                        <h:outputLabel for="category" value="category"/>
+                        <p:inputText id="category" value="#{creditController.newElement.category}" required="true"/>
+                        <p:message for="category" display="icon"/>
+
+                        <h:outputLabel for="total" value="Total"/>
+                        <p:inputText id="total" value="#{creditController.newElement.total}" required="true"/>
+                        <p:message for="total" display="icon"/>
+
+                        <h:outputLabel for="consumed" value="consumed"/>
+                        <p:inputText id="consumed" value="#{creditController.newElement.consommed}" required="true"/>
+                        <p:message for="consumed" display="icon"/>
+
+                    </h:panelGrid>
+
+                    <p:commandButton value="Créer" style="width: 5rem"
+                                     styleClass="mt-4"
+                                     immediate="false" ajax="false"
+                                     process="create_form @this"
+                                     update="create_form messages createPanel growl @this"
+                                     action="#{creditController._doCreateNewElementAction}"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

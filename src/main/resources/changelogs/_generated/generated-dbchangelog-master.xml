@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    	<include file="changelogs/_generated/credit/credit-liquibase.xml"/>
+	<include file="changelogs/_generated/demandeexpert/demandeexpert-liquibase.xml"/>
+	<include file="changelogs/_generated/demandeagentfacilitateur/demandeagentfacilitateur-liquibase.xml"/>
+	<include file="changelogs/_generated/demandeambassadeur/demandeambassadeur-liquibase.xml"/>
+	<include file="changelogs/_generated/replay/replay-liquibase.xml"/>
+	<include file="changelogs/_generated/webinar/webinar-liquibase.xml"/>
+	<include file="changelogs/_generated/categoryexpert/categoryexpert-liquibase.xml"/>
+	<include file="changelogs/_generated/categoryambassadeur/categoryambassadeur-liquibase.xml"/>
+	<include file="changelogs/_generated/categoryagentsfacilitateur/categoryagentsfacilitateur-liquibase.xml"/>
+<!-- CUSTOM LIQUIBASE-->
+
+    <include file="changelogs/_generated/fk-liquibase.xml"/>
+
+</databaseChangeLog>
+

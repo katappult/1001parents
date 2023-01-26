@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="../../WEB-INF/template.xhtml">
+
+    <ui:define name="title">#{userSessionMap.applicationFriendlyName} - Details #{replayController.entityName}</ui:define>
+
+    <ui:define name="content">
+        <div class="mb-2">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="Accueil"/>
+                    <p:menuitem value="#{replayController.entityName}" outcome="#{replayController.entityListView}"/>
+                    <p:menuitem value="Details"/>
+                </p:breadCrumb>
+            </h:form>
+        </div>
+
+        <div class="card">
+            <div style="width:100%;">
+                <h:form id="element_details_actions">
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
+                                             action="/secured/Replay/addReplay.xhtml"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </h:form>
+
+                <p:messages id="messages" showDetail="true" closable="true" escape="false"/>
+
+                <p:tabView dynamic="true" cache="true" styleClass="mt-2" id="details_panel">
+
+                    <p:tab title="Infos">
+
+                        <p:panel header="Details" styleClass="mb-3">
+                            <h:form id="update_form">
+                                <h:panelGrid columns="2" cellpadding="7">
+                                    <h:outputLabel for="oid" value="ID"/>
+                                    <p:inputText id="oid" value="#{replayController.selectedElementForDetails.oid}" disabled="true"/>
+
+                                     <h:outputLabel for="titre" value="titre"/>
+ <p:inputText id="titre" placeholder="" value="#{replayController.selectedElementForDetails.titre}" required="true"/>
+ <h:outputLabel for="mediaType" value="mediaType"/>
+ <p:inputText id="mediaType" placeholder="" value="#{replayController.selectedElementForDetails.mediaType}" required="true"/>
+ <h:outputLabel for="category" value="category"/>
+ <p:inputText id="category" placeholder="" value="#{replayController.selectedElementForDetails.category}" required="true"/>
+ <h:outputLabel for="description" value="description"/>
+ <p:inputText id="description" placeholder="" value="#{replayController.selectedElementForDetails.description}" required="true"/>
+ <h:outputLabel for="externalLink" value="externalLink"/>
+ <p:inputText id="externalLink" placeholder="" value="#{replayController.selectedElementForDetails.externalLink}" required="true"/>
+<!--COLUMNS-->
+                                </h:panelGrid>
+
+                                <p:toolbar styleClass="mt-4">
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="Enregistrer" icon="pi pi-save"
+                                                         ajax="false" immediate="false"
+                                                         update="update_form messages @this" process="update_form @this"
+                                                         action="#{replayController._doUpdateElement}"
+                                                         styleClass="ui-button-info"/>
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+                            </h:form>
+                        </p:panel>
+
+                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                            <ui:param name="selectedElementForDetails" value="#{replayController.selectedElementForDetails}" />
+                        </ui:include>
+                    </p:tab>
+
+                    <p:tab title="Autres">
+
+                    </p:tab>
+                </p:tabView>
+
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

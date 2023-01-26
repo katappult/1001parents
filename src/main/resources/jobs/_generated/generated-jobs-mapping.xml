@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jobMappingPathResolver>
+
+
+    <jobMappingPath job="standardBatchExport" type="manageCredit" mappingFilePath="classpath:/export/_generated/credit-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCredit" mappingFilePath="classpath:/import/_generated/credit-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageDemandeExpert" mappingFilePath="classpath:/export/_generated/demandeexpert-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageDemandeExpert" mappingFilePath="classpath:/import/_generated/demandeexpert-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageDemandeAgentFacilitateur" mappingFilePath="classpath:/export/_generated/demandeagentfacilitateur-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageDemandeAgentFacilitateur" mappingFilePath="classpath:/import/_generated/demandeagentfacilitateur-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageDemandeAmbassadeur" mappingFilePath="classpath:/export/_generated/demandeambassadeur-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageDemandeAmbassadeur" mappingFilePath="classpath:/import/_generated/demandeambassadeur-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageReplay" mappingFilePath="classpath:/export/_generated/replay-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageReplay" mappingFilePath="classpath:/import/_generated/replay-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageWebinar" mappingFilePath="classpath:/export/_generated/webinar-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageWebinar" mappingFilePath="classpath:/import/_generated/webinar-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCategoryExpert" mappingFilePath="classpath:/export/_generated/categoryexpert-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCategoryExpert" mappingFilePath="classpath:/import/_generated/categoryexpert-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCategoryAmbassadeur" mappingFilePath="classpath:/export/_generated/categoryambassadeur-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCategoryAmbassadeur" mappingFilePath="classpath:/import/_generated/categoryambassadeur-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCategoryAgentsFacilitateur" mappingFilePath="classpath:/export/_generated/categoryagentsfacilitateur-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCategoryAgentsFacilitateur" mappingFilePath="classpath:/import/_generated/categoryagentsfacilitateur-import-mapping.xml"/>
+</jobMappingPathResolver>

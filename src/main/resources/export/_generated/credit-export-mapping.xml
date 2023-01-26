@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappingFile>
+    <command name="EXPORT_FOR_UPDATE" targetEntity="com.katappult.cloud.platform.generated.model.Credit">
+        <column id="command" constant="UPDATE_CREDIT" />
+        <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
+        <column id="total" mandatory="false"/>
+        <column id="consommed" mandatory="false"/>
+        <column id="category" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_1 -->
+
+    </command>
+
+    <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.Credit">
+        <column id="total" mandatory="false"/>
+        <column id="consommed" mandatory="false"/>
+        <column id="category" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_2 -->
+    </command>
+</mappingFile>

@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_CREDIT;com.katappult.cloud.platform.generated.model.event.PreCreateCredit
+PRE_DELETE_CREDIT;com.katappult.cloud.platform.generated.model.event.PreDeleteCredit
+PRE_UPDATE_CREDIT;com.katappult.cloud.platform.generated.model.event.PreUpdateCredit
+POST_CREATE_CREDIT;com.katappult.cloud.platform.generated.model.event.PostCreateCredit
+POST_DELETE_CREDIT;com.katappult.cloud.platform.generated.model.event.PostDeleteCredit
+POST_UPDATE_CREDIT;com.katappult.cloud.platform.generated.model.event.PostUpdateCredit

@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PreCreateWebinar
+PRE_DELETE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PreDeleteWebinar
+PRE_UPDATE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PreUpdateWebinar
+POST_CREATE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PostCreateWebinar
+POST_DELETE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PostDeleteWebinar
+POST_UPDATE_WEBINAR;com.katappult.cloud.platform.generated.model.event.PostUpdateWebinar

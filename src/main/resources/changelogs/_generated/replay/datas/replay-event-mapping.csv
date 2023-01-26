@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_REPLAY;com.katappult.cloud.platform.generated.model.event.PreCreateReplay
+PRE_DELETE_REPLAY;com.katappult.cloud.platform.generated.model.event.PreDeleteReplay
+PRE_UPDATE_REPLAY;com.katappult.cloud.platform.generated.model.event.PreUpdateReplay
+POST_CREATE_REPLAY;com.katappult.cloud.platform.generated.model.event.PostCreateReplay
+POST_DELETE_REPLAY;com.katappult.cloud.platform.generated.model.event.PostDeleteReplay
+POST_UPDATE_REPLAY;com.katappult.cloud.platform.generated.model.event.PostUpdateReplay
