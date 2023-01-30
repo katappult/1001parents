@@ -1,0 +1,1229 @@
+{
+  "demandeExpert.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/demandeexpert",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_DEMANDEEXPERT",
+    "attributes": [],
+    "entity": {
+      "name": "DemandeExpert",
+      "table": "GEN_DEMANDEEXPERT",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "DemandeExpert",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre",
+          "column": "titre",
+          "name": "titre",
+          "uiComponent": "text",
+          "id": "nrslDoEBYNjM"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "ohRRwMsCKJlL"
+        },
+        {
+          "type": "Date",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "false",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Date de planification",
+          "column": "planificationdate",
+          "name": "planificationDate",
+          "uiComponent": "datetime",
+          "id": "YVHQTIVdIQzy"
+        }
+      ],
+      "knoers": [
+        "ContentHolder",
+        "LifecycleManaged",
+        "TypeManaged"
+      ]
+    },
+    "oneToOne": [
+      {
+        "tabTitle": "Owner",
+        "roleAClass": "DemandeExpert",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "rWKaSzERyZEt"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "DemandeExpertType",
+        "logicalPath": "com.katappult.online.types.DemandeExpertType",
+        "lifecycle": "DemandeExpert lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "vetoableRules": [
+      {
+        "className": "DemandeExpertSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_DEMANDEEXPERT",
+        "internal": "true"
+      },
+      {
+        "className": "DemandeExpertSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_DEMANDEEXPERT",
+        "internal": "true"
+      }
+    ],
+    "oneToMany": [
+      {
+        "tabTitle": "Categorie",
+        "roleAClass": "DemandeExpert",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.cloud.platform.generated.model.Category",
+        "attributeName": "category",
+        "roleBClass": "Category",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "manyToOneLegacy": "true",
+        "id": "fFheuvYpszYP"
+      }
+    ]
+  },
+  "generator-config.json": {
+    "entities": [
+      {
+        "path": "credit.json",
+        "order": 0
+      },
+      {
+        "path": "demandeExpert.json",
+        "order": 1
+      },
+      {
+        "path": "demandeAmbassadeur.json",
+        "order": 2
+      },
+      {
+        "path": "demandeAgent.json",
+        "order": 3
+      },
+      {
+        "path": "replay.json",
+        "order": 4
+      },
+      {
+        "path": "webinar.json",
+        "order": 5
+      },
+      {
+        "path": "ressources.json",
+        "order": 6
+      },
+      {
+        "path": "category.json",
+        "order": 11
+      }
+    ],
+    "restUriPrefix": "/katappult/cloud/app/v1/secured/api/",
+    "tablePrefix": "GEN_",
+    "entityPackage": "com.katappult.cloud.platform.generated"
+  },
+  "category.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/category",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_CATEGORY",
+    "attributes": [],
+    "entity": {
+      "name": "Category",
+      "table": "GEN_CATEGORY",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Category",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Nom",
+          "column": "nom",
+          "name": "nom",
+          "uiComponent": "text",
+          "id": "NSnxoQFiFeKv"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "xWXLLfxFOVWb"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Clé interne",
+          "column": "internalkey",
+          "name": "internalKey",
+          "uiComponent": "text",
+          "id": "GidZxGfHdKnw"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Clé du groupe",
+          "column": "groupkey",
+          "name": "groupKey",
+          "uiComponent": "text",
+          "id": "rHsqWWaGsCLM"
+        },
+        {
+          "type": "Boolean",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "false",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Active",
+          "column": "active",
+          "name": "active",
+          "uiComponent": "yesno",
+          "id": "PQgmReaJLsGv"
+        },
+        {
+          "type": "Integer",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Ordre d\u0027affichage",
+          "column": "displayorder",
+          "name": "displayOrder",
+          "uiComponent": "number",
+          "id": "jQhvJuQxSuTn"
+        }
+      ]
+    }
+  },
+  "demandeAgent.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/demandeagent",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_DEMANDEAGENT",
+    "attributes": [],
+    "entity": {
+      "name": "DemandeAgent",
+      "table": "GEN_DEMANDEAGENT",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "DemandeAgent",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre",
+          "column": "titre",
+          "name": "titre",
+          "uiComponent": "text",
+          "id": "gEYwCJlUPvQK"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "YvKpNFFWXLbR"
+        },
+        {
+          "type": "Date",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "false",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Date de planification",
+          "column": "planificationdate",
+          "name": "planificationDate",
+          "uiComponent": "datetime",
+          "id": "XlPVtqWAEtgX"
+        }
+      ],
+      "knoers": [
+        "LifecycleManaged",
+        "TypeManaged"
+      ]
+    },
+    "vetoableRules": [
+      {
+        "className": "DemandeAgentSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_DEMANDEAGENT",
+        "internal": "true"
+      },
+      {
+        "className": "DemandeAgentSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_DEMANDEAGENT",
+        "internal": "true"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "DemandeAgentType",
+        "logicalPath": "com.katappult.online.types.DemandeAgentType",
+        "lifecycle": "DemandeAgent lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "oneToOne": [
+      {
+        "tabTitle": "Owner",
+        "roleAClass": "DemandeAgent",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "nINlxivQgHAr"
+      }
+    ],
+    "oneToMany": [
+      {
+        "tabTitle": "Categorie",
+        "roleAClass": "DemandeAgent",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.cloud.platform.generated.model.Category",
+        "attributeName": "category",
+        "roleBClass": "Category",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "manyToOneLegacy": "true",
+        "id": "UFjmyYnthzII"
+      }
+    ]
+  },
+  "webinar.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/webinar",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_WEBINAR",
+    "attributes": [],
+    "entity": {
+      "name": "Webinar",
+      "table": "GEN_WEBINAR",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Webinar",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "name": "title",
+          "column": "title",
+          "uiDisplayName": "Titre",
+          "uiComponent": "text",
+          "id": "MbNSmiqajHlW"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "text",
+          "id": "RKyixrDQoPeT"
+        },
+        {
+          "type": "Date",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Date De Planification",
+          "column": "datedeplanification",
+          "name": "dateDePlanification",
+          "uiComponent": "date",
+          "id": "qabJkhFkfWwn"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Lien de la réunion",
+          "column": "meetinglink",
+          "name": "meetingLink",
+          "uiComponent": "text",
+          "id": "sUUleOySRTWe"
+        }
+      ],
+      "knoers": [
+        "LifecycleManaged",
+        "TypeManaged",
+        "ContentHolder"
+      ]
+    },
+    "vetoableRules": [
+      {
+        "className": "WebinarSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_WEBINAR",
+        "internal": "true"
+      },
+      {
+        "className": "WebinarSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_WEBINAR",
+        "internal": "true"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "WebinarType",
+        "logicalPath": "com.katappult.online.types.WebinarType",
+        "lifecycle": "Webinar lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "manyToMany": [
+      {
+        "tabTitle": "Participants",
+        "inverseTabTitle": "N/A",
+        "roleAClass": "Webinar",
+        "roleAPackage": "com.katappult.cloud.platform.generated.model",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "linkTableName": "MANY_TO_MANY_WEBINAR_USERACCOUNT_LINK",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "table": "MANY_TO_MANY_WEBINAR_USERACCOUNT_LINK",
+        "link": {
+          "linkTableName": "MANY_TO_MANY_WEBINAR_USERACCOUNT_LINK"
+        },
+        "manyToManyLegacy": "true",
+        "id": "WKiymdSeqPJx"
+      },
+      {
+        "tabTitle": "Thèmes",
+        "roleBClass": "Category",
+        "roleAClass": "Webinar",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated.model",
+        "linkTableName": {},
+        "table": "MANY_TO_MANY_WEBINAR_CATEGORY_LINK",
+        "inverseTabTitle": "Webinars",
+        "link": {
+          "linkTableName": "MANY_TO_MANY_WEBINAR_CATEGORY_LINK"
+        },
+        "id": "UOEBfYtxMQDq"
+      }
+    ]
+  },
+  "expertCategory.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/expertcategory",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_EXPERTCATEGORY",
+    "attributes": [],
+    "entity": {
+      "name": "ExpertCategory",
+      "table": "GEN_EXPERTCATEGORY",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "ExpertCategory",
+      "knoers": [
+        "Numberable"
+      ],
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Nom",
+          "column": "nom",
+          "name": "nom",
+          "uiComponent": "text",
+          "id": "sbqAxLlUVPDc"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "cvAFGcuIwaoE"
+        }
+      ]
+    },
+    "types": [],
+    "multiIdentifiedTypes": [],
+    "vetoableRules": [
+      {
+        "className": "ExpertCategorySetReferenceNumber",
+        "componentName": "NumberableSetDefaultReferenceRule",
+        "order": "1",
+        "event": "PRE_CREATE_EXPERTCATEGORY",
+        "internal": "true"
+      }
+    ]
+  },
+  "agentFacilitateurCategory.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/agentfacilitateurcategory",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_AGENTFACILITATEURCATEGORY",
+    "attributes": [],
+    "entity": {
+      "name": "AgentFacilitateurCategory",
+      "table": "GEN_AGENTFACILITATEURCATEGORY",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "AgentFacilitateurCategory",
+      "knoers": [
+        "Numberable"
+      ],
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Nom",
+          "column": "nom",
+          "name": "nom",
+          "uiComponent": "text",
+          "id": "TbzgSKbVgvsD"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "LunCfiviySJb"
+        }
+      ]
+    },
+    "types": [],
+    "multiIdentifiedTypes": [],
+    "vetoableRules": [
+      {
+        "className": "AgentFacilitateurCategorySetReferenceNumber",
+        "componentName": "NumberableSetDefaultReferenceRule",
+        "order": "1",
+        "event": "PRE_CREATE_AGENTFACILITATEURCATEGORY",
+        "internal": "true"
+      }
+    ]
+  },
+  "demande.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/demande",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_DEMANDE",
+    "attributes": [],
+    "entity": {
+      "name": "Demande",
+      "table": "GEN_DEMANDE",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Demande",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre de la demande",
+          "column": "title",
+          "name": "title",
+          "uiComponent": "text",
+          "id": "cclLbSfAZkqs"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Theme",
+          "column": "theme",
+          "name": "theme",
+          "uiComponent": "text",
+          "id": "UgzNLoImkQVc"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "uzxGeOSJXmSm"
+        }
+      ],
+      "knoers": [
+        "LifecycleManaged",
+        "TypeManaged",
+        "Numberable",
+        "ContentHolder"
+      ]
+    },
+    "vetoableRules": [
+      {
+        "className": "DemandeSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_DEMANDE",
+        "internal": "true"
+      },
+      {
+        "className": "DemandeSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_DEMANDE",
+        "internal": "true"
+      },
+      {
+        "className": "DemandeSetReferenceNumber",
+        "componentName": "NumberableSetDefaultReferenceRule",
+        "order": "1",
+        "event": "PRE_CREATE_DEMANDE",
+        "internal": "true"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "DemandeType",
+        "logicalPath": "com.katappult.online.types.DemandeType",
+        "lifecycle": "Demande lifecycle"
+      },
+      {
+        "parent": "com.katappult.online.types.DemandeType",
+        "logicalName": "DemandeExpert",
+        "logicalPath": "com.katappult.online.types.DemandeType/DemandeExpert",
+        "id": "pcpuYLKDfTYq"
+      },
+      {
+        "parent": "com.katappult.online.types.DemandeType",
+        "logicalName": "DemandeAmbassadeur",
+        "logicalPath": "com.katappult.online.types.DemandeType/DemandeAmbassadeur",
+        "id": "xPtkjKabYPGu"
+      },
+      {
+        "parent": "com.katappult.online.types.DemandeType",
+        "logicalName": "DemandeAgentFacilitateur",
+        "logicalPath": "com.katappult.online.types.DemandeType/DemandeAgentFacilitateur",
+        "id": "mDYivOsbnBBf"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "oneToOne": [
+      {
+        "tabTitle": "Owner",
+        "roleAClass": "Demande",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "KdRcIkfMHECw"
+      },
+      {
+        "tabTitle": "Responsable",
+        "roleAClass": "Demande",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "VjSRswTPmZZb"
+      }
+    ]
+  },
+  "demandeAmbassadeur.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/demandeambassadeur",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_DEMANDEAMBASSADEUR",
+    "attributes": [],
+    "entity": {
+      "name": "DemandeAmbassadeur",
+      "table": "GEN_DEMANDEAMBASSADEUR",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "DemandeAmbassadeur",
+      "knoers": [
+        "LifecycleManaged",
+        "TypeManaged"
+      ],
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre",
+          "column": "titre",
+          "name": "titre",
+          "uiComponent": "text",
+          "id": "cledwgRPhRtS"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "xcMAbZNcHPAR"
+        },
+        {
+          "type": "Date",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "false",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Date de planification",
+          "column": "planificationdate",
+          "name": "planificationDate",
+          "uiComponent": "datetime",
+          "id": "dWqqnRPrXkhE"
+        }
+      ]
+    },
+    "vetoableRules": [
+      {
+        "className": "DemandeAmbassadeurSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_DEMANDEAMBASSADEUR",
+        "internal": "true"
+      },
+      {
+        "className": "DemandeAmbassadeurSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_DEMANDEAMBASSADEUR",
+        "internal": "true"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "DemandeAmbassadeurType",
+        "logicalPath": "com.katappult.online.types.DemandeAmbassadeurType",
+        "lifecycle": "DemandeAmbassadeur lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "oneToOne": [
+      {
+        "tabTitle": "Owner",
+        "roleAClass": "DemandeAmbassadeur",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "oIAmxsJJXVqm"
+      }
+    ],
+    "oneToMany": [
+      {
+        "tabTitle": "Categorie",
+        "roleAClass": "DemandeAmbassadeur",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.cloud.platform.generated.model.Category",
+        "attributeName": "category",
+        "roleBClass": "Category",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "manyToOneLegacy": "true",
+        "id": "CuIHdZnKzTld"
+      }
+    ]
+  },
+  "ambassadeurCategory.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/ambassadeurcategory",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_AMBASSADEURCATEGORY",
+    "attributes": [],
+    "entity": {
+      "name": "AmbassadeurCategory",
+      "table": "GEN_AMBASSADEURCATEGORY",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "AmbassadeurCategory",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Nom",
+          "column": "nom",
+          "name": "nom",
+          "uiComponent": "text",
+          "id": "hSMPOGwclVSF"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "LYugScsVqmEw"
+        }
+      ]
+    }
+  },
+  "ressources.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/ressources",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_RESSOURCES",
+    "attributes": [],
+    "entity": {
+      "name": "Ressources",
+      "table": "GEN_RESSOURCES",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Ressources",
+      "knoers": [
+        "ContentHolder",
+        "LifecycleManaged",
+        "TypeManaged"
+      ],
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre",
+          "column": "titre",
+          "name": "titre",
+          "uiComponent": "text",
+          "id": "ZGHcAhtuORhQ"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "fxzejZZfNsSm"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "URL",
+          "column": "url",
+          "name": "url",
+          "uiComponent": "text",
+          "id": "dXaDjfHWqiYY"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Type de média",
+          "column": "mediatype",
+          "name": "mediaType",
+          "uiComponent": "text",
+          "id": "vTJuVasMpyqe"
+        }
+      ]
+    },
+    "types": [
+      {
+        "logicalName": "RessourcesType",
+        "logicalPath": "com.katappult.online.types.RessourcesType",
+        "lifecycle": "Ressources lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "vetoableRules": [
+      {
+        "className": "RessourcesSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_RESSOURCES",
+        "internal": "true"
+      },
+      {
+        "className": "RessourcesSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_RESSOURCES",
+        "internal": "true"
+      }
+    ],
+    "manyToMany": [
+      {
+        "tabTitle": "Categories",
+        "roleBClass": "Category",
+        "roleAClass": "Ressources",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated.model",
+        "linkTableName": {},
+        "table": "MANY_TO_MANY_RESSOURCES_CATEGORY_LINK",
+        "inverseTabTitle": "Ressources",
+        "link": {
+          "linkTableName": "MANY_TO_MANY_RESSOURCES_CATEGORY_LINK"
+        },
+        "id": "xdDDdkRHtHlA"
+      }
+    ]
+  },
+  "credit.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/credit",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_CREDIT",
+    "attributes": [],
+    "entity": {
+      "name": "Credit",
+      "table": "GEN_CREDIT",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Credit",
+      "attributes": [
+        {
+          "type": "Integer",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Total",
+          "column": "total",
+          "name": "total",
+          "uiComponent": "number",
+          "id": "DVHwnhsGfTvH"
+        },
+        {
+          "type": "Integer",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Consumed",
+          "column": "consumed",
+          "name": "consumed",
+          "uiComponent": "number",
+          "id": "ddifLHAsqlzn"
+        }
+      ],
+      "knoers": [
+        "LifecycleManaged",
+        "TypeManaged"
+      ]
+    },
+    "oneToOne": [
+      {
+        "tabTitle": "Owner",
+        "roleAClass": "Credit",
+        "inverseTabTitle": "N/A",
+        "roleAIsOnMasterEntity": "false",
+        "roleBIsOnMasterEntity": "false",
+        "fullPackage": "com.katappult.core.model.account.UserAccount",
+        "attributeName": "userAccount",
+        "roleBClass": "UserAccount",
+        "roleBPackage": "com.katappult.core.model.account",
+        "roleAPackage": "com.katappult.cloud.platform.generated",
+        "oneToOneLegacy": "true",
+        "id": "pUPWHRCqqfCV"
+      }
+    ],
+    "vetoableRules": [
+      {
+        "className": "CreditSetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_CREDIT",
+        "internal": "true"
+      },
+      {
+        "className": "CreditSetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_CREDIT",
+        "internal": "true"
+      }
+    ],
+    "types": [
+      {
+        "logicalName": "CreditType",
+        "logicalPath": "com.katappult.online.types.CreditType",
+        "lifecycle": "Credit lifecycle"
+      },
+      {
+        "parent": "com.katappult.online.types.CreditType",
+        "logicalName": "CreditExpert",
+        "logicalPath": "com.katappult.online.types.CreditType/CreditExpert",
+        "id": "PfRdGSlMrduO"
+      },
+      {
+        "parent": "com.katappult.online.types.CreditType",
+        "logicalName": "CreditAgentFacilitateur",
+        "logicalPath": "com.katappult.online.types.CreditType/CreditAgentFacilitateur",
+        "id": "oGwOQrgNyqyV"
+      }
+    ],
+    "multiIdentifiedTypes": []
+  },
+  "replay.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/replay",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_REPLAY",
+    "attributes": [],
+    "entity": {
+      "name": "Replay",
+      "table": "GEN_REPLAY",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "Replay",
+      "attributes": [
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "true",
+          "required": "true",
+          "uiDisplayName": "Titre",
+          "column": "title",
+          "name": "title",
+          "uiComponent": "text",
+          "id": "cVhVKrkDiINB"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "Description",
+          "column": "description",
+          "name": "description",
+          "uiComponent": "textarea",
+          "id": "mVZACmQLfMUT"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "MediaType",
+          "column": "mediatype",
+          "name": "mediaType",
+          "uiComponent": "text",
+          "id": "wskMgDKFUPQz"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "ExternalLink",
+          "column": "externallink",
+          "name": "externalLink",
+          "uiComponent": "text",
+          "id": "PmMRhFXsZzOv"
+        },
+        {
+          "type": "String",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "true",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "uiDisplayName": "WebinarSource",
+          "column": "webinarsource",
+          "name": "webinarSource",
+          "uiComponent": "text",
+          "id": "aZnFHjjTMIEs"
+        },
+        {
+          "type": "Integer",
+          "uiDisplayInDatatable": "true",
+          "uiDisplayInAdd": "false",
+          "uiMasterDatatableAttribute": "false",
+          "required": "true",
+          "column": "stars",
+          "uiDisplayName": "Stars",
+          "name": "stars",
+          "uiComponent": "number",
+          "id": "HUxewzNLGSOR"
+        }
+      ],
+      "knoers": [
+        "ContentHolder",
+        "LifecycleManaged",
+        "TypeManaged"
+      ]
+    },
+    "types": [
+      {
+        "logicalName": "ReplayType",
+        "logicalPath": "com.katappult.online.types.ReplayType",
+        "lifecycle": "Replay lifecycle"
+      }
+    ],
+    "multiIdentifiedTypes": [],
+    "vetoableRules": [
+      {
+        "className": "ReplaySetLifecycle",
+        "componentName": "LifecycleManagedSystemRules",
+        "order": "2",
+        "event": "PRE_CREATE_REPLAY",
+        "internal": "true"
+      },
+      {
+        "className": "ReplaySetType",
+        "componentName": "TypeManagedSetBusinessTypeRule",
+        "order": "1",
+        "event": "PRE_CREATE_REPLAY",
+        "internal": "true"
+      }
+    ],
+    "manyToMany": [
+      {
+        "tabTitle": "Thèmes",
+        "roleBClass": "Category",
+        "roleAClass": "Replay",
+        "roleBPackage": "com.katappult.cloud.platform.generated.model",
+        "roleAPackage": "com.katappult.cloud.platform.generated.model",
+        "linkTableName": {},
+        "table": "MANY_TO_MANY_REPLAY_CATEGORY_LINK",
+        "inverseTabTitle": "Replay",
+        "link": {
+          "linkTableName": "MANY_TO_MANY_REPLAY_CATEGORY_LINK"
+        },
+        "id": "WOneStVIwJru"
+      }
+    ]
+  },
+  "description.json": {
+    "package": "com.katappult.cloud.platform.generated",
+    "restUri": "/katappult/cloud/app/v1/secured/api/description",
+    "uiMenuEntry": "true",
+    "eventSuffix": "_DESCRIPTION",
+    "attributes": [],
+    "entity": {
+      "name": "Description",
+      "table": "GEN_DESCRIPTION",
+      "importable": "true",
+      "exportable": "true",
+      "menuEntryDisplay": "description"
+    }
+  }
+}
