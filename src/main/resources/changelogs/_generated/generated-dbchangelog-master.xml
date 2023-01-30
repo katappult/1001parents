@@ -14,10 +14,8 @@
 	<include file="changelogs/_generated/demandeagent/demandeagent-liquibase.xml"/>
 	<include file="changelogs/_generated/replay/replay-liquibase.xml"/>
 	<include file="changelogs/_generated/webinar/webinar-liquibase.xml"/>
-	<include file="changelogs/_generated/expertcategory/expertcategory-liquibase.xml"/>
-	<include file="changelogs/_generated/agentfacilitateurcategory/agentfacilitateurcategory-liquibase.xml"/>
-	<include file="changelogs/_generated/ambassadeurcategory/ambassadeurcategory-liquibase.xml"/>
 	<include file="changelogs/_generated/ressources/ressources-liquibase.xml"/>
+	<include file="changelogs/_generated/category/category-liquibase.xml"/>
 <!-- CUSTOM LIQUIBASE-->
 
     <include file="changelogs/_generated/fk-liquibase.xml"/>

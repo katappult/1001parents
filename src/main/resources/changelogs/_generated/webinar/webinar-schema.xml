@@ -40,8 +40,8 @@
                 <constraints nullable="false" />
             </column>
 
-                      <column name="datedeplanification" type="TIMESTAMP"/>
-        <column name="category" type="VARCHAR(255)"/>
+                    <column name="meetinglink" type="VARCHAR(255)"/>
+          <column name="datedeplanification" type="TIMESTAMP"/>
         <column name="description" type="VARCHAR(255)"/>
         <column name="title" type="VARCHAR(255)"/>
 <!--COLUMNS-->
@@ -49,6 +49,13 @@
     </changeSet>
 
 
+
+    <changeSet id="8" author="Webinar-schema-content-holder">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_webinar">
+            <column name="primary_content_oid" type="bigint"/>
+        </addColumn>
+    </changeSet>
     <changeSet id="5" author="Webinar-schema-type-managed">
         <validCheckSum>ANY</validCheckSum>
         <addColumn tableName="gen_webinar">
@@ -170,6 +177,36 @@
         <column name="last_modified_by" type="varchar(255)" defaultValue="system"/>
 
         <!-- Webinar-schema-tomany-useraccount LINK COLUMNS -->
+    </createTable>
+</changeSet>
+
+<changeSet id="10" author="Webinar-schema-tomany-category">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="MANY_TO_MANY_WEBINAR_CATEGORY_LINK">
+        <column name="version" type="BIGINT"  defaultValue="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="description" type="varchar(255)"/>
+        <column name="rolea_domain" type="varchar(255)"/>
+        <column name="roleb_domain" type="varchar(255)"/>
+        <column name="comment" type="varchar(255)"/>
+
+        <column name="container_oid" type="BIGINT" defaultValue="1">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="roleaid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="rolebid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+
+        <column name="create_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="modified_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="created_by" type="varchar(255)" defaultValue="system"/>
+        <column name="last_modified_by" type="varchar(255)" defaultValue="system"/>
+
+        <!-- Webinar-schema-tomany-category LINK COLUMNS -->
     </createTable>
 </changeSet>
 </databaseChangeLog>

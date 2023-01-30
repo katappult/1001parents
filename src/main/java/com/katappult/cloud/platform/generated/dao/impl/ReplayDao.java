@@ -27,7 +27,15 @@ public class ReplayDao implements  IReplayDao{
         QReplay qReplay = new QReplay("entity");
         BooleanExpression whereClause =  qReplay.containerInfo().container().eq(container);
 
-        // WHERE CLAUSE
+        if(Objects.nonNull(params) && params.size() > 0){
+            String status = params.get("status");
+            if(StringUtils.isNotBlank(status)){
+                whereClause = whereClause.and(
+                        qReplay.lifecycleInfo().currentState.eq(status)
+                );
+            }
+        }
+// WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qReplay).where(whereClause);
         return dao.readPage(jpqlQuery, qReplay, pageRequest);

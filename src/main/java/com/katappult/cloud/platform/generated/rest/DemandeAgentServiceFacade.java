@@ -30,8 +30,8 @@ import java.util.Map;
 import java.util.HashMap;
 import com.katappult.cloud.platform.generated.services.api.IDemandeAgentService;
 import com.katappult.cloud.platform.generated.model.*;
-import com.katappult.cloud.platform.generated.model.AgentFacilitateurCategory;
 import com.katappult.core.model.account.UserAccount;
+import com.katappult.cloud.platform.generated.model.Category;
 // IMPORT
 
 @RestController
@@ -160,78 +160,6 @@ public class DemandeAgentServiceFacade {
 
   
 
-  @PostMapping(value = "/oneToOneAgentFacilitateurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  @Transactional(propagation = Propagation.REQUIRES_NEW)
-  @ResponseBody
-  public Serializable setOneToOneAgentFacilitateurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
-                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
-                                        @RequestParam("containerId") Container container)  {
-
-    IOperationResult result = IOperationResult.basicSuccess();
-    DemandeAgent entity = (DemandeAgent) entityId.getPersistable();
-    AgentFacilitateurCategory roleb = (AgentFacilitateurCategory) rolebId.getPersistable();
-
-    service.setAgentFacilitateurCategory(entity, roleb, container);
-
-    OperationData operationData = TransferUtils.toOperationData(entity);
-    result.setData(operationData);
-    return result;
-  }
-
-  @DeleteMapping(value = "/oneToOneAgentFacilitateurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  @Transactional(propagation = Propagation.REQUIRES_NEW)
-  @ResponseBody
-  public Serializable removeOneToOneAgentFacilitateurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
-                                            @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
-                                            @RequestParam("containerId") Container container)  {
-
-    IOperationResult result = IOperationResult.basicSuccess();
-    DemandeAgent entity = (DemandeAgent) entityId.getPersistable();
-    AgentFacilitateurCategory roleb = (AgentFacilitateurCategory) rolebId.getPersistable();
-
-    service.removeAgentFacilitateurCategory(entity, roleb, container);
-
-    OperationData operationData = TransferUtils.toOperationData(entity);
-    result.setData(operationData);
-    return result;
-  }
-
-  @GetMapping(value = "/oneToOneAgentFacilitateurCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  @ResponseBody
-  public Serializable getOneToOneAgentFacilitateurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
-                                        @RequestParam("containerId") Container container)  {
-
-    IOperationResult result = IOperationResult.basicSuccess();
-    DemandeAgent entity = (DemandeAgent) entityId.getPersistable();
-
-    AgentFacilitateurCategory roleb = service.getAgentFacilitateurCategory(entity, container);
-    if(roleb != null){
-      OperationData operationData = TransferUtils.toOperationData(roleb);
-      result.setData(operationData);
-    }
-
-    return result;
-  }
-
-
-  @GetMapping(value = "/oneToOneAgentFacilitateurCategory/inverse", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-  @ResponseBody
-  public Serializable inverseOneToOneAgentFacilitateurCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
-                                                  @RequestParam("containerId") Container container)  {
-
-        IOperationResult result = new SingleResult();
-        AgentFacilitateurCategory entity = (AgentFacilitateurCategory) entityId.getPersistable();
-
-        DemandeAgent roleA = service.getInverseOneToOneAgentFacilitateurCategory(entity, container);
-
-        OperationData operationData = TransferUtils.toOperationData(roleA);
-        result.setData(operationData);
-        return result;
-  }
-
-
-
   @PostMapping(value = "/oneToOneUserAccount", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @ResponseBody
@@ -302,5 +230,77 @@ public class DemandeAgentServiceFacade {
         return result;
   }
 
+
+
+  @PostMapping(value = "/setManyToOneCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable setManyToOneCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam(name = "rolebId") final RestObjectFullId rolebId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAgent entity = (DemandeAgent) persistableService.refresh(entityId.getPersistable());
+    Category roleb = (Category) rolebId.getPersistable();
+
+    entity.setCategory(persistableService.refresh(roleb));
+    persistableService.merge(entity);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @DeleteMapping(value = "/removeManyToOneCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @ResponseBody
+  public Serializable removeManyToOneCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                            @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAgent entity = (DemandeAgent) persistableService.refresh(entityId.getPersistable());
+    entity.setCategory(null);
+    persistableService.merge(entity);
+
+    OperationData operationData = TransferUtils.toOperationData(entity);
+    result.setData(operationData);
+    return result;
+  }
+
+  @GetMapping(value = "/getManyToOneCategory", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly=true)
+  @ResponseBody
+  public Serializable getManyToOneCategory(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                        @RequestParam("containerId") Container container)  {
+
+    IOperationResult result = IOperationResult.basicSuccess();
+    DemandeAgent entity = (DemandeAgent) persistableService.refresh(entityId.getPersistable());
+
+    Category roleb = entity.getCategory();
+    if(roleb != null){
+      OperationData operationData = TransferUtils.toOperationData(roleb);
+      result.setData(operationData);
+    }
+
+    return result;
+  }
+
+
+  @GetMapping(value = "/searchCategoryEntity", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+  @ResponseBody
+  public Serializable searchCategoryEntity(@RequestParam(name = "entityId") final RestObjectFullId entityId,
+                                                       @RequestParam(name = "searchTerm", defaultValue = "") String searchTerm,
+                                                       @RequestParam(name = "page", defaultValue = "0") int page,
+                                                       @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
+                                                       @RequestParam("containerId") Container container)  {
+
+       IOperationResult result = IOperationResult.listSuccess();
+       DemandeAgent roleA = (DemandeAgent) entityId.getPersistable();
+       PageRequest pageRequest = new PageRequest(page, pageSize);
+       PageResult pageResult = service.searchCategoryEntity(roleA, searchTerm, pageRequest, container);
+       TransferUtils.toOperationData(pageResult, (MultipleResult) result);
+       return result;
+  }
 // SERVICES
 }

@@ -12,6 +12,7 @@
         <column id="mediaType" mandatory="true" maxLength="255"/>
         <column id="externalLink" mandatory="true" maxLength="255"/>
         <column id="webinarSource" mandatory="true" maxLength="255"/>
+        <column id="stars" mandatory="true" maxLength="255"/>
         <!-- IMPORT_ATTRIBUTES_FOR_CREATE -->
     </command>
 
@@ -26,6 +27,7 @@
         <column id="mediaType" mandatory="true" maxLength="255"/>
         <column id="externalLink" mandatory="true" maxLength="255"/>
         <column id="webinarSource" mandatory="true" maxLength="255"/>
+        <column id="stars" mandatory="true" maxLength="255"/>
         <!-- IMPORT_ATTRIBUTES_FOR_UPDATE -->
     </command>
 </mappingFile>

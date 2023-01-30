@@ -25,6 +25,18 @@
                         <p:toolbarGroup>
                             <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
                                              action="/secured/Ressources/addRessources.xhtml"/>
+
+                            <ui:repeat value="#{ressourcesController.selectedElementForDetails.reachableStates}" var="state">
+                                <p:commandButton value="#{state}" styleClass="mr-2 ui-button-outlined"
+                                                 ajax="false" immediate="false"
+                                                 update="update_form messages"
+                                                 action="#{ressourcesController._doUpdateElementBySetState(state)}"
+                                />
+                            </ui:repeat>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right" rendered="#{ressourcesController.isTypeOrLifecycleManaged}">
+                            <p:tag styleClass="mr-2 p-2" severity="warning" value="#{ressourcesController.selectedElementForDetails.element.lifecycleInfo.currentState}"></p:tag>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </h:form>
@@ -39,16 +51,16 @@
                             <h:form id="update_form">
                                 <h:panelGrid columns="2" cellpadding="7">
                                     <h:outputLabel for="oid" value="ID"/>
-                                    <p:inputText id="oid" value="#{ressourcesController.selectedElementForDetails.oid}" disabled="true"/>
+                                    <p:inputText id="oid" value="#{ressourcesController.selectedElementForDetails.element.oid}" disabled="true"/>
 
                                      <h:outputLabel for="titre" value="Titre"/>
- <p:inputText id="titre" placeholder="" value="#{ressourcesController.selectedElementForDetails.titre}" required="true"/>
+ <p:inputText id="titre" placeholder="" value="#{ressourcesController.selectedElementForDetails.element.titre}" required="true"/>
  <h:outputLabel for="description" value="Description"/>
- <p:inputTextarea rows="5" cols="30" value="#{ressourcesController.selectedElementForDetails.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
+ <p:inputTextarea rows="5" cols="30" value="#{ressourcesController.selectedElementForDetails.element.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
  <h:outputLabel for="url" value="URL"/>
- <p:inputText id="url" placeholder="" value="#{ressourcesController.selectedElementForDetails.url}" required="true"/>
+ <p:inputText id="url" placeholder="" value="#{ressourcesController.selectedElementForDetails.element.url}" required="true"/>
  <h:outputLabel for="mediaType" value="Type de média"/>
- <p:inputText id="mediaType" placeholder="" value="#{ressourcesController.selectedElementForDetails.mediaType}" required="true"/>
+ <p:inputText id="mediaType" placeholder="" value="#{ressourcesController.selectedElementForDetails.element.mediaType}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 
@@ -63,19 +75,30 @@
                                 </p:toolbar>
                             </h:form>
                         </p:panel>
-
-                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
-                            <ui:param name="selectedElementForDetails" value="#{ressourcesController.selectedElementForDetails}" />
-                        </ui:include>
                     </p:tab>
 
-                    <p:tab title="Autres">
+                    <ui:include src="../../lifecycle/lifecycleHistory.xhtml">
+                        <ui:param name="lifecycleHistories"
+                                  value="#{ressourcesController.selectedElementForDetails.lifecycleHistories}" />
+                        <ui:param name="isTypeOrLifecycleManaged" value="#{ressourcesController.isTypeOrLifecycleManaged}"/>
+                    </ui:include>
 
+                    <p:tab title="Metadonnées">
+                        <p:card styleClass="mt-2 mb-4">
+                            <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                                <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails.element}" />
+                            </ui:include>
+                        </p:card>
                     </p:tab>
                 </p:tabView>
-
             </div>
         </div>
+
+        <style type="text/css">
+            .katappult-metadata-chronoline .ui-card-title{
+                font-size: 1rem!important;
+            }
+        </style>
     </ui:define>
 
 </ui:composition>

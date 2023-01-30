@@ -14,14 +14,24 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.lang.String;
+
+import com.katappult.core.model.contentHolder.IContentHolder;
+import com.katappult.core.model.contentHolder.ContentInfo;
+import com.katappult.core.model.typed.ITypeManaged;
+import com.katappult.core.model.typed.TypeInfo;
+import com.katappult.core.model.typed.TypeManaged;
+
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
 // IMPORT
 
 
 @Entity
 @Table(name = "gen_replay")
 @Access(AccessType.PROPERTY)
+@TypeManaged(rootType = "com.katappult.online.types.ReplayType")
 // ANNOTATIONS
-public class Replay extends BusinessObject implements Serializable {// KNOER
+public class Replay extends BusinessObject implements Serializable , IContentHolder, ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +40,11 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
     private String mediaType;
     private String externalLink;
     private String webinarSource;
-    // ATTRIBUTES
+    private Integer stars;
+    private ContentInfo contentInfo;
+	private TypeInfo typeInfo;
+private LifecycleInfo lifecycleInfo;
+// ATTRIBUTES
 
 
     @Override
@@ -51,6 +65,12 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
         setMediaType(((Replay)entity).getMediaType());
         setExternalLink(((Replay)entity).getExternalLink());
         setWebinarSource(((Replay)entity).getWebinarSource());
+        setTitle(((Replay)entity).getTitle());
+        setDescription(((Replay)entity).getDescription());
+        setMediaType(((Replay)entity).getMediaType());
+        setExternalLink(((Replay)entity).getExternalLink());
+        setWebinarSource(((Replay)entity).getWebinarSource());
+        setStars(((Replay)entity).getStars());
         // UPDATE_ATTRIBUTES
     }
 
@@ -70,7 +90,40 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
         return super._getOid();
     }
 
-    // GETTERS AND SETTERS
+    
+	@Embedded
+    @Override
+    public ContentInfo getContentInfo() {
+        return contentInfo;
+    }
+
+    @Override
+    public void setContentInfo(ContentInfo contentInfo) {
+        this.contentInfo = contentInfo;
+    }
+
+	@Embedded
+    @Override
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
+    }
+
+    @Override
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
+    }
+
+	@Embedded
+    @Override
+    public LifecycleInfo getLifecycleInfo() {
+        return lifecycleInfo;
+    }
+
+    @Override
+    public void setLifecycleInfo(LifecycleInfo lifecycleInfo) {
+        this.lifecycleInfo = lifecycleInfo;
+    }
+// GETTERS AND SETTERS
     @UIAttribute(fieldName = "title", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "title")
     public String getTitle() {
@@ -119,6 +172,16 @@ public class Replay extends BusinessObject implements Serializable {// KNOER
 
     public void setWebinarSource(String webinarSource) {
         this.webinarSource = webinarSource;
+    }
+
+    @UIAttribute(fieldName = "stars", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "stars")
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
     }
 
 

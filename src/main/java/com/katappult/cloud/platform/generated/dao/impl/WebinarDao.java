@@ -53,7 +53,7 @@ public class WebinarDao implements  IWebinarDao{
 
         BooleanExpression whereClause = qWebinar.title.likeIgnoreCase("%" + searchTerm + "%");
 whereClause = whereClause.or(qWebinar.description.likeIgnoreCase("%" + searchTerm + "%"));
-whereClause = whereClause.or(qWebinar.category.likeIgnoreCase("%" + searchTerm + "%"));
+whereClause = whereClause.or(qWebinar.meetingLink.likeIgnoreCase("%" + searchTerm + "%"));
 // SEARCH ENTITY WHERE CLAUSE
 
         JPQLQuery jpqlQuery = dao.from(qWebinar)

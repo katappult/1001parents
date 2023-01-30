@@ -9,8 +9,8 @@ import com.katappult.core.utils.UIAttributes;
 import java.util.List;
 import java.util.Map;
 import com.katappult.cloud.platform.generated.model.*;
-import com.katappult.cloud.platform.generated.model.AgentFacilitateurCategory;
 import com.katappult.core.model.account.UserAccount;
+import com.katappult.cloud.platform.generated.model.Category;
 // IMPORT
 
 public interface IDemandeAgentService {
@@ -30,15 +30,6 @@ public interface IDemandeAgentService {
     void batchUpdateFromImport(DemandeAgent transientEntity);
 
     
-    void setAgentFacilitateurCategory(DemandeAgent entity, AgentFacilitateurCategory roleB, Container container);
-
-    AgentFacilitateurCategory getAgentFacilitateurCategory(DemandeAgent entity, Container container);
-
-    void removeAgentFacilitateurCategory(DemandeAgent entity, AgentFacilitateurCategory roleB, Container container);
-
-    DemandeAgent getInverseOneToOneAgentFacilitateurCategory(AgentFacilitateurCategory entity, Container container);
-
-
     void setUserAccount(DemandeAgent entity, UserAccount roleB, Container container);
 
     UserAccount getUserAccount(DemandeAgent entity, Container container);
@@ -46,6 +37,9 @@ public interface IDemandeAgentService {
     void removeUserAccount(DemandeAgent entity, UserAccount roleB, Container container);
 
     DemandeAgent getInverseOneToOneUserAccount(UserAccount entity, Container container);
+
+
+    PageResult searchCategoryEntity(final DemandeAgent roleA, final String searchTerm, PageRequest pageRequest, Container container);
 
 // SERVICES
 }

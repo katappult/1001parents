@@ -31,8 +31,9 @@ import com.katappult.cloud.platform.generated.model.event.PostCreateDemandeExper
 import com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeExpert;
 import com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeExpert;
 import java.util.List;
-import com.katappult.cloud.platform.generated.model.ExpertCategory;
 import com.katappult.core.model.account.UserAccount;
+import com.katappult.cloud.platform.generated.model.Category;
+import com.katappult.cloud.platform.generated.model.QCategory;
 // IMPORT
 
 @Component
@@ -130,38 +131,6 @@ public class DemandeExpertService implements  IDemandeExpertService {
 
     
     @Override
-    public ExpertCategory getExpertCategory(final DemandeExpert entity, final Container container) {
-        DemandeExpert refreshed = persistableService.refresh(entity);
-        return refreshed.getExpertCategory();
-    }
-
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void setExpertCategory(final DemandeExpert entity, final ExpertCategory roleb, final Container container) {
-        DemandeExpert refreshed = persistableService.refresh(entity);
-        ExpertCategory refreshedToOne = persistableService.refresh(roleb);
-        refreshed.setExpertCategory(refreshedToOne);
-
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void removeExpertCategory(final DemandeExpert entity, final ExpertCategory roleb, final Container container) {
-        DemandeExpert refreshed = persistableService.refresh(entity);
-        refreshed.setExpertCategory(null);
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    public DemandeExpert getInverseOneToOneExpertCategory(final ExpertCategory entity, final Container container) {
-        QDemandeExpert qDemandeExpert = new QDemandeExpert("entity");
-        return persistableDao.from(qDemandeExpert).where(qDemandeExpert.expertCategory().eq(entity)).singleResult(qDemandeExpert);
-    }
-
-
-    @Override
     public UserAccount getUserAccount(final DemandeExpert entity, final Container container) {
         DemandeExpert refreshed = persistableService.refresh(entity);
         return refreshed.getUserAccount();
@@ -190,6 +159,14 @@ public class DemandeExpertService implements  IDemandeExpertService {
     public DemandeExpert getInverseOneToOneUserAccount(final UserAccount entity, final Container container) {
         QDemandeExpert qDemandeExpert = new QDemandeExpert("entity");
         return persistableDao.from(qDemandeExpert).where(qDemandeExpert.userAccount().eq(entity)).singleResult(qDemandeExpert);
+    }
+
+
+
+
+    @Override
+    public PageResult searchCategoryEntity(final DemandeExpert roleA, final String searchTerm, final PageRequest pageRequest, final Container container) {
+        return dao.searchCategoryEntity(roleA, searchTerm, pageRequest, container);
     }
 
 // SERVICES

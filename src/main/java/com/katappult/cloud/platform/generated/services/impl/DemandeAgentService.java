@@ -31,8 +31,9 @@ import com.katappult.cloud.platform.generated.model.event.PostCreateDemandeAgent
 import com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeAgent;
 import com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeAgent;
 import java.util.List;
-import com.katappult.cloud.platform.generated.model.AgentFacilitateurCategory;
 import com.katappult.core.model.account.UserAccount;
+import com.katappult.cloud.platform.generated.model.Category;
+import com.katappult.cloud.platform.generated.model.QCategory;
 // IMPORT
 
 @Component
@@ -130,38 +131,6 @@ public class DemandeAgentService implements  IDemandeAgentService {
 
     
     @Override
-    public AgentFacilitateurCategory getAgentFacilitateurCategory(final DemandeAgent entity, final Container container) {
-        DemandeAgent refreshed = persistableService.refresh(entity);
-        return refreshed.getAgentFacilitateurCategory();
-    }
-
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void setAgentFacilitateurCategory(final DemandeAgent entity, final AgentFacilitateurCategory roleb, final Container container) {
-        DemandeAgent refreshed = persistableService.refresh(entity);
-        AgentFacilitateurCategory refreshedToOne = persistableService.refresh(roleb);
-        refreshed.setAgentFacilitateurCategory(refreshedToOne);
-
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void removeAgentFacilitateurCategory(final DemandeAgent entity, final AgentFacilitateurCategory roleb, final Container container) {
-        DemandeAgent refreshed = persistableService.refresh(entity);
-        refreshed.setAgentFacilitateurCategory(null);
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    public DemandeAgent getInverseOneToOneAgentFacilitateurCategory(final AgentFacilitateurCategory entity, final Container container) {
-        QDemandeAgent qDemandeAgent = new QDemandeAgent("entity");
-        return persistableDao.from(qDemandeAgent).where(qDemandeAgent.agentFacilitateurCategory().eq(entity)).singleResult(qDemandeAgent);
-    }
-
-
-    @Override
     public UserAccount getUserAccount(final DemandeAgent entity, final Container container) {
         DemandeAgent refreshed = persistableService.refresh(entity);
         return refreshed.getUserAccount();
@@ -190,6 +159,14 @@ public class DemandeAgentService implements  IDemandeAgentService {
     public DemandeAgent getInverseOneToOneUserAccount(final UserAccount entity, final Container container) {
         QDemandeAgent qDemandeAgent = new QDemandeAgent("entity");
         return persistableDao.from(qDemandeAgent).where(qDemandeAgent.userAccount().eq(entity)).singleResult(qDemandeAgent);
+    }
+
+
+
+
+    @Override
+    public PageResult searchCategoryEntity(final DemandeAgent roleA, final String searchTerm, final PageRequest pageRequest, final Container container) {
+        return dao.searchCategoryEntity(roleA, searchTerm, pageRequest, container);
     }
 
 // SERVICES

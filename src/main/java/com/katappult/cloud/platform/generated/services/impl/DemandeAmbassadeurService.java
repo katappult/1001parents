@@ -31,8 +31,9 @@ import com.katappult.cloud.platform.generated.model.event.PostCreateDemandeAmbas
 import com.katappult.cloud.platform.generated.model.event.PostDeleteDemandeAmbassadeur;
 import com.katappult.cloud.platform.generated.model.event.PostUpdateDemandeAmbassadeur;
 import java.util.List;
-import com.katappult.cloud.platform.generated.model.AmbassadeurCategory;
 import com.katappult.core.model.account.UserAccount;
+import com.katappult.cloud.platform.generated.model.Category;
+import com.katappult.cloud.platform.generated.model.QCategory;
 // IMPORT
 
 @Component
@@ -130,38 +131,6 @@ public class DemandeAmbassadeurService implements  IDemandeAmbassadeurService {
 
     
     @Override
-    public AmbassadeurCategory getAmbassadeurCategory(final DemandeAmbassadeur entity, final Container container) {
-        DemandeAmbassadeur refreshed = persistableService.refresh(entity);
-        return refreshed.getAmbassadeurCategory();
-    }
-
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void setAmbassadeurCategory(final DemandeAmbassadeur entity, final AmbassadeurCategory roleb, final Container container) {
-        DemandeAmbassadeur refreshed = persistableService.refresh(entity);
-        AmbassadeurCategory refreshedToOne = persistableService.refresh(roleb);
-        refreshed.setAmbassadeurCategory(refreshedToOne);
-
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    @Transactional(propagation =  Propagation.REQUIRED)
-    public void removeAmbassadeurCategory(final DemandeAmbassadeur entity, final AmbassadeurCategory roleb, final Container container) {
-        DemandeAmbassadeur refreshed = persistableService.refresh(entity);
-        refreshed.setAmbassadeurCategory(null);
-        persistableService.mergeWithoutEvent(refreshed);
-    }
-
-    @Override
-    public DemandeAmbassadeur getInverseOneToOneAmbassadeurCategory(final AmbassadeurCategory entity, final Container container) {
-        QDemandeAmbassadeur qDemandeAmbassadeur = new QDemandeAmbassadeur("entity");
-        return persistableDao.from(qDemandeAmbassadeur).where(qDemandeAmbassadeur.ambassadeurCategory().eq(entity)).singleResult(qDemandeAmbassadeur);
-    }
-
-
-    @Override
     public UserAccount getUserAccount(final DemandeAmbassadeur entity, final Container container) {
         DemandeAmbassadeur refreshed = persistableService.refresh(entity);
         return refreshed.getUserAccount();
@@ -190,6 +159,14 @@ public class DemandeAmbassadeurService implements  IDemandeAmbassadeurService {
     public DemandeAmbassadeur getInverseOneToOneUserAccount(final UserAccount entity, final Container container) {
         QDemandeAmbassadeur qDemandeAmbassadeur = new QDemandeAmbassadeur("entity");
         return persistableDao.from(qDemandeAmbassadeur).where(qDemandeAmbassadeur.userAccount().eq(entity)).singleResult(qDemandeAmbassadeur);
+    }
+
+
+
+
+    @Override
+    public PageResult searchCategoryEntity(final DemandeAmbassadeur roleA, final String searchTerm, final PageRequest pageRequest, final Container container) {
+        return dao.searchCategoryEntity(roleA, searchTerm, pageRequest, container);
     }
 
 // SERVICES

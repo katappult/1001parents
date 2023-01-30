@@ -25,6 +25,18 @@
                         <p:toolbarGroup>
                             <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
                                              action="/secured/Replay/addReplay.xhtml"/>
+
+                            <ui:repeat value="#{replayController.selectedElementForDetails.reachableStates}" var="state">
+                                <p:commandButton value="#{state}" styleClass="mr-2 ui-button-outlined"
+                                                 ajax="false" immediate="false"
+                                                 update="update_form messages"
+                                                 action="#{replayController._doUpdateElementBySetState(state)}"
+                                />
+                            </ui:repeat>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right" rendered="#{replayController.isTypeOrLifecycleManaged}">
+                            <p:tag styleClass="mr-2 p-2" severity="warning" value="#{replayController.selectedElementForDetails.element.lifecycleInfo.currentState}"></p:tag>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </h:form>
@@ -39,18 +51,20 @@
                             <h:form id="update_form">
                                 <h:panelGrid columns="2" cellpadding="7">
                                     <h:outputLabel for="oid" value="ID"/>
-                                    <p:inputText id="oid" value="#{replayController.selectedElementForDetails.oid}" disabled="true"/>
+                                    <p:inputText id="oid" value="#{replayController.selectedElementForDetails.element.oid}" disabled="true"/>
 
                                      <h:outputLabel for="title" value="Titre"/>
- <p:inputText id="title" placeholder="" value="#{replayController.selectedElementForDetails.title}" required="true"/>
+ <p:inputText id="title" placeholder="" value="#{replayController.selectedElementForDetails.element.title}" required="true"/>
  <h:outputLabel for="description" value="Description"/>
- <p:inputTextarea rows="5" cols="30" value="#{replayController.selectedElementForDetails.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
+ <p:inputTextarea rows="5" cols="30" value="#{replayController.selectedElementForDetails.element.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
  <h:outputLabel for="mediaType" value="MediaType"/>
- <p:inputText id="mediaType" placeholder="" value="#{replayController.selectedElementForDetails.mediaType}" required="true"/>
+ <p:inputText id="mediaType" placeholder="" value="#{replayController.selectedElementForDetails.element.mediaType}" required="true"/>
  <h:outputLabel for="externalLink" value="ExternalLink"/>
- <p:inputText id="externalLink" placeholder="" value="#{replayController.selectedElementForDetails.externalLink}" required="true"/>
+ <p:inputText id="externalLink" placeholder="" value="#{replayController.selectedElementForDetails.element.externalLink}" required="true"/>
  <h:outputLabel for="webinarSource" value="WebinarSource"/>
- <p:inputText id="webinarSource" placeholder="" value="#{replayController.selectedElementForDetails.webinarSource}" required="true"/>
+ <p:inputText id="webinarSource" placeholder="" value="#{replayController.selectedElementForDetails.element.webinarSource}" required="true"/>
+<h:outputLabel for="stars" value="Stars"/>
+   <p:inputNumber  id="stars" value="#{replayController.selectedElementForDetails.element.stars}" decimalPlaces="0"  required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 
@@ -65,19 +79,30 @@
                                 </p:toolbar>
                             </h:form>
                         </p:panel>
-
-                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
-                            <ui:param name="selectedElementForDetails" value="#{replayController.selectedElementForDetails}" />
-                        </ui:include>
                     </p:tab>
 
-                    <p:tab title="Autres">
+                    <ui:include src="../../lifecycle/lifecycleHistory.xhtml">
+                        <ui:param name="lifecycleHistories"
+                                  value="#{replayController.selectedElementForDetails.lifecycleHistories}" />
+                        <ui:param name="isTypeOrLifecycleManaged" value="#{replayController.isTypeOrLifecycleManaged}"/>
+                    </ui:include>
 
+                    <p:tab title="Metadonnées">
+                        <p:card styleClass="mt-2 mb-4">
+                            <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                                <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails.element}" />
+                            </ui:include>
+                        </p:card>
                     </p:tab>
                 </p:tabView>
-
             </div>
         </div>
+
+        <style type="text/css">
+            .katappult-metadata-chronoline .ui-card-title{
+                font-size: 1rem!important;
+            }
+        </style>
     </ui:define>
 
 </ui:composition>

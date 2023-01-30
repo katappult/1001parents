@@ -9,6 +9,7 @@
         <column id="mediatype" mandatory="false"/>
         <column id="externallink" mandatory="false"/>
         <column id="webinarsource" mandatory="false"/>
+        <column id="stars" mandatory="false"/>
         <!-- EXPORT_ATTRIBUTES_1 -->
 
     </command>
@@ -19,6 +20,7 @@
         <column id="mediatype" mandatory="false"/>
         <column id="externallink" mandatory="false"/>
         <column id="webinarsource" mandatory="false"/>
+        <column id="stars" mandatory="false"/>
         <!-- EXPORT_ATTRIBUTES_2 -->
     </command>
 </mappingFile>

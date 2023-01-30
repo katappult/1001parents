@@ -36,3 +36,8 @@
 .layout-main .layout-footer .footer-icons a > span{
     color: #fff!important;
 }
+
+body .ui-breadcrumb .ui-breadcrumb-items li:first-child a.ui-icon-home,
+body .ui-breadcrumb{
+    font-size: 18px!important;
+}

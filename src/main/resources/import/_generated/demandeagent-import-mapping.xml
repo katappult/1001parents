@@ -9,7 +9,8 @@
         
         <column id="titre" mandatory="true" maxLength="255"/>
         <column id="description" mandatory="true" maxLength="255"/>
-        <!-- IMPORT_ATTRIBUTES_FOR_CREATE -->
+        <column id="planificationDate" mandatory="false" 			propertyEditor="DateStringPropertyEditor" />
+<!-- IMPORT_ATTRIBUTES_FOR_CREATE -->
     </command>
 
     <command name="UPDATE_DEMANDEAGENT" targetEntity="com.katappult.cloud.platform.generated.model.DemandeAgent"
@@ -20,6 +21,7 @@
 
         <column id="titre" mandatory="true" maxLength="255"/>
         <column id="description" mandatory="true" maxLength="255"/>
-        <!-- IMPORT_ATTRIBUTES_FOR_UPDATE -->
+        <column id="planificationDate" mandatory="false" 			propertyEditor="DateStringPropertyEditor" />
+<!-- IMPORT_ATTRIBUTES_FOR_UPDATE -->
     </command>
 </mappingFile>

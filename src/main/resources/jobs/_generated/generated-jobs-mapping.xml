@@ -21,15 +21,9 @@
     <jobMappingPath job="standardBatchExport" type="manageWebinar" mappingFilePath="classpath:/export/_generated/webinar-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageWebinar" mappingFilePath="classpath:/import/_generated/webinar-import-mapping.xml"/>
 
-    <jobMappingPath job="standardBatchExport" type="manageExpertCategory" mappingFilePath="classpath:/export/_generated/expertcategory-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageExpertCategory" mappingFilePath="classpath:/import/_generated/expertcategory-import-mapping.xml"/>
-
-    <jobMappingPath job="standardBatchExport" type="manageAgentFacilitateurCategory" mappingFilePath="classpath:/export/_generated/agentfacilitateurcategory-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageAgentFacilitateurCategory" mappingFilePath="classpath:/import/_generated/agentfacilitateurcategory-import-mapping.xml"/>
-
-    <jobMappingPath job="standardBatchExport" type="manageAmbassadeurCategory" mappingFilePath="classpath:/export/_generated/ambassadeurcategory-export-mapping.xml"/>
-    <jobMappingPath job="standardBatchImport" type="manageAmbassadeurCategory" mappingFilePath="classpath:/import/_generated/ambassadeurcategory-import-mapping.xml"/>
-
     <jobMappingPath job="standardBatchExport" type="manageRessources" mappingFilePath="classpath:/export/_generated/ressources-export-mapping.xml"/>
     <jobMappingPath job="standardBatchImport" type="manageRessources" mappingFilePath="classpath:/import/_generated/ressources-import-mapping.xml"/>
+
+    <jobMappingPath job="standardBatchExport" type="manageCategory" mappingFilePath="classpath:/export/_generated/category-export-mapping.xml"/>
+    <jobMappingPath job="standardBatchImport" type="manageCategory" mappingFilePath="classpath:/import/_generated/category-import-mapping.xml"/>
 </jobMappingPathResolver>

@@ -25,6 +25,18 @@
                         <p:toolbarGroup>
                             <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
                                              action="/secured/Webinar/addWebinar.xhtml"/>
+
+                            <ui:repeat value="#{webinarController.selectedElementForDetails.reachableStates}" var="state">
+                                <p:commandButton value="#{state}" styleClass="mr-2 ui-button-outlined"
+                                                 ajax="false" immediate="false"
+                                                 update="update_form messages"
+                                                 action="#{webinarController._doUpdateElementBySetState(state)}"
+                                />
+                            </ui:repeat>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right" rendered="#{webinarController.isTypeOrLifecycleManaged}">
+                            <p:tag styleClass="mr-2 p-2" severity="warning" value="#{webinarController.selectedElementForDetails.element.lifecycleInfo.currentState}"></p:tag>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </h:form>
@@ -39,16 +51,16 @@
                             <h:form id="update_form">
                                 <h:panelGrid columns="2" cellpadding="7">
                                     <h:outputLabel for="oid" value="ID"/>
-                                    <p:inputText id="oid" value="#{webinarController.selectedElementForDetails.oid}" disabled="true"/>
+                                    <p:inputText id="oid" value="#{webinarController.selectedElementForDetails.element.oid}" disabled="true"/>
 
                                      <h:outputLabel for="title" value="Titre"/>
- <p:inputText id="title" placeholder="" value="#{webinarController.selectedElementForDetails.title}" required="true"/>
+ <p:inputText id="title" placeholder="" value="#{webinarController.selectedElementForDetails.element.title}" required="true"/>
  <h:outputLabel for="description" value="Description"/>
- <p:inputText id="description" placeholder="" value="#{webinarController.selectedElementForDetails.description}" required="true"/>
- <h:outputLabel for="category" value="Category"/>
- <p:inputText id="category" placeholder="" value="#{webinarController.selectedElementForDetails.category}" required="true"/>
+ <p:inputText id="description" placeholder="" value="#{webinarController.selectedElementForDetails.element.description}" required="true"/>
 <h:outputLabel for="dateDePlanification" value="Date De Planification"/>
-<p:datePicker id="dateDePlanification" value="#{webinarController.selectedElementForDetails.dateDePlanification}" required="true"/>
+<p:datePicker id="dateDePlanification" value="#{webinarController.selectedElementForDetails.element.dateDePlanification}" required="true"/>
+ <h:outputLabel for="meetingLink" value="Lien de la réunion"/>
+ <p:inputText id="meetingLink" placeholder="" value="#{webinarController.selectedElementForDetails.element.meetingLink}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 
@@ -63,19 +75,30 @@
                                 </p:toolbar>
                             </h:form>
                         </p:panel>
-
-                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
-                            <ui:param name="selectedElementForDetails" value="#{webinarController.selectedElementForDetails}" />
-                        </ui:include>
                     </p:tab>
 
-                    <p:tab title="Autres">
+                    <ui:include src="../../lifecycle/lifecycleHistory.xhtml">
+                        <ui:param name="lifecycleHistories"
+                                  value="#{webinarController.selectedElementForDetails.lifecycleHistories}" />
+                        <ui:param name="isTypeOrLifecycleManaged" value="#{webinarController.isTypeOrLifecycleManaged}"/>
+                    </ui:include>
 
+                    <p:tab title="Metadonnées">
+                        <p:card styleClass="mt-2 mb-4">
+                            <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                                <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails.element}" />
+                            </ui:include>
+                        </p:card>
                     </p:tab>
                 </p:tabView>
-
             </div>
         </div>
+
+        <style type="text/css">
+            .katappult-metadata-chronoline .ui-card-title{
+                font-size: 1rem!important;
+            }
+        </style>
     </ui:define>
 
 </ui:composition>

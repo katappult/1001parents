@@ -149,5 +149,35 @@
             <column name="lifecycle_state" type="VARCHAR(40)"/>
         </addColumn>
     </changeSet>
+
+<changeSet id="10" author="Ressources-schema-tomany-category">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="MANY_TO_MANY_RESSOURCES_CATEGORY_LINK">
+        <column name="version" type="BIGINT"  defaultValue="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="description" type="varchar(255)"/>
+        <column name="rolea_domain" type="varchar(255)"/>
+        <column name="roleb_domain" type="varchar(255)"/>
+        <column name="comment" type="varchar(255)"/>
+
+        <column name="container_oid" type="BIGINT" defaultValue="1">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="roleaid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="rolebid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+
+        <column name="create_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="modified_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="created_by" type="varchar(255)" defaultValue="system"/>
+        <column name="last_modified_by" type="varchar(255)" defaultValue="system"/>
+
+        <!-- Ressources-schema-tomany-category LINK COLUMNS -->
+    </createTable>
+</changeSet>
 </databaseChangeLog>
 

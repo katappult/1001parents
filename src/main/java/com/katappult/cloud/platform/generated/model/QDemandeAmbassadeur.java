@@ -7,7 +7,6 @@ import com.mysema.query.types.path.NumberPath;
 import com.mysema.query.types.path.PathInits;
 import com.mysema.query.types.path.StringPath;
 
-import com.katappult.cloud.platform.generated.model.QAmbassadeurCategory;
 import com.katappult.core.model.account.QUserAccount;
 // IMPORT
 import javax.annotation.Generated;
@@ -43,10 +42,11 @@ public class QDemandeAmbassadeur extends EntityPathBase<DemandeAmbassadeur> {
 
      public final StringPath titre = createString("titre");
  public final StringPath description = createString("description");
+ public final com.mysema.query.types.path.DatePath<java.util.Date> planificationDate = createDate("planificationDate", java.util.Date.class);
 protected com.katappult.core.model.typed.QTypeInfo typeInfo;
 	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
+    protected QCategory category;
 
-protected QAmbassadeurCategory ambassadeurCategory;
 
 protected QUserAccount userAccount;
 // ATTRIBUTES
@@ -106,13 +106,13 @@ public com.katappult.core.model.typed.QTypeInfo typeInfo() {
         return lifecycleInfo;
     }
 
-
-public QAmbassadeurCategory ambassadeurCategory() {
-        if (ambassadeurCategory == null) {
-            ambassadeurCategory = new QAmbassadeurCategory(forProperty("ambassadeurCategory"));
+ public QCategory category() {
+        if (category == null) {
+            category = new QCategory(forProperty("category"));
         }
-        return ambassadeurCategory;
+        return category;
     }
+
 
 public QUserAccount userAccount() {
         if (userAccount == null) {

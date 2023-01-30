@@ -6,13 +6,15 @@
         <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
         <column id="titre" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <!-- EXPORT_ATTRIBUTES_1 -->
+        <column id="planificationdate" mandatory="false" 			propertyEditor="DateTimeExportStringPropertyEditor" />
+<!-- EXPORT_ATTRIBUTES_1 -->
 
     </command>
 
     <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.DemandeAgent">
         <column id="titre" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <!-- EXPORT_ATTRIBUTES_2 -->
+        <column id="planificationdate" mandatory="false" 			propertyEditor="DateTimeExportStringPropertyEditor" />
+<!-- EXPORT_ATTRIBUTES_2 -->
     </command>
 </mappingFile>

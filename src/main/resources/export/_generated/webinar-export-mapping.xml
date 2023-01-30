@@ -6,17 +6,17 @@
         <column id="fullIdentifier" propertyEditor="ObjectFullIdentifierPropetyEditor"/>
         <column id="title" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="category" mandatory="false"/>
         <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
-<!-- EXPORT_ATTRIBUTES_1 -->
+<column id="meetinglink" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_1 -->
 
     </command>
 
     <command name="EXPORT" targetEntity="com.katappult.cloud.platform.generated.model.Webinar">
         <column id="title" mandatory="false"/>
         <column id="description" mandatory="false"/>
-        <column id="category" mandatory="false"/>
         <column id="datedeplanification" mandatory="false" 			propertyEditor="DateStringExportPropertyEditor" />
-<!-- EXPORT_ATTRIBUTES_2 -->
+<column id="meetinglink" mandatory="false"/>
+        <!-- EXPORT_ATTRIBUTES_2 -->
     </command>
 </mappingFile>

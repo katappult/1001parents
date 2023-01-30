@@ -47,7 +47,7 @@
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:dataTable var="element" value="#{replayController.listDataModel}" stripedRows="true"
+                <p:dataTable var="element" value="#{replayController.listDataModel}" stripedRows="true" class="mt-2"
                              paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} &#233;l&#233;ment(s)">
@@ -58,15 +58,27 @@
 
                     <p:column headerText="Titre">
     <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.title}" /></a>
-</p:column><p:column headerText="Description">
+</p:column>
+<p:column headerText="Description">
     <h:outputText value="#{element.description}" />
-</p:column><p:column headerText="MediaType">
+</p:column>
+<p:column headerText="MediaType">
     <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.mediaType}" /></a>
-</p:column><p:column headerText="ExternalLink">
+</p:column>
+<p:column headerText="ExternalLink">
     <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.externalLink}" /></a>
-</p:column><p:column headerText="WebinarSource">
+</p:column>
+<p:column headerText="WebinarSource">
     <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.webinarSource}" /></a>
-</p:column><!--COLUMNS-->
+</p:column>
+<p:column headerText="Stars">
+    <a href="#{replayController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.stars}" /></a>
+</p:column>
+<!--COLUMNS-->
+
+                    <p:column headerText="Statut" rendered="#{replayController.isTypeOrLifecycleManaged}">
+                        <p:tag styleClass="mr-2 p-2" severity="warning" value="#{element.lifecycleInfo.currentState}"></p:tag>
+                    </p:column>
 
                     <p:column styleClass="float-right text-right mr-3">
                         <h:form>

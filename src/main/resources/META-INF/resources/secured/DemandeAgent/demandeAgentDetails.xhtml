@@ -25,6 +25,18 @@
                         <p:toolbarGroup>
                             <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
                                              action="/secured/DemandeAgent/addDemandeAgent.xhtml"/>
+
+                            <ui:repeat value="#{demandeAgentController.selectedElementForDetails.reachableStates}" var="state">
+                                <p:commandButton value="#{state}" styleClass="mr-2 ui-button-outlined"
+                                                 ajax="false" immediate="false"
+                                                 update="update_form messages"
+                                                 action="#{demandeAgentController._doUpdateElementBySetState(state)}"
+                                />
+                            </ui:repeat>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right" rendered="#{demandeAgentController.isTypeOrLifecycleManaged}">
+                            <p:tag styleClass="mr-2 p-2" severity="warning" value="#{demandeAgentController.selectedElementForDetails.element.lifecycleInfo.currentState}"></p:tag>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </h:form>
@@ -39,12 +51,14 @@
                             <h:form id="update_form">
                                 <h:panelGrid columns="2" cellpadding="7">
                                     <h:outputLabel for="oid" value="ID"/>
-                                    <p:inputText id="oid" value="#{demandeAgentController.selectedElementForDetails.oid}" disabled="true"/>
+                                    <p:inputText id="oid" value="#{demandeAgentController.selectedElementForDetails.element.oid}" disabled="true"/>
 
                                      <h:outputLabel for="titre" value="Titre"/>
- <p:inputText id="titre" placeholder="" value="#{demandeAgentController.selectedElementForDetails.titre}" required="true"/>
+ <p:inputText id="titre" placeholder="" value="#{demandeAgentController.selectedElementForDetails.element.titre}" required="true"/>
  <h:outputLabel for="description" value="Description"/>
- <p:inputTextarea rows="5" cols="30" value="#{demandeAgentController.selectedElementForDetails.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
+ <p:inputTextarea rows="5" cols="30" value="#{demandeAgentController.selectedElementForDetails.element.description}" counterTemplate="{0} characters remaining." maxlength="255" required="true"/>
+<h:outputLabel for="planificationDate" value="Date de planification"/>
+<p:datePicker id="planificationDate" value="#{demandeAgentController.selectedElementForDetails.element.planificationDate}" required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 
@@ -59,19 +73,30 @@
                                 </p:toolbar>
                             </h:form>
                         </p:panel>
-
-                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
-                            <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails}" />
-                        </ui:include>
                     </p:tab>
 
-                    <p:tab title="Autres">
+                    <ui:include src="../../lifecycle/lifecycleHistory.xhtml">
+                        <ui:param name="lifecycleHistories"
+                                  value="#{demandeAgentController.selectedElementForDetails.lifecycleHistories}" />
+                        <ui:param name="isTypeOrLifecycleManaged" value="#{demandeAgentController.isTypeOrLifecycleManaged}"/>
+                    </ui:include>
 
+                    <p:tab title="Metadonnées">
+                        <p:card styleClass="mt-2 mb-4">
+                            <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                                <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails.element}" />
+                            </ui:include>
+                        </p:card>
                     </p:tab>
                 </p:tabView>
-
             </div>
         </div>
+
+        <style type="text/css">
+            .katappult-metadata-chronoline .ui-card-title{
+                font-size: 1rem!important;
+            }
+        </style>
     </ui:define>
 
 </ui:composition>

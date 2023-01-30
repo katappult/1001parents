@@ -14,6 +14,8 @@ import java.util.Map;
 import com.katappult.core.utils.StringUtils;
 import java.util.Objects;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.Category;
+import com.katappult.cloud.platform.generated.model.QCategory;
 // IMPORT
 
 @Component
@@ -61,5 +63,25 @@ whereClause = whereClause.or(qDemandeAmbassadeur.description.likeIgnoreCase("%" 
         return dao.readPage(jpqlQuery, qDemandeAmbassadeur, pageRequest);
     }
 
-    // DAO
+    
+
+
+    @Override
+    public PageResult searchCategoryEntity(final DemandeAmbassadeur roleA, final String searchTerm, final PageRequest pageRequest, final Container container) {
+
+        QCategory qRoleB = new QCategory("entity");
+        BooleanExpression whereClause = qRoleB.containerInfo().container().isNotNull();
+        if (StringUtils.isNotBlank(searchTerm)) {
+            //whereClause = whereClause.and(searchTerm.);
+        }
+
+        //searchRoleBsNotLinkedToRoleA
+
+        JPQLQuery query = dao.from(qRoleB)
+                .where(whereClause);
+
+        return dao.readPage(query, qRoleB, pageRequest);
+    }
+
+// DAO
 }

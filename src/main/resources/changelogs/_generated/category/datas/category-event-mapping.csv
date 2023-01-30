@@ -1,0 +1,8 @@
+event_key;event_class
+
+PRE_CREATE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PreCreateCategory
+PRE_DELETE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PreDeleteCategory
+PRE_UPDATE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PreUpdateCategory
+POST_CREATE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PostCreateCategory
+POST_DELETE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PostDeleteCategory
+POST_UPDATE_CATEGORY;com.katappult.cloud.platform.generated.model.event.PostUpdateCategory

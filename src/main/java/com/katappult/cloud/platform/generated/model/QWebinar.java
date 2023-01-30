@@ -41,8 +41,8 @@ public class QWebinar extends EntityPathBase<Webinar> {
 
      public final StringPath title = createString("title");
  public final StringPath description = createString("description");
- public final StringPath category = createString("category");
  public final com.mysema.query.types.path.DatePath<java.util.Date> dateDePlanification = createDate("dateDePlanification", java.util.Date.class);
+ public final StringPath meetingLink = createString("meetingLink");
 protected com.katappult.core.model.typed.QTypeInfo typeInfo;
 	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
 // ATTRIBUTES

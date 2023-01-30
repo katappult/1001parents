@@ -40,7 +40,8 @@
                 <constraints nullable="false" />
             </column>
 
-                    <column name="webinarsource" type="VARCHAR(255)"/>
+                    <column name="stars" type="VARCHAR(255)"/>
+        <column name="webinarsource" type="VARCHAR(255)"/>
         <column name="externallink" type="VARCHAR(255)"/>
         <column name="mediatype" type="VARCHAR(255)"/>
         <column name="description" type="VARCHAR(255)"/>
@@ -49,5 +50,136 @@
         </createTable>
     </changeSet>
 
+
+
+    <changeSet id="8" author="Replay-schema-content-holder">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_replay">
+            <column name="primary_content_oid" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="5" author="Replay-schema-type-managed">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_replay">
+            <column name="type_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2" author="Replay-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <insert tableName="T_LIFECYCLEMASTER">
+            <column name="name" value="Replay lifecycle"/>
+            <column name="number" value="REPLAY_0001"/>
+            <column name="description" value="Replay lifecycle description"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_LIFECYCLE">
+            <column name="is_latest_iteration" value="1"/>
+            <column name="iteration_number" value="1"/>
+            <column name="is_working_copy" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="master_oid" valueComputed="(select oid from T_LIFECYCLEMASTER where name='Replay lifecycle')"/>
+            <column name="initial_state" value="NEW"/>
+            <column name="terminal_state" value="CLOSED"/>
+        </insert>
+
+        <insert tableName="T_CONTENTITEM">
+            <column name="content_size" value="10"/>
+            <column name="md5" value="1"/>
+            <column name="rating" valueNumeric="1"/>
+            <column name="download_count" valueNumeric="1"/>
+            <column name="name" value="REPLAY_LIFECYCLE"/>
+            <column name="dtype" value="PRIM"/>
+            <column name="container_oid" value="1"/>
+        </insert>
+        <insert tableName="T_CONTENTLOCATION">
+            <column name="content_type" value="BLOB"/>
+            <column name="name" value="REPLAY_LIFECYCLE"/>
+            <column name="item_oid" valueComputed="(select oid from T_CONTENTITEM where name='REPLAY_LIFECYCLE')"/>
+        </insert>
+        <update tableName="T_CONTENTLOCATION">
+            <column name="content_blob" valueBlobFile="/changelogs/_generated/replay/datas/replay-lifecycle.xml"/>
+            <where>name='REPLAY_LIFECYCLE'</where>
+        </update>
+        <update tableName="T_LIFECYCLE">
+            <column name="primary_content_oid" valueComputed="(select oid from T_CONTENTITEM where name='REPLAY_LIFECYCLE')"/>
+            <where>master_oid=(select oid from t_lifecyclemaster where name='Replay lifecycle')</where>
+        </update>
+
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="NEW"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="REFUSED"/>
+            <column name="action" value="SET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="REFUSED"/>
+            <column name="to_state" value="ACCEPTED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="NEW"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+        <insert tableName="T_LIFECYCLETRANSITION">
+            <column name="from_state" value="ACCEPTED"/>
+            <column name="to_state" value="CLOSED"/>
+            <column name="action" value="ADMINSET_STATE"/>
+            <column name="lifecycle_oid" valueComputed="(select l.oid from t_lifecyclemaster m, t_lifecycle l where m.oid=l.master_oid and m.name ='Replay lifecycle')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="Replay-schema-lfmanaged">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="gen_replay">
+            <column name="lifecycle_oid" type="BIGINT"/>
+            <column name="lifecycle_state" type="VARCHAR(40)"/>
+        </addColumn>
+    </changeSet>
+
+<changeSet id="10" author="Replay-schema-tomany-category">
+    <validCheckSum>ANY</validCheckSum>
+    <createTable tableName="MANY_TO_MANY_REPLAY_CATEGORY_LINK">
+        <column name="version" type="BIGINT"  defaultValue="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="description" type="varchar(255)"/>
+        <column name="rolea_domain" type="varchar(255)"/>
+        <column name="roleb_domain" type="varchar(255)"/>
+        <column name="comment" type="varchar(255)"/>
+
+        <column name="container_oid" type="BIGINT" defaultValue="1">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="roleaid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="rolebid" type="BIGINT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+
+        <column name="create_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="modified_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        <column name="created_by" type="varchar(255)" defaultValue="system"/>
+        <column name="last_modified_by" type="varchar(255)" defaultValue="system"/>
+
+        <!-- Replay-schema-tomany-category LINK COLUMNS -->
+    </createTable>
+</changeSet>
 </databaseChangeLog>
 

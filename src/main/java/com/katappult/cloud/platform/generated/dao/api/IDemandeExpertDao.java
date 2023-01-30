@@ -6,6 +6,7 @@ import com.katappult.core.model.composite.Container;
 import com.katappult.cloud.platform.generated.model.DemandeExpert;
 import java.util.Map;
 import com.katappult.cloud.platform.generated.model.*;
+import com.katappult.cloud.platform.generated.model.Category;
 // IMPORT
 
 public interface IDemandeExpertDao {
@@ -15,6 +16,9 @@ public interface IDemandeExpertDao {
     boolean existWithName(String name, Container container);
 
     PageResult searchByNamelike(String searchTerm, PageRequest pageRequest, Container container);
+
+
+    PageResult searchCategoryEntity(final DemandeExpert roleA, final String searchTerm, PageRequest pageRequest, Container container);
 
 // DAO
 }

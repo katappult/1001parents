@@ -1,2 +1,0 @@
-SELECT * FROM GEN_AGENTFACILITATEURCATEGORY order by create_date desc
-

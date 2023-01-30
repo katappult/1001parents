@@ -10,7 +10,6 @@
     <ui:define name="content">
 
         <div class="col-12">
-
             <div class="mb-2">
                 <h:form>
                     <p:breadCrumb>
@@ -27,17 +26,38 @@
                         <p:autoUpdate/>
                     </p:messages>
 
-                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
+                    <h:panelGrid rendered="#{webinarController.isTypeOrLifecycleManaged}"
+                                 columns="3" cellpadding="7"  style="width:600px"
+                                 columnClasses="table-col" styleClass="mb-3">
+                        <h:outputLabel for="selectedLegacyType" value="Type"  required="true"/>
+                        <p:selectOneMenu  id="selectedLegacyType" value="#{webinarController.selectedLegacyType}"
+                                          style="min-width: 15rem" panelStyle="width: 20rem" scrollHeight="250"
+                                          converter="#{typeFacesConverter}"  required="true">
+                            <f:selectItems value="#{webinarController.selectableLegacyType}"  var="type" itemLabel="#{type.displayName}"/>
+                            <f:facet name="footer">
+                                <p:divider styleClass="mt-0" />
+                                <h:outputText value="Veuillez sélectionner un type" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                        <p:message for="selectedLegacyType" display="icon"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel"
+                                 columnClasses="table-col" style="width:600px">
 
                         <h:outputLabel for="title" value="Titre"/>
 <p:inputText id="title" value="#{webinarController.newElement.title}" required="true"/>
-<p:message for="title" display="icon"/><h:outputLabel for="description" value="Description"/>
+<p:message for="title" display="icon"/>
+<h:outputLabel for="description" value="Description"/>
 <p:inputText id="description" value="#{webinarController.newElement.description}" required="true"/>
-<p:message for="description" display="icon"/><h:outputLabel for="category" value="Category"/>
-<p:inputText id="category" value="#{webinarController.newElement.category}" required="true"/>
-<p:message for="category" display="icon"/><h:outputLabel for="dateDePlanification" value="Date De Planification"/>
+<p:message for="description" display="icon"/>
+<h:outputLabel for="dateDePlanification" value="Date De Planification"/>
 <p:datePicker id="dateDePlanification" value="#{webinarController.newElement.dateDePlanification}" required="true"/>
-<p:message for="dateDePlanification" display="icon"/><!--COLUMNS-->
+<p:message for="dateDePlanification" display="icon"/>
+<h:outputLabel for="meetingLink" value="Lien de la réunion"/>
+<p:inputText id="meetingLink" value="#{webinarController.newElement.meetingLink}" required="true"/>
+<p:message for="meetingLink" display="icon"/>
+<!--COLUMNS-->
 
                     </h:panelGrid>
 
@@ -50,5 +70,12 @@
                 </h:form>
             </div>
         </div>
+
+        <style type="text/css">
+            .table-col{
+                width: 25%;
+            }
+        </style>
+
     </ui:define>
 </ui:composition>

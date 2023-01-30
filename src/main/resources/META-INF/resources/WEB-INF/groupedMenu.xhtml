@@ -44,12 +44,15 @@
         <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.hasRoleInWorkingContainer('ROLE_ADMIN')}">
             <sb:menu widgetVar="SiberiaMenuWidget1">
                 <p:submenu id="m_homepage" label="Administration" >
-                    <p:menuitem id="m_1" value="Préférences système" outcome="/secured/preferences/systeme"/>
                     <p:menuitem id="m_2" value="Utilisateurs" outcome="/secured/users/usersList"/>
-                    <p:menuitem id="m_3" value="Crédit" outcome="/secured/Credit/creditList"/>
-                    <p:menuitem id="m_4" value="Catégories d'experts" outcome="/secured/ExpertCategory/expertCategoryList"/>
-                    <p:menuitem id="m_5" value="Catégories d'ambassadeurs" outcome="/secured/AgentFacilitateurCategory/agentFacilitateurCategoryList"/>
-                    <p:menuitem id="m_6" value="Catégories d'agents" outcome="/secured/AmbassadeurCategory/ambassadeurCategoryList.xhtml"/>
+                    <p:menuitem id="m_credit" value="Credit" outcome="/secured/Credit/creditList"/>
+                    <p:menuitem id="m_demandeExpert" value="Demandes experts" outcome="/secured/DemandeExpert/demandeExpertList"/>
+                    <p:menuitem id="m_demandeAmbassadeur" value="Demandes ambassadeurs" outcome="/secured/DemandeAmbassadeur/demandeAmbassadeurList"/>
+                    <p:menuitem id="m_demandeAgent" value="Demandes agents" outcome="/secured/DemandeAgent/demandeAgentList"/>
+                    <p:menuitem id="m_replay" value="Replay" outcome="/secured/Replay/replayList"/>
+                    <p:menuitem id="m_webinar" value="Webinars" outcome="/secured/Webinar/webinarList"/>
+                    <p:menuitem id="m_ressources" value="Ressources" outcome="/secured/Ressources/ressourcesList"/>
+                    <p:menuitem id="m_category" value="Categories" outcome="/secured/Category/categoryList"/>
                 </p:submenu>
             </sb:menu>
         </p:outputPanel>

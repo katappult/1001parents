@@ -1,8 +1,0 @@
-event_key;event_class
-
-PRE_CREATE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PreCreateExpertCategory
-PRE_DELETE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PreDeleteExpertCategory
-PRE_UPDATE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PreUpdateExpertCategory
-POST_CREATE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PostCreateExpertCategory
-POST_DELETE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PostDeleteExpertCategory
-POST_UPDATE_EXPERTCATEGORY;com.katappult.cloud.platform.generated.model.event.PostUpdateExpertCategory

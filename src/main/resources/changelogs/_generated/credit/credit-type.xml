@@ -17,6 +17,30 @@
             <column name="parent_id" valueComputed="NULL" />
             <column name="lifecycle_master_id" valueComputed="(select oid from t_lifecyclemaster where name='Credit lifecycle')"/>
         </insert>
+ <insert tableName="T_SOFTTYPE">
+            <column name="display_name" value="CreditExpert" />
+            <column name="logical_name" value="CreditExpert"/>
+            <column name="logical_path" value="com.katappult.online.types.CreditType/CreditExpert"/>
+            <column name="base_class" value="com.katappult.cloud.platform.generated.model.Credit"/>
+            <column name="is_instanciable" value="1"/>
+            <column name="is_enabled" value="1"/>
+            <column name="discrimn_col" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="parent_id" valueComputed="(select oid from T_SOFTTYPE where logical_path='com.katappult.online.types.CreditType')" />
+            <column name="lifecycle_master_id" valueComputed="(select oid from t_lifecyclemaster where name='')"/>
+        </insert>
+ <insert tableName="T_SOFTTYPE">
+            <column name="display_name" value="CreditAgentFacilitateur" />
+            <column name="logical_name" value="CreditAgentFacilitateur"/>
+            <column name="logical_path" value="com.katappult.online.types.CreditType/CreditAgentFacilitateur"/>
+            <column name="base_class" value="com.katappult.cloud.platform.generated.model.Credit"/>
+            <column name="is_instanciable" value="1"/>
+            <column name="is_enabled" value="1"/>
+            <column name="discrimn_col" value="0"/>
+            <column name="container_oid" value="1"/>
+            <column name="parent_id" valueComputed="(select oid from T_SOFTTYPE where logical_path='com.katappult.online.types.CreditType')" />
+            <column name="lifecycle_master_id" valueComputed="(select oid from t_lifecyclemaster where name='')"/>
+        </insert>
  
  </changeSet>
 

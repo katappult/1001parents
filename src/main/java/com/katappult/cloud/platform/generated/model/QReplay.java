@@ -44,12 +44,17 @@ public class QReplay extends EntityPathBase<Replay> {
  public final StringPath mediaType = createString("mediaType");
  public final StringPath externalLink = createString("externalLink");
  public final StringPath webinarSource = createString("webinarSource");
+ public final NumberPath<Integer> stars = createNumber("stars", Integer.class);
+protected com.katappult.core.model.typed.QTypeInfo typeInfo;
+	protected com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo;
 // ATTRIBUTES
 
     public QReplay(String variable) {
         this(Replay.class, forVariable(variable), INITS);
 
-        // CONSTRUCTOR
+        this.typeInfo = INITS.isInitialized("typeInfo") ? new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"), INITS.get("typeInfo")) : null;
+	this.lifecycleInfo = INITS.isInitialized("lifecycleInfo") ? new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"), INITS.get("lifecycleInfo")) : null;
+// CONSTRUCTOR
     }
 
     public QReplay(Path<? extends Replay> path) {
@@ -84,6 +89,21 @@ public class QReplay extends EntityPathBase<Replay> {
         return persistenceInfo;
     }
 
-    // METHODS
+    
+public com.katappult.core.model.typed.QTypeInfo typeInfo() {
+        if (typeInfo == null) {
+            typeInfo = new com.katappult.core.model.typed.QTypeInfo(forProperty("typeInfo"));
+        }
+        return typeInfo;
+    }
+
+	public com.katappult.core.model.lifecyclemanaged.QLifecycleInfo lifecycleInfo() {
+        if (lifecycleInfo == null) {
+            lifecycleInfo = new com.katappult.core.model.lifecyclemanaged.QLifecycleInfo(forProperty("lifecycleInfo"));
+        }
+        return lifecycleInfo;
+    }
+
+// METHODS
 }
 

@@ -20,7 +20,6 @@ import com.katappult.core.model.typed.TypeManaged;
 
 import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
 import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
-import com.katappult.cloud.platform.generated.model.AmbassadeurCategory;
 import com.katappult.core.model.account.UserAccount;
 // IMPORT
 
@@ -36,10 +35,12 @@ public class DemandeAmbassadeur extends BusinessObject implements Serializable ,
 
     private String titre;
     private String description;
+    private Date planificationDate;
     	private TypeInfo typeInfo;
 private LifecycleInfo lifecycleInfo;
-	private AmbassadeurCategory onetooneAmbassadeurCategory;
 	private UserAccount userAccount;
+    private Category category;
+
 // ATTRIBUTES
 
 
@@ -49,6 +50,9 @@ private LifecycleInfo lifecycleInfo;
         setTitre(((DemandeAmbassadeur)entity).getTitre());
         setTitre(((DemandeAmbassadeur)entity).getTitre());
         setDescription(((DemandeAmbassadeur)entity).getDescription());
+        setTitre(((DemandeAmbassadeur)entity).getTitre());
+        setDescription(((DemandeAmbassadeur)entity).getDescription());
+        setPlanificationDate(((DemandeAmbassadeur)entity).getPlanificationDate());
         // UPDATE_ATTRIBUTES
     }
 
@@ -93,17 +97,6 @@ private LifecycleInfo lifecycleInfo;
 
 		@TransferIgnore
     @OneToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "one_toone_ambassadeurcategory_fk_oid", nullable = true)
-    public AmbassadeurCategory getAmbassadeurCategory() {
-        return onetooneAmbassadeurCategory;
-    }
-
-    public void setAmbassadeurCategory(final AmbassadeurCategory onetooneAmbassadeurCategory) {
-        this.onetooneAmbassadeurCategory = onetooneAmbassadeurCategory;
-    }
-
-		@TransferIgnore
-    @OneToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "one_toone_useraccount_fk_oid", nullable = true)
     public UserAccount getUserAccount() {
         return userAccount;
@@ -112,6 +105,18 @@ private LifecycleInfo lifecycleInfo;
     public void setUserAccount(final UserAccount userAccount) {
         this.userAccount = userAccount;
     }
+    @TransferIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "manytoone_category_fk_oid", nullable = true)
+    public Category getCategory() {
+        return category;
+    }
+
+
+    public void setCategory(final Category category) {
+        this.category = category;
+    }
+
 // GETTERS AND SETTERS
     @UIAttribute(fieldName = "titre", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "titre")
@@ -131,6 +136,16 @@ private LifecycleInfo lifecycleInfo;
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @UIAttribute(fieldName = "planificationDate", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "planificationdate")
+    public Date getPlanificationDate() {
+        return planificationDate;
+    }
+
+    public void setPlanificationDate(Date planificationDate) {
+        this.planificationDate = planificationDate;
     }
 
 

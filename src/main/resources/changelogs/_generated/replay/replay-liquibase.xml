@@ -6,6 +6,7 @@
 
     
 		<include file="changelogs/_generated/replay/replay-schema.xml"/>
+		<include file="changelogs/_generated/replay/replay-type.xml"/>
 		<include file="changelogs/_generated/replay/replay-rules.xml"/>
 		<include file="changelogs/_generated/replay/replay-export.xml"/>
 </databaseChangeLog>

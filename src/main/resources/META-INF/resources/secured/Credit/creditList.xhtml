@@ -47,7 +47,7 @@
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:dataTable var="element" value="#{creditController.listDataModel}" stripedRows="true"
+                <p:dataTable var="element" value="#{creditController.listDataModel}" stripedRows="true" class="mt-2"
                              paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} &#233;l&#233;ment(s)">
@@ -58,9 +58,15 @@
 
                     <p:column headerText="Total">
     <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.total}" /></a>
-</p:column><p:column headerText="Consumed">
+</p:column>
+<p:column headerText="Consumed">
     <a href="#{creditController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.consumed}" /></a>
-</p:column><!--COLUMNS-->
+</p:column>
+<!--COLUMNS-->
+
+                    <p:column headerText="Statut" rendered="#{creditController.isTypeOrLifecycleManaged}">
+                        <p:tag styleClass="mr-2 p-2" severity="warning" value="#{element.lifecycleInfo.currentState}"></p:tag>
+                    </p:column>
 
                     <p:column styleClass="float-right text-right mr-3">
                         <h:form>

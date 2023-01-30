@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.katappult</groupId>
         <artifactId>katappult-platform</artifactId>
-        <version>0.0.58</version>
+        <version>0.0.59-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.katappult</groupId>
             <artifactId>katappult-core</artifactId>
-            <version>0.0.58</version>
+            <version>0.0.59-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -343,7 +343,7 @@
                 <dependency>
                     <groupId>com.katappult</groupId>
                     <artifactId>katappult-coreui</artifactId>
-                    <version>0.0.58</version>
+                    <version>0.0.59-SNAPSHOT</version>
                     <scope>provided</scope>
                 </dependency>
             </dependencies>

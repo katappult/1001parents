@@ -14,6 +14,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.lang.String;
+
+import com.katappult.core.model.contentHolder.IContentHolder;
+import com.katappult.core.model.contentHolder.ContentInfo;
 import com.katappult.core.model.typed.ITypeManaged;
 import com.katappult.core.model.typed.TypeInfo;
 import com.katappult.core.model.typed.TypeManaged;
@@ -28,15 +31,16 @@ import com.katappult.core.model.lifecyclemanaged.LifecycleInfo;
 @Access(AccessType.PROPERTY)
 @TypeManaged(rootType = "com.katappult.online.types.WebinarType")
 // ANNOTATIONS
-public class Webinar extends BusinessObject implements Serializable , ITypeManaged, ILifecycleManaged{// KNOER
+public class Webinar extends BusinessObject implements Serializable , IContentHolder, ITypeManaged, ILifecycleManaged{// KNOER
 
     private static final long serialVersionUID = 1L;
 
     private String title;
     private String description;
-    private String category;
     private Date dateDePlanification;
-    	private TypeInfo typeInfo;
+    private String meetingLink;
+    private ContentInfo contentInfo;
+	private TypeInfo typeInfo;
 private LifecycleInfo lifecycleInfo;
 // ATTRIBUTES
 
@@ -49,11 +53,11 @@ private LifecycleInfo lifecycleInfo;
         setDescription(((Webinar)entity).getDescription());
         setTitle(((Webinar)entity).getTitle());
         setDescription(((Webinar)entity).getDescription());
-        setCategory(((Webinar)entity).getCategory());
+        setDateDePlanification(((Webinar)entity).getDateDePlanification());
         setTitle(((Webinar)entity).getTitle());
         setDescription(((Webinar)entity).getDescription());
-        setCategory(((Webinar)entity).getCategory());
         setDateDePlanification(((Webinar)entity).getDateDePlanification());
+        setMeetingLink(((Webinar)entity).getMeetingLink());
         // UPDATE_ATTRIBUTES
     }
 
@@ -74,6 +78,17 @@ private LifecycleInfo lifecycleInfo;
     }
 
     
+	@Embedded
+    @Override
+    public ContentInfo getContentInfo() {
+        return contentInfo;
+    }
+
+    @Override
+    public void setContentInfo(ContentInfo contentInfo) {
+        this.contentInfo = contentInfo;
+    }
+
 	@Embedded
     @Override
     public TypeInfo getTypeInfo() {
@@ -116,16 +131,6 @@ private LifecycleInfo lifecycleInfo;
         this.description = description;
     }
 
-    @UIAttribute(fieldName = "category", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
-    @Column(name = "category")
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     @UIAttribute(fieldName = "dateDePlanification", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
     @Column(name = "datedeplanification")
     public Date getDateDePlanification() {
@@ -134,6 +139,16 @@ private LifecycleInfo lifecycleInfo;
 
     public void setDateDePlanification(Date dateDePlanification) {
         this.dateDePlanification = dateDePlanification;
+    }
+
+    @UIAttribute(fieldName = "meetingLink", required = false, blankAllowed = false, fieldEditor = UIFieldEditor.TEXT_FIELD)
+    @Column(name = "meetinglink")
+    public String getMeetingLink() {
+        return meetingLink;
+    }
+
+    public void setMeetingLink(String meetingLink) {
+        this.meetingLink = meetingLink;
     }
 
 

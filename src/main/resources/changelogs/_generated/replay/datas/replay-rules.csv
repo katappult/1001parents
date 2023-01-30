@@ -1,2 +1,4 @@
 businessrule_identifier;br_order;isactive;isvetoable;description;event_name;business_class;br_rule;transac_phase;container_oid;business_type
 
+ReplaySetLifecycle;2;1;1;Description of rule;PRE_CREATE_REPLAY;com.katappult.cloud.platform.generated.model.Replay;LifecycleManagedSystemRules;NULL;1;
+ReplaySetType;1;1;1;Description of rule;PRE_CREATE_REPLAY;com.katappult.cloud.platform.generated.model.Replay;TypeManagedSetBusinessTypeRule;NULL;1;

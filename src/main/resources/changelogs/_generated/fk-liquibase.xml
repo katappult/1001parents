@@ -5,4 +5,25 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 
+
+    <changeSet id="6" author="DemandeExpert-schema-manytoone-category">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="GEN_DEMANDEEXPERT">
+            <column name="manytoone_category_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="DemandeAmbassadeur-schema-manytoone-category">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="GEN_DEMANDEAMBASSADEUR">
+            <column name="manytoone_category_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="DemandeAgent-schema-manytoone-category">
+        <validCheckSum>ANY</validCheckSum>
+        <addColumn tableName="GEN_DEMANDEAGENT">
+            <column name="manytoone_category_fk_oid" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

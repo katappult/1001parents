@@ -47,7 +47,7 @@
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:dataTable var="element" value="#{demandeAmbassadeurController.listDataModel}" stripedRows="true"
+                <p:dataTable var="element" value="#{demandeAmbassadeurController.listDataModel}" stripedRows="true" class="mt-2"
                              paginator="true" paginatorPosition="bottom" rows="10" id="listDataModel"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} &#233;l&#233;ment(s)">
@@ -58,9 +58,18 @@
 
                     <p:column headerText="Titre">
     <a href="#{demandeAmbassadeurController.entityDetailsView}?id=#{element.oid}" > <h:outputText value="#{element.titre}" /></a>
-</p:column><p:column headerText="Description">
+</p:column>
+<p:column headerText="Description">
     <h:outputText value="#{element.description}" />
-</p:column><!--COLUMNS-->
+</p:column>
+<p:column headerText="Date de planification">
+                        <p:datePicker id="basic" value="#{element.planificationDate}" disabled="true"/>
+                    </p:column>
+<!--COLUMNS-->
+
+                    <p:column headerText="Statut" rendered="#{demandeAmbassadeurController.isTypeOrLifecycleManaged}">
+                        <p:tag styleClass="mr-2 p-2" severity="warning" value="#{element.lifecycleInfo.currentState}"></p:tag>
+                    </p:column>
 
                     <p:column styleClass="float-right text-right mr-3">
                         <h:form>

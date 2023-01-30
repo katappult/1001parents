@@ -4,9 +4,12 @@ import com.katappult.cloud.platform.generated.model.Ressources;
 import com.katappult.cloud.platform.generated.services.api.IRessourcesService;
 import com.katappult.core.bridge.operation.IOperationResult;
 import com.katappult.core.jsf.controller.BaseCRUDController;
+import com.katappult.core.jsf.dto.ElementsDetailsDTO;
 import com.katappult.core.jsf.utils.CRUDMessageType;
 import com.katappult.core.jsf.utils.JSFAuthUtils;
-import com.katappult.core.model.account.UserAccount;
+import com.katappult.core.model.composite.Container;
+import com.katappult.core.model.lifecyclemanaged.ILifecycleManaged;
+import com.katappult.core.model.lifecyclemanaged.LifecycleHistory;
 import com.katappult.core.model.persistable.IPersistable;
 import com.katappult.core.utils.UIAttributes;
 import com.katappult.core.utils.pagination.PageRequest;
@@ -23,12 +26,14 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Lazy
 @ManagedBean
 @ViewScoped
-public class RessourcesController extends BaseCRUDController implements Serializable {
+public class RessourcesController extends BaseCRUDController<Ressources> implements Serializable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RessourcesController.class);
 
@@ -39,14 +44,32 @@ public class RessourcesController extends BaseCRUDController implements Serializ
   private String entityImportView = String.format("/secured/%s/import%s.xhtml", entityName, entityName);
   private String entityListView = String.format("/secured/%s/%sList.xhtml", entityName, entityNameLower);
 
-  private Ressources selectedElementForDetails;
+  private ElementsDetailsDTO selectedElementForDetails;
   private Ressources newElement = new Ressources();
 
-  @Inject private IRessourcesService entityService;
+  @Inject
+  private IRessourcesService entityService;
 
   @PostConstruct
   public void initController(){
+    super.initialiseBean();
+  }
 
+  protected void loadReachableStates() {
+    if (getIsTypeOrLifecycleManaged() && selectedElementForDetails != null) {
+
+      Container container = services.containerService().getApplicationContainer();
+
+      List<String> reachableStates = services.lifecycleManagedService()
+              .getStatesBySetState((ILifecycleManaged) selectedElementForDetails.getElement(), container);
+
+      selectedElementForDetails.setReachableStates(reachableStates);
+
+      List<LifecycleHistory> lifecycleHistories = services.lifecycleManagedService()
+              .lifecycleHistory((ILifecycleManaged) selectedElementForDetails.getElement(), container);
+
+      selectedElementForDetails.setLifecycleHistories(lifecycleHistories);
+    }
   }
 
   public PageResult loadDataModelPaginatedList(PageRequest pageRequest) {
@@ -94,6 +117,7 @@ public class RessourcesController extends BaseCRUDController implements Serializ
       uiAttributes.setTarget(newElement);
 
       uiAttributes.validateAttributes(IOperationResult.basicSuccess());
+      addLegacyType(uiAttributes);
       Ressources createdElement = entityService.create(uiAttributes, getWorkingContainer());
 
       newElement = new Ressources();
@@ -112,11 +136,12 @@ public class RessourcesController extends BaseCRUDController implements Serializ
     try {
 
       UIAttributes uiAttributes = new UIAttributes();
-      uiAttributes.setTarget(selectedElementForDetails);
+      uiAttributes.setTarget(selectedElementForDetails.getElement());
 
       uiAttributes.validateAttributes(IOperationResult.basicSuccess());
 
-      selectedElementForDetails = entityService.update(uiAttributes, getWorkingContainer());
+      Ressources element = entityService.update(uiAttributes, getWorkingContainer());
+      selectedElementForDetails.setElement(element);
 
       addDefaultSuccessMessage(CRUDMessageType.ELEMENT_HAVE_BEEN_UPDATED);
     } catch (Exception e) {
@@ -124,28 +149,47 @@ public class RessourcesController extends BaseCRUDController implements Serializ
     }
   }
 
+  public void _doUpdateElementBySetState(String state) {
+    Container container = services.containerService().getApplicationContainer();
+    services.lifecycleManagedService()
+            .updateStatusBySetState((ILifecycleManaged) selectedElementForDetails.getElement(), state, container);
+
+    loadDetails(true);
+  }
+
   private void loadDetails(boolean refresh) {
     String id =
-        FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+            FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+    Long previousId = Optional.ofNullable(selectedElementForDetails)
+            .map(element -> element.getElement())
+            .map(element -> element.getOid())
+            .orElse(null);
 
-    boolean shouldReLoadDatas =
-        selectedElementForDetails == null
-            || (StringUtils.isNotBlank(id)
-                && !selectedElementForDetails.getOid().equals(Long.valueOf(id)));
+    if(Objects.isNull(previousId) && StringUtils.isEmpty(id)) {
+      return;
+    }
 
+    boolean shouldReLoadDatas = !refresh;
+    Long targetId = Optional.ofNullable(id).map(Long::valueOf).orElse(previousId);
     if (shouldReLoadDatas || refresh) {
+
+      selectedElementForDetails = new ElementsDetailsDTO();
       if (shouldReLoadDatas) {
-        selectedElementForDetails =
-            (Ressources) services.persistableService().findById(Long.valueOf(id), Ressources.class);
+        Ressources element =
+            (Ressources) services.persistableService().findById(targetId, Ressources.class);
+        selectedElementForDetails.setElement(element);
       }
 
-      if (refresh) {
-        selectedElementForDetails =
+      if (refresh && previousId != null) {
+        Ressources element =
             (Ressources)
                 services
                     .persistableService()
-                    .findByIdFetchType(selectedElementForDetails.getOid(), Ressources.class);
+                    .findByIdFetchType(previousId, Ressources.class);
+        selectedElementForDetails.setElement(element);
       }
+
+      loadReachableStates();
     }
   }
 
@@ -154,17 +198,18 @@ public class RessourcesController extends BaseCRUDController implements Serializ
   }
 
   @Override
+  public Class<Ressources> getTargetEntityClass() {
+    return Ressources.class;
+  }
+
+  @Override
   protected String getJobType() {
     return "manage" + getEntityName();
   }
 
-  public Ressources getSelectedElementForDetails() {
+  public ElementsDetailsDTO getSelectedElementForDetails() {
     loadDetails(false);
     return selectedElementForDetails;
-  }
-
-  public void setSelectedElementForDetails(Ressources selectedElementForDetails) {
-    this.selectedElementForDetails = selectedElementForDetails;
   }
 
   public Ressources getNewElement() {
@@ -221,5 +266,9 @@ public class RessourcesController extends BaseCRUDController implements Serializ
 
   public void setEntityImportView(String entityImportView) {
     this.entityImportView = entityImportView;
+  }
+
+  public List<String> getReachableStates() {
+    return selectedElementForDetails.getReachableStates();
   }
 }

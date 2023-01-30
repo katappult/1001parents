@@ -25,6 +25,18 @@
                         <p:toolbarGroup>
                             <p:commandButton value="Ajouter" styleClass="mr-2 ui-button-outlined" icon="pi pi-plus"
                                              action="/secured/Credit/addCredit.xhtml"/>
+
+                            <ui:repeat value="#{creditController.selectedElementForDetails.reachableStates}" var="state">
+                                <p:commandButton value="#{state}" styleClass="mr-2 ui-button-outlined"
+                                                 ajax="false" immediate="false"
+                                                 update="update_form messages"
+                                                 action="#{creditController._doUpdateElementBySetState(state)}"
+                                />
+                            </ui:repeat>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right" rendered="#{creditController.isTypeOrLifecycleManaged}">
+                            <p:tag styleClass="mr-2 p-2" severity="warning" value="#{creditController.selectedElementForDetails.element.lifecycleInfo.currentState}"></p:tag>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </h:form>
@@ -39,12 +51,12 @@
                             <h:form id="update_form">
                                 <h:panelGrid columns="2" cellpadding="7">
                                     <h:outputLabel for="oid" value="ID"/>
-                                    <p:inputText id="oid" value="#{creditController.selectedElementForDetails.oid}" disabled="true"/>
+                                    <p:inputText id="oid" value="#{creditController.selectedElementForDetails.element.oid}" disabled="true"/>
 
                                     <h:outputLabel for="total" value="Total"/>
-   <p:inputNumber  id="total" value="#{creditController.selectedElementForDetails.total}" decimalPlaces="0"  required="true"/>
+   <p:inputNumber  id="total" value="#{creditController.selectedElementForDetails.element.total}" decimalPlaces="0"  required="true"/>
 <h:outputLabel for="consumed" value="Consumed"/>
-   <p:inputNumber  id="consumed" value="#{creditController.selectedElementForDetails.consumed}" decimalPlaces="0"  required="true"/>
+   <p:inputNumber  id="consumed" value="#{creditController.selectedElementForDetails.element.consumed}" decimalPlaces="0"  required="true"/>
 <!--COLUMNS-->
                                 </h:panelGrid>
 
@@ -59,19 +71,30 @@
                                 </p:toolbar>
                             </h:form>
                         </p:panel>
-
-                        <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
-                            <ui:param name="selectedElementForDetails" value="#{creditController.selectedElementForDetails}" />
-                        </ui:include>
                     </p:tab>
 
-                    <p:tab title="Autres">
+                    <ui:include src="../../lifecycle/lifecycleHistory.xhtml">
+                        <ui:param name="lifecycleHistories"
+                                  value="#{creditController.selectedElementForDetails.lifecycleHistories}" />
+                        <ui:param name="isTypeOrLifecycleManaged" value="#{creditController.isTypeOrLifecycleManaged}"/>
+                    </ui:include>
 
+                    <p:tab title="Metadonnées">
+                        <p:card styleClass="mt-2 mb-4">
+                            <ui:include src="../../persistenceInfo/persistenceInfo.xhtml">
+                                <ui:param name="selectedElementForDetails" value="#{demandeAgentController.selectedElementForDetails.element}" />
+                            </ui:include>
+                        </p:card>
                     </p:tab>
                 </p:tabView>
-
             </div>
         </div>
+
+        <style type="text/css">
+            .katappult-metadata-chronoline .ui-card-title{
+                font-size: 1rem!important;
+            }
+        </style>
     </ui:define>
 
 </ui:composition>

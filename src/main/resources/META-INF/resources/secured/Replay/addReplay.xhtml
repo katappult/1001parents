@@ -10,7 +10,6 @@
     <ui:define name="content">
 
         <div class="col-12">
-
             <div class="mb-2">
                 <h:form>
                     <p:breadCrumb>
@@ -27,19 +26,41 @@
                         <p:autoUpdate/>
                     </p:messages>
 
-                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel">
+                    <h:panelGrid rendered="#{replayController.isTypeOrLifecycleManaged}"
+                                 columns="3" cellpadding="7"  style="width:600px"
+                                 columnClasses="table-col" styleClass="mb-3">
+                        <h:outputLabel for="selectedLegacyType" value="Type"  required="true"/>
+                        <p:selectOneMenu  id="selectedLegacyType" value="#{replayController.selectedLegacyType}"
+                                          style="min-width: 15rem" panelStyle="width: 20rem" scrollHeight="250"
+                                          converter="#{typeFacesConverter}"  required="true">
+                            <f:selectItems value="#{replayController.selectableLegacyType}"  var="type" itemLabel="#{type.displayName}"/>
+                            <f:facet name="footer">
+                                <p:divider styleClass="mt-0" />
+                                <h:outputText value="Veuillez sélectionner un type" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                        <p:message for="selectedLegacyType" display="icon"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3" id="createPanel"
+                                 columnClasses="table-col" style="width:600px">
 
                         <h:outputLabel for="title" value="Titre"/>
 <p:inputText id="title" value="#{replayController.newElement.title}" required="true"/>
-<p:message for="title" display="icon"/><h:outputLabel for="description" value="Description"/>
+<p:message for="title" display="icon"/>
+<h:outputLabel for="description" value="Description"/>
 <p:inputTextarea id="description" rows="5" cols="30" value="#{replayController.newElement.description}" counterTemplate="{0} characters remaining." required="true"/>
-<p:message for="description" display="icon"/><h:outputLabel for="mediaType" value="MediaType"/>
+<p:message for="description" display="icon"/>
+<h:outputLabel for="mediaType" value="MediaType"/>
 <p:inputText id="mediaType" value="#{replayController.newElement.mediaType}" required="true"/>
-<p:message for="mediaType" display="icon"/><h:outputLabel for="externalLink" value="ExternalLink"/>
+<p:message for="mediaType" display="icon"/>
+<h:outputLabel for="externalLink" value="ExternalLink"/>
 <p:inputText id="externalLink" value="#{replayController.newElement.externalLink}" required="true"/>
-<p:message for="externalLink" display="icon"/><h:outputLabel for="webinarSource" value="WebinarSource"/>
+<p:message for="externalLink" display="icon"/>
+<h:outputLabel for="webinarSource" value="WebinarSource"/>
 <p:inputText id="webinarSource" value="#{replayController.newElement.webinarSource}" required="true"/>
-<p:message for="webinarSource" display="icon"/><!--COLUMNS-->
+<p:message for="webinarSource" display="icon"/>
+<!--COLUMNS-->
 
                     </h:panelGrid>
 
@@ -52,5 +73,12 @@
                 </h:form>
             </div>
         </div>
+
+        <style type="text/css">
+            .table-col{
+                width: 25%;
+            }
+        </style>
+
     </ui:define>
 </ui:composition>
