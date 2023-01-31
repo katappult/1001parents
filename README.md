@@ -1,17 +1,27 @@
 
-Application full stack: REACTJS + REDUX + JAVA + SPRINGBOOT + POSTGRES/H2
+Application 1001Parents
 ===========================================================================
 
 * Java 17
-* Docker
 * Maven
-* NodeJS
 * PostgresSQL
 * H2
-* ReactJS
+* JSF/Primefaces
 * SpringBoot
 
-# Build total
+# Installation
+
+Installer maven et JAVA 17
+
+
+# Buil simple avec réinitialisation de la BD H2
+
+```
+> mvn clean install -PdropDb,updateDb
+```
+
+
+# Build total avec ReacJS
 
 ```
 > mvn clean install -PdropDb,updateDb,install-reactui,npm-install,npm-build
