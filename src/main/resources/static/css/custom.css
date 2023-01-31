@@ -41,3 +41,22 @@ body .ui-breadcrumb .ui-breadcrumb-items li:first-child a.ui-icon-home,
 body .ui-breadcrumb{
     font-size: 18px!important;
 }
+
+@media (min-width: 993px) and (max-width: 1500px){
+	.layout-wrapper.layout-horizontal .layout-topbar .layout-topbar-wrapper {
+	    flex-wrap: nowrap!important;
+	    height: auto;
+	    flex-direction: row-reverse;
+	    font-size:13px;
+	}
+	
+	.layout-wrapper .menu-wrapper .layout-menu > li > a .layout-menuitem-text{
+		font-size:13px;
+	}
+}
+
+@media (min-width: 993px) and (max-width: 1500px){
+	.layout-wrapper.layout-horizontal .layout-main {
+	    padding-top: 60px;
+	}
+}

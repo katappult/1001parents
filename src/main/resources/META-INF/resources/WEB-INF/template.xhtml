@@ -16,12 +16,12 @@
             <link rel="shortcut icon" type="image/png" sizes="200x200" href="#{request.contextPath}/images/favicon.png" />
             <link rel="icon" type="image/png" sizes="200x200" href="#{request.contextPath}/images/favicon.png" />
             
-            <link rel="stylesheet" href="#{request.contextPath}/css/custom.css" type="text/css" />
         </f:facet>
 
         <title><ui:insert name="title">#{userSessionMap.applicationFriendlyName}</ui:insert></title>
         <h:outputScript name="js/layout.js" library="siberia-layout" />
         <h:outputScript name="js/prism.js" library="siberia-layout"/>
+        <link rel="stylesheet" href="#{request.contextPath}/css/custom.css" type="text/css" />
         <ui:insert name="head"/>
     </h:head>
 

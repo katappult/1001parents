@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <div class="layout-topbar">
+        <div class="layout-topbar-wrapper">
+          
+            <ui:include src="./menu.xhtml"/>
+
+            <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.isLoggedIn eq true}">
+                <div class="layout-topbar-right">
+                    <ul class="layout-topbar-actions">
+                        <li class="topbar-item admin">
+                            <a href="/backOffice/#/view?tab=platform&amp;name=containerSettings">
+                                <i class="topbar-icon pi pi-cog"/>
+                            </a>
+                        </li>
+
+                        <li class="topbar-item profile-item">
+                            <a href="/secured/profile/profile.xhtml">
+                                    <span class="profile-image-wrapper">
+                                        <img src="/images/ref-avatar.png" alt="avatar"/>
+                                    </span>
+                                <div class="profile-info-wrapper">
+                                    <h3>
+                                        <h:outputText  value="#{userSessionMap.currentUserSessionDatas.userFirstName}"/>
+                                    </h3>
+                                    <span>
+                                            <h:outputText  value="#{userSessionMap.currentUserSessionDatas.userLastName}"/>
+                                        </span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                         <li class="topbar-item admin">
+                            <h:form>
+                            <p:commandButton icon="pi pi-sign-out"
+                                             styleClass="ui-button-info ui-button-flat signout-button"
+                                           ajax="false"
+                                           id="logoutButton"
+                                           action="#{loginController.logout}"/>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+            </p:outputPanel>
+
+            <p:outputPanel rendered="#{userSessionMap.currentUserSessionDatas.isLoggedIn eq false}">
+                <div class="layout-topbar-right">
+                    <ul class="layout-topbar-actions">
+
+                        <li class="topbar-item admin">
+                            <a href="/login.xhtml">
+                                <i class="topbar-icon pi pi-sign-in"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </p:outputPanel>
+        </div>
+    </div>
+
+    <style type="text/css">
+        .signout-button{
+            margin-top:-12px!important;
+            margin-right: 22px!important;
+        }
+        .signout-button .pi-sign-out{
+            color: #f8fafc;
+            font-size: 23px;
+        }
+    </style>
+
+</ui:composition>

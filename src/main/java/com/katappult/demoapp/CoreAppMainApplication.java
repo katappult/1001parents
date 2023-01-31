@@ -1,4 +1,3 @@
-
 package com.katappult.demoapp;
 
 import com.katappult.core.conf.KatappultCoreRootConfiguration;
